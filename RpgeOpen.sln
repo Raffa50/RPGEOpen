@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2046
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RpgeOpen.Models", "RpgeOpen.Models\RpgeOpen.Models.csproj", "{163872C1-A863-4242-8834-30A1FE5BD151}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RpgeOpen.Core", "RpgeOpen.Core\RpgeOpen.Core.csproj", "{AF5AF860-5D19-4260-8999-34C4D0E0D28C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RpgeOpen.Player", "RpgeOpen.Player\RpgeOpen.Player.csproj", "{51F0CACA-0BEB-4EC6-92F3-8E7ECAB25DA1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RpgeOpen.IDE", "RpgeOpen.IDE\RpgeOpen.IDE.csproj", "{4003B56C-492E-4F98-A757-6FBC65290B80}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{163872C1-A863-4242-8834-30A1FE5BD151}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{163872C1-A863-4242-8834-30A1FE5BD151}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{163872C1-A863-4242-8834-30A1FE5BD151}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{163872C1-A863-4242-8834-30A1FE5BD151}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF5AF860-5D19-4260-8999-34C4D0E0D28C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF5AF860-5D19-4260-8999-34C4D0E0D28C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF5AF860-5D19-4260-8999-34C4D0E0D28C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF5AF860-5D19-4260-8999-34C4D0E0D28C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{51F0CACA-0BEB-4EC6-92F3-8E7ECAB25DA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51F0CACA-0BEB-4EC6-92F3-8E7ECAB25DA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51F0CACA-0BEB-4EC6-92F3-8E7ECAB25DA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51F0CACA-0BEB-4EC6-92F3-8E7ECAB25DA1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4003B56C-492E-4F98-A757-6FBC65290B80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4003B56C-492E-4F98-A757-6FBC65290B80}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4003B56C-492E-4F98-A757-6FBC65290B80}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4003B56C-492E-4F98-A757-6FBC65290B80}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {797D0E5A-62ED-4627-9860-FFED5D02FB77}
+	EndGlobalSection
+EndGlobal
