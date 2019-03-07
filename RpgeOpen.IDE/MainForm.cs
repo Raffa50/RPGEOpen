@@ -9,8 +9,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Newtonsoft.Json;
 using RpgeOpen.IDE.Utils;
-using RpgeOpen.Models;
+using RpgeOpen.Models.Entities;
 
 namespace RpgeOpen.IDE
 {
@@ -72,6 +73,9 @@ namespace RpgeOpen.IDE
 
             foreach (string newPath in Directory.GetFiles("ProjectStructure", "*.*", SearchOption.AllDirectories))
                 File.Copy(newPath, newPath.Replace("ProjectStructure", projectDir), true);
+
+            var project = new Project(Path.GetFileNameWithoutExtension(SfNewProject.FileName));
+            File.WriteAllText(SfNewProject.FileName, JsonConvert.SerializeObject(project));
         }
     }
 }
