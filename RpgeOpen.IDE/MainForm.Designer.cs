@@ -42,6 +42,7 @@ namespace RpgeOpen.IDE
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.OfMapImport = new System.Windows.Forms.OpenFileDialog();
             this.infoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.SfNewProject = new System.Windows.Forms.SaveFileDialog();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.SuspendLayout();
@@ -77,6 +78,7 @@ namespace RpgeOpen.IDE
             this.newProjectToolStripMenuItem.Name = "newProjectToolStripMenuItem";
             this.newProjectToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.newProjectToolStripMenuItem.Text = "New Project";
+            this.newProjectToolStripMenuItem.Click += new System.EventHandler(this.newProjectToolStripMenuItem_Click);
             // 
             // loadProjectToolStripMenuItem
             // 
@@ -137,6 +139,11 @@ namespace RpgeOpen.IDE
             this.infoToolStripMenuItem.Text = "Info";
             this.infoToolStripMenuItem.Click += new System.EventHandler(this.infoToolStripMenuItem_Click);
             // 
+            // SfNewProject
+            // 
+            this.SfNewProject.DefaultExt = "rpgeo";
+            this.SfNewProject.Filter = "Rpge Open Project (*.rpgeo)|*.rpgeo";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -147,6 +154,7 @@ namespace RpgeOpen.IDE
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
             this.Text = "Rpg Engine Open IDE";
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
@@ -169,6 +177,7 @@ namespace RpgeOpen.IDE
         private System.Windows.Forms.ToolStripMenuItem MiMapImport;
         private System.Windows.Forms.OpenFileDialog OfMapImport;
         private System.Windows.Forms.ToolStripMenuItem infoToolStripMenuItem;
+        private System.Windows.Forms.SaveFileDialog SfNewProject;
     }
 }
 

@@ -38,13 +38,40 @@ namespace RpgeOpen.IDE
         }
 
         private void Form1_Load(object sender, EventArgs e) {
-            OfMapImport.InitialDirectory = Environment.GetFolderPath( Environment.SpecialFolder.MyDocuments );
+            OfMapImport.InitialDirectory = SfNewProject.InitialDirectory = Environment.GetFolderPath( Environment.SpecialFolder.MyDocuments );
         }
 
         private void infoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var sp= new SplashForm();
             sp.ShowDialog();
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void newProjectToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (SfNewProject.ShowDialog() != DialogResult.OK)
+                return;
+
+            var projectDir = Path.Combine( 
+                Path.GetDirectoryName(SfNewProject.FileName), 
+                Path.GetFileNameWithoutExtension(SfNewProject.FileName) );
+            if (Directory.Exists(projectDir))
+            {
+                MessageBox.Show(this, "Project directory already exits", "Can't create new project", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            Directory.CreateDirectory(projectDir);
+            foreach (string dirPath in Directory.GetDirectories("ProjectStructure", "*", SearchOption.AllDirectories))
+                Directory.CreateDirectory(dirPath.Replace("ProjectStructure", projectDir));
+
+            foreach (string newPath in Directory.GetFiles("ProjectStructure", "*.*", SearchOption.AllDirectories))
+                File.Copy(newPath, newPath.Replace("ProjectStructure", projectDir), true);
         }
     }
 }

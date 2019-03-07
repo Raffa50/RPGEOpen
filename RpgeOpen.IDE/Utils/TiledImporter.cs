@@ -20,7 +20,7 @@ namespace RpgeOpen.IDE.Utils
                 foreach(var ts in tilesets ) {
                     var source = ts.Attributes().First(a => a.Name == "source");
                     ImportTileSheet( Path.Combine(tmxDir,source.Value), projectDir );
-                    source.Value = Path.Combine( "..", Project.Paths.TileSheets, Path.GetFileName(source.Value) );
+                    source.Value = "../"+ Project.Paths.TileSheets +"/"+ Path.GetFileName(source.Value);
                 }
 
                 document.Save(Path.Combine( projectDir, Project.Paths.Maps, Path.GetFileName(tmxPath) ));
@@ -35,10 +35,11 @@ namespace RpgeOpen.IDE.Utils
                 var images = document.Root.Elements().Where( e => e.Name == "image" );
                 foreach( var img in images) {
                     var source = img.Attributes().First( a => a.Name == "source" );
-                    var imageFile = Path.Combine(tsxDir, Path.GetFileName( source.Value ));
-                    File.Copy( source.Value, Path.Combine(projectDir, Project.Paths.TileSheets, imageFile), true );
+                    var imageFileName = Path.GetFileName(source.Value);
+                    File.Copy( Path.Combine(tsxDir, imageFileName), 
+                        Path.Combine(projectDir, Project.Paths.TileSheets, imageFileName), true );
 
-                    source.Value = Path.Combine( Project.Paths.TileSheets, imageFile );
+                    source.Value = imageFileName;
                 }
 
                 document.Save(Path.Combine( projectDir, Project.Paths.TileSheets, Path.GetFileName(tsxPath) ));
