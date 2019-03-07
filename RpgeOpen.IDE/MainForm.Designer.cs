@@ -2,7 +2,7 @@
 
 namespace RpgeOpen.IDE
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         /// Variabile di progettazione necessaria.
@@ -30,6 +30,7 @@ namespace RpgeOpen.IDE
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newProjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -40,6 +41,7 @@ namespace RpgeOpen.IDE
             this.MiMapImport = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.OfMapImport = new System.Windows.Forms.OpenFileDialog();
+            this.infoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.SuspendLayout();
@@ -50,7 +52,8 @@ namespace RpgeOpen.IDE
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
-            this.mapsToolStripMenuItem});
+            this.mapsToolStripMenuItem,
+            this.infoToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(800, 28);
@@ -70,18 +73,21 @@ namespace RpgeOpen.IDE
             // 
             // newProjectToolStripMenuItem
             // 
+            this.newProjectToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("newProjectToolStripMenuItem.Image")));
             this.newProjectToolStripMenuItem.Name = "newProjectToolStripMenuItem";
             this.newProjectToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.newProjectToolStripMenuItem.Text = "New Project";
             // 
             // loadProjectToolStripMenuItem
             // 
+            this.loadProjectToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("loadProjectToolStripMenuItem.Image")));
             this.loadProjectToolStripMenuItem.Name = "loadProjectToolStripMenuItem";
             this.loadProjectToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.loadProjectToolStripMenuItem.Text = "Load Project";
             // 
             // saveToolStripMenuItem
             // 
+            this.saveToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("saveToolStripMenuItem.Image")));
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.saveToolStripMenuItem.Text = "Save";
@@ -102,6 +108,7 @@ namespace RpgeOpen.IDE
             // 
             // MiMapImport
             // 
+            this.MiMapImport.Image = ((System.Drawing.Image)(resources.GetObject("MiMapImport.Image")));
             this.MiMapImport.Name = "MiMapImport";
             this.MiMapImport.Size = new System.Drawing.Size(216, 26);
             this.MiMapImport.Text = "Import from Tiled";
@@ -122,7 +129,15 @@ namespace RpgeOpen.IDE
             this.OfMapImport.FileName = "map";
             this.OfMapImport.Filter = "Tiled Map File (*.tmx)|*.tmx";
             // 
-            // Form1
+            // infoToolStripMenuItem
+            // 
+            this.infoToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("infoToolStripMenuItem.Image")));
+            this.infoToolStripMenuItem.Name = "infoToolStripMenuItem";
+            this.infoToolStripMenuItem.Size = new System.Drawing.Size(67, 24);
+            this.infoToolStripMenuItem.Text = "Info";
+            this.infoToolStripMenuItem.Click += new System.EventHandler(this.infoToolStripMenuItem_Click);
+            // 
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -130,7 +145,7 @@ namespace RpgeOpen.IDE
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "Form1";
+            this.Name = "MainForm";
             this.Text = "Rpg Engine Open IDE";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -153,6 +168,7 @@ namespace RpgeOpen.IDE
         private System.Windows.Forms.ToolStripMenuItem mapsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem MiMapImport;
         private System.Windows.Forms.OpenFileDialog OfMapImport;
+        private System.Windows.Forms.ToolStripMenuItem infoToolStripMenuItem;
     }
 }
 
