@@ -2,18 +2,15 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
 
 using RpgeOpen.IDE.Extensions;
 
 using TiledLib;
-using TiledLib.Layer;
 using Size = RpgeOpen.Models.Size;
 
-namespace RpgeOpen.IDE
+namespace RpgeOpen.IDE.Utils
 {
-    class TileMap : IDisposable
+    internal class TileMap : IDisposable
     {
         public string TmxPath { get; }
         public Size TileSize { get; private set; }

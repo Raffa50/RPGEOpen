@@ -7,9 +7,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace RpgeOpen.IDE
+namespace RpgeOpen.IDE.Utils
 {
-    public static class TiledImporter
+    internal static class TiledImporter
     {
         public static void ImportTmx( string tmxPath, string projectDir ) {
             if(!Path.GetExtension(tmxPath).Contains( "tmx" ))

@@ -71,25 +71,25 @@ namespace RpgeOpen.IDE
             // newProjectToolStripMenuItem
             // 
             this.newProjectToolStripMenuItem.Name = "newProjectToolStripMenuItem";
-            this.newProjectToolStripMenuItem.Size = new System.Drawing.Size(167, 26);
+            this.newProjectToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.newProjectToolStripMenuItem.Text = "New Project";
             // 
             // loadProjectToolStripMenuItem
             // 
             this.loadProjectToolStripMenuItem.Name = "loadProjectToolStripMenuItem";
-            this.loadProjectToolStripMenuItem.Size = new System.Drawing.Size(167, 26);
+            this.loadProjectToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.loadProjectToolStripMenuItem.Text = "Load Project";
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(167, 26);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.saveToolStripMenuItem.Text = "Save";
             // 
             // releaseToToolStripMenuItem
             // 
             this.releaseToToolStripMenuItem.Name = "releaseToToolStripMenuItem";
-            this.releaseToToolStripMenuItem.Size = new System.Drawing.Size(167, 26);
+            this.releaseToToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.releaseToToolStripMenuItem.Text = "Release to";
             // 
             // mapsToolStripMenuItem
@@ -103,8 +103,8 @@ namespace RpgeOpen.IDE
             // MiMapImport
             // 
             this.MiMapImport.Name = "MiMapImport";
-            this.MiMapImport.Size = new System.Drawing.Size(129, 26);
-            this.MiMapImport.Text = "Import";
+            this.MiMapImport.Size = new System.Drawing.Size(216, 26);
+            this.MiMapImport.Text = "Import from Tiled";
             this.MiMapImport.Click += new System.EventHandler(this.MiMapImport_Click);
             // 
             // splitContainer1

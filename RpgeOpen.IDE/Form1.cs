@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using RpgeOpen.IDE.Utils;
 using RpgeOpen.Models;
 
 namespace RpgeOpen.IDE
@@ -26,8 +26,7 @@ namespace RpgeOpen.IDE
             if( OfMapImport.ShowDialog() != DialogResult.OK )
                 return;
 
-            var tm = new TileMap( OfMapImport.FileName );
-            tm.Load(TileSheetsDir);
+            TiledImporter.ImportTmx(OfMapImport.FileName, CurrentProjectDir);
         }
 
         private void Form1_Load(object sender, EventArgs e) {
