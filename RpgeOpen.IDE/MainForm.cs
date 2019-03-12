@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -11,13 +10,16 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Newtonsoft.Json;
 using RpgeOpen.IDE.Utils;
+using RpgeOpen.Models;
 using RpgeOpen.Models.Entities;
 
 namespace RpgeOpen.IDE
 {
     public partial class MainForm : Form {
-        public string CurrentProjectDir => @"C:\Users\r.aldrigo\Documents\Rpge Open\test";
-        public string TileSheetsDir => Path.Combine( CurrentProjectDir, Project.Paths.TileSheets);
+        private Project currentProject;
+        private string CurrentProjectDir;
+
+        private TileMap currentMap;
 
         public MainForm()
         {
@@ -28,18 +30,18 @@ namespace RpgeOpen.IDE
             if( OfMapImport.ShowDialog() != DialogResult.OK )
                 return;
 
+            Size size;
             try
             {
-                TiledImporter.ImportTmx(OfMapImport.FileName, CurrentProjectDir);
+                size= TiledImporter.ImportTmx(OfMapImport.FileName, CurrentProjectDir);
             } catch(Exception ex)
             {
                 MessageBox.Show(this, "An error occured while importing Tiled map. Please check the file", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Debug.WriteLine(ex.StackTrace);
+                return;
             }
-        }
-
-        private void Form1_Load(object sender, EventArgs e) {
-            OfMapImport.InitialDirectory = SfNewProject.InitialDirectory = Environment.GetFolderPath( Environment.SpecialFolder.MyDocuments );
+            currentProject.Maps.Add( new Map( OfMapImport.SafeFileName, size ) );
+            LoadMaps();
         }
 
         private void infoToolStripMenuItem_Click(object sender, EventArgs e)
@@ -50,7 +52,8 @@ namespace RpgeOpen.IDE
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-
+            OfMapImport.InitialDirectory = SfNewProject.InitialDirectory = OfLoadProject.InitialDirectory 
+                = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
         }
 
         private void newProjectToolStripMenuItem_Click(object sender, EventArgs e)
@@ -61,6 +64,8 @@ namespace RpgeOpen.IDE
             var projectDir = Path.Combine( 
                 Path.GetDirectoryName(SfNewProject.FileName), 
                 Path.GetFileNameWithoutExtension(SfNewProject.FileName) );
+            var projectFile = Path.Combine( projectDir, Path.GetFileName(SfNewProject.FileName) );
+
             if (Directory.Exists(projectDir))
             {
                 MessageBox.Show(this, "Project directory already exits", "Can't create new project", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -75,7 +80,44 @@ namespace RpgeOpen.IDE
                 File.Copy(newPath, newPath.Replace("ProjectStructure", projectDir), true);
 
             var project = new Project(Path.GetFileNameWithoutExtension(SfNewProject.FileName));
-            File.WriteAllText(SfNewProject.FileName, JsonConvert.SerializeObject(project));
+            File.WriteAllText(projectFile, JsonConvert.SerializeObject(project));
+
+            LoadProject(projectFile);
+        }
+
+        private void loadProjectToolStripMenuItem_Click(object sender, EventArgs e) {
+            if( OfLoadProject.ShowDialog() != DialogResult.OK )
+                return;
+
+            LoadProject( OfLoadProject.FileName );
+        }
+
+        private void LoadMaps() {
+            LvMaps.Items.Clear();
+            LvMaps.Items.AddRange( 
+                currentProject.Maps.Select( m => new ListViewItem { Name = m.TmxPath, Text = m.DisplayName} ).ToArray() );
+        }
+
+        private void LoadProject( string fileName ) {
+            var rawProjectFile = File.ReadAllText( fileName );
+            try {
+                currentProject = JsonConvert.DeserializeObject<Project>( rawProjectFile );
+            } catch( JsonSerializationException ) {
+                MessageBox.Show( this, "Invalid project file " + fileName, "Project loading error", MessageBoxButtons.OK, MessageBoxIcon.Error );
+                return;
+            }
+
+            CurrentProjectDir = Path.GetDirectoryName( fileName );
+            MnSave.Enabled = MnMapImport.Enabled = true;
+        }
+
+        private void LvMaps_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e) {
+            var key = e.Item.Name;
+
+            currentMap?.Dispose();
+            currentMap = new TileMap(currentProject.Maps.First( m => m.TmxPath == key ));
+            currentMap.Load(CurrentProjectDir);
+            PbMap.Image = currentMap.Image;
         }
     }
 }

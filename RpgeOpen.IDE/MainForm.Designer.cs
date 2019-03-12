@@ -33,19 +33,27 @@ namespace RpgeOpen.IDE
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.newProjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.loadProjectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MnProjectNew = new System.Windows.Forms.ToolStripMenuItem();
+            this.MnProjectLoad = new System.Windows.Forms.ToolStripMenuItem();
+            this.MnSave = new System.Windows.Forms.ToolStripMenuItem();
             this.releaseToToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mapsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.MiMapImport = new System.Windows.Forms.ToolStripMenuItem();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.OfMapImport = new System.Windows.Forms.OpenFileDialog();
+            this.MnMapImport = new System.Windows.Forms.ToolStripMenuItem();
             this.infoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.LvMaps = new System.Windows.Forms.ListView();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.PbMap = new System.Windows.Forms.PictureBox();
+            this.OfMapImport = new System.Windows.Forms.OpenFileDialog();
             this.SfNewProject = new System.Windows.Forms.SaveFileDialog();
+            this.OfLoadProject = new System.Windows.Forms.OpenFileDialog();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.PbMap)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -64,38 +72,41 @@ namespace RpgeOpen.IDE
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.newProjectToolStripMenuItem,
-            this.loadProjectToolStripMenuItem,
-            this.saveToolStripMenuItem,
+            this.MnProjectNew,
+            this.MnProjectLoad,
+            this.MnSave,
             this.releaseToToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(44, 24);
             this.fileToolStripMenuItem.Text = "File";
             // 
-            // newProjectToolStripMenuItem
+            // MnProjectNew
             // 
-            this.newProjectToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("newProjectToolStripMenuItem.Image")));
-            this.newProjectToolStripMenuItem.Name = "newProjectToolStripMenuItem";
-            this.newProjectToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
-            this.newProjectToolStripMenuItem.Text = "New Project";
-            this.newProjectToolStripMenuItem.Click += new System.EventHandler(this.newProjectToolStripMenuItem_Click);
+            this.MnProjectNew.Image = ((System.Drawing.Image)(resources.GetObject("MnProjectNew.Image")));
+            this.MnProjectNew.Name = "MnProjectNew";
+            this.MnProjectNew.Size = new System.Drawing.Size(216, 26);
+            this.MnProjectNew.Text = "New Project";
+            this.MnProjectNew.Click += new System.EventHandler(this.newProjectToolStripMenuItem_Click);
             // 
-            // loadProjectToolStripMenuItem
+            // MnProjectLoad
             // 
-            this.loadProjectToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("loadProjectToolStripMenuItem.Image")));
-            this.loadProjectToolStripMenuItem.Name = "loadProjectToolStripMenuItem";
-            this.loadProjectToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
-            this.loadProjectToolStripMenuItem.Text = "Load Project";
+            this.MnProjectLoad.Image = ((System.Drawing.Image)(resources.GetObject("MnProjectLoad.Image")));
+            this.MnProjectLoad.Name = "MnProjectLoad";
+            this.MnProjectLoad.Size = new System.Drawing.Size(216, 26);
+            this.MnProjectLoad.Text = "Load Project";
+            this.MnProjectLoad.Click += new System.EventHandler(this.loadProjectToolStripMenuItem_Click);
             // 
-            // saveToolStripMenuItem
+            // MnSave
             // 
-            this.saveToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("saveToolStripMenuItem.Image")));
-            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
-            this.saveToolStripMenuItem.Text = "Save";
+            this.MnSave.Enabled = false;
+            this.MnSave.Image = ((System.Drawing.Image)(resources.GetObject("MnSave.Image")));
+            this.MnSave.Name = "MnSave";
+            this.MnSave.Size = new System.Drawing.Size(216, 26);
+            this.MnSave.Text = "Save";
             // 
             // releaseToToolStripMenuItem
             // 
+            this.releaseToToolStripMenuItem.Enabled = false;
             this.releaseToToolStripMenuItem.Name = "releaseToToolStripMenuItem";
             this.releaseToToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.releaseToToolStripMenuItem.Text = "Release to";
@@ -103,33 +114,19 @@ namespace RpgeOpen.IDE
             // mapsToolStripMenuItem
             // 
             this.mapsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.MiMapImport});
+            this.MnMapImport});
             this.mapsToolStripMenuItem.Name = "mapsToolStripMenuItem";
             this.mapsToolStripMenuItem.Size = new System.Drawing.Size(57, 24);
             this.mapsToolStripMenuItem.Text = "Maps";
             // 
-            // MiMapImport
+            // MnMapImport
             // 
-            this.MiMapImport.Image = ((System.Drawing.Image)(resources.GetObject("MiMapImport.Image")));
-            this.MiMapImport.Name = "MiMapImport";
-            this.MiMapImport.Size = new System.Drawing.Size(216, 26);
-            this.MiMapImport.Text = "Import from Tiled";
-            this.MiMapImport.Click += new System.EventHandler(this.MiMapImport_Click);
-            // 
-            // splitContainer1
-            // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 28);
-            this.splitContainer1.Name = "splitContainer1";
-            this.splitContainer1.Size = new System.Drawing.Size(800, 422);
-            this.splitContainer1.SplitterDistance = 199;
-            this.splitContainer1.TabIndex = 1;
-            // 
-            // OfMapImport
-            // 
-            this.OfMapImport.DefaultExt = "tmx";
-            this.OfMapImport.FileName = "map";
-            this.OfMapImport.Filter = "Tiled Map File (*.tmx)|*.tmx";
+            this.MnMapImport.Enabled = false;
+            this.MnMapImport.Image = ((System.Drawing.Image)(resources.GetObject("MnMapImport.Image")));
+            this.MnMapImport.Name = "MnMapImport";
+            this.MnMapImport.Size = new System.Drawing.Size(216, 26);
+            this.MnMapImport.Text = "Import from Tiled";
+            this.MnMapImport.Click += new System.EventHandler(this.MiMapImport_Click);
             // 
             // infoToolStripMenuItem
             // 
@@ -139,10 +136,66 @@ namespace RpgeOpen.IDE
             this.infoToolStripMenuItem.Text = "Info";
             this.infoToolStripMenuItem.Click += new System.EventHandler(this.infoToolStripMenuItem_Click);
             // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 28);
+            this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.LvMaps);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.flowLayoutPanel1);
+            this.splitContainer1.Size = new System.Drawing.Size(800, 422);
+            this.splitContainer1.SplitterDistance = 199;
+            this.splitContainer1.TabIndex = 1;
+            // 
+            // LvMaps
+            // 
+            this.LvMaps.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.LvMaps.Location = new System.Drawing.Point(0, 0);
+            this.LvMaps.Name = "LvMaps";
+            this.LvMaps.Size = new System.Drawing.Size(199, 422);
+            this.LvMaps.TabIndex = 0;
+            this.LvMaps.UseCompatibleStateImageBehavior = false;
+            this.LvMaps.View = System.Windows.Forms.View.List;
+            this.LvMaps.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.LvMaps_ItemSelectionChanged);
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.BackColor = System.Drawing.Color.Black;
+            this.flowLayoutPanel1.Controls.Add(this.PbMap);
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(597, 422);
+            this.flowLayoutPanel1.TabIndex = 0;
+            // 
+            // PbMap
+            // 
+            this.PbMap.Location = new System.Drawing.Point(3, 3);
+            this.PbMap.Name = "PbMap";
+            this.PbMap.Size = new System.Drawing.Size(343, 243);
+            this.PbMap.TabIndex = 0;
+            this.PbMap.TabStop = false;
+            // 
+            // OfMapImport
+            // 
+            this.OfMapImport.DefaultExt = "tmx";
+            this.OfMapImport.FileName = "map";
+            this.OfMapImport.Filter = "Tiled Map File (*.tmx)|*.tmx";
+            // 
             // SfNewProject
             // 
             this.SfNewProject.DefaultExt = "rpgeo";
             this.SfNewProject.Filter = "Rpge Open Project (*.rpgeo)|*.rpgeo";
+            // 
+            // OfLoadProject
+            // 
+            this.OfLoadProject.Filter = "Rpge Open Project (*.rpgeo)|*.rpgeo";
             // 
             // MainForm
             // 
@@ -157,8 +210,12 @@ namespace RpgeOpen.IDE
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.flowLayoutPanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.PbMap)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -169,15 +226,19 @@ namespace RpgeOpen.IDE
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.ToolStripMenuItem newProjectToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem loadProjectToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem MnProjectNew;
+        private System.Windows.Forms.ToolStripMenuItem MnProjectLoad;
+        private System.Windows.Forms.ToolStripMenuItem MnSave;
         private System.Windows.Forms.ToolStripMenuItem releaseToToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mapsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem MiMapImport;
+        private System.Windows.Forms.ToolStripMenuItem MnMapImport;
         private System.Windows.Forms.OpenFileDialog OfMapImport;
         private System.Windows.Forms.ToolStripMenuItem infoToolStripMenuItem;
         private System.Windows.Forms.SaveFileDialog SfNewProject;
+        private System.Windows.Forms.OpenFileDialog OfLoadProject;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.PictureBox PbMap;
+        private System.Windows.Forms.ListView LvMaps;
     }
 }
 

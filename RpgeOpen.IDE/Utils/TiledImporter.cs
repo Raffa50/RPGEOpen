@@ -1,20 +1,28 @@
 ﻿using RpgeOpen.Models;
+using RpgeOpen.Models.Entities;
 using System;
 using System.IO;
 using System.Linq;
 using System.Xml.Linq;
 
+using Map = TiledLib.Map;
+
 namespace RpgeOpen.IDE.Utils
 {
     internal static class TiledImporter
     {
-        public static void ImportTmx( string tmxPath, string projectDir ) {
+        public static Size ImportTmx( string tmxPath, string projectDir ) {
             if(!Path.GetExtension(tmxPath).Contains( "tmx" ))
                 throw new ArgumentException("Invalid file");
 
             var tmxDir = Path.GetDirectoryName(tmxPath);
+            Size size;
 
             using( var tmxReadStream = File.OpenRead( tmxPath ) ) {
+                var tiledMap = Map.FromStream(tmxReadStream);
+                size = new Size(tiledMap.Width, tiledMap.Height);
+                tmxReadStream.Seek( 0, SeekOrigin.Begin );
+
                 var document = XDocument.Load(tmxReadStream);
                 var tilesets = document.Root.Elements().Where( e => e.Name == "tileset");
                 foreach(var ts in tilesets ) {
@@ -25,6 +33,8 @@ namespace RpgeOpen.IDE.Utils
 
                 document.Save(Path.Combine( projectDir, Project.Paths.Maps, Path.GetFileName(tmxPath) ));
             }
+
+            return size;
         }
 
         private static void ImportTileSheet( string tsxPath, string projectDir ) {

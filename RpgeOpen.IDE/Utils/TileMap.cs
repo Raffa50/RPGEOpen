@@ -3,29 +3,31 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 
-using RpgeOpen.IDE.Extensions;
+using Newtonsoft.Json;
 
-using TiledLib;
+using RpgeOpen.IDE.Extensions;
+using RpgeOpen.Models.Entities;
+
+using Map = TiledLib.Map;
 using Size = RpgeOpen.Models.Size;
 
 namespace RpgeOpen.IDE.Utils
 {
-    internal class TileMap : IDisposable
+    internal class TileMap : Models.Entities.Map, IDisposable
     {
-        public string TmxPath { get; }
+        [JsonIgnore]
         public Size TileSize { get; private set; }
-
-        public TileMap( string tmxPath ) {
-            TmxPath = tmxPath;
-        }
-
+        [JsonIgnore]
         public Image Image { get; private set; }
 
-        public void Load(string tileSheetsDir) {
+        public TileMap( Models.Entities.Map map ) :base(map.TmxPath, map.Size) {
+        }
+
+        public void Load(string projectDir) {
             if( Image != null )
                 return;
 
-            using( var stream = File.OpenRead( TmxPath ) ) {
+            using( var stream = File.OpenRead( Path.Combine(projectDir, Project.Paths.Maps, TmxPath) ) ) {
                 var map = Map.FromStream(stream);
 
                 TileSize = new Size( map.CellWidth, map.CellHeight );
@@ -37,7 +39,7 @@ namespace RpgeOpen.IDE.Utils
                         Image tileSet;
                         if (!tileSheets.TryGetValue(tilesetName, out tileSet))
                         {
-                            tileSet = Image.FromFile(Path.Combine(tileSheetsDir, tilesetName));
+                            tileSet = Image.FromFile(Path.Combine(projectDir, Project.Paths.TileSheets, tilesetName));
                             tileSheets.Add(tilesetName, tileSet);
                         }
 

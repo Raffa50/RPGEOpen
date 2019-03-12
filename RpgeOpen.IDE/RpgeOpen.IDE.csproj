@@ -7,7 +7,7 @@
     <ProjectGuid>{4003B56C-492E-4F98-A757-6FBC65290B80}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>RpgeOpen.IDE</RootNamespace>
-    <AssemblyName>RpgeOpen.IDE</AssemblyName>
+    <AssemblyName>RpgeOpen IDE</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

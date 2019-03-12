@@ -1,5 +1,4 @@
-﻿using RpgeOpen.Models.Utils;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -12,7 +11,7 @@ namespace RpgeOpen.Models.Entities
         public Size Size { get; set; }
         public PassabilityType[,] PassabilityLayer { get; set; }
 
-        private Map() { }
+        protected Map() { }
 
         public Map(string tmxPath, Size size)
         {
