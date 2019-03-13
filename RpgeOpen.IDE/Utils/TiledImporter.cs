@@ -4,8 +4,7 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Xml.Linq;
-
-using Map = TiledLib.Map;
+using TiledSharp;
 
 namespace RpgeOpen.IDE.Utils
 {
@@ -16,13 +15,10 @@ namespace RpgeOpen.IDE.Utils
                 throw new ArgumentException("Invalid file");
 
             var tmxDir = Path.GetDirectoryName(tmxPath);
-            Size size;
+            var tiledMap = new TmxMap(tmxPath);
+            var size = new Size(tiledMap.Width, tiledMap.Height);
 
-            using( var tmxReadStream = File.OpenRead( tmxPath ) ) {
-                var tiledMap = Map.FromStream(tmxReadStream);
-                size = new Size(tiledMap.Width, tiledMap.Height);
-                tmxReadStream.Seek( 0, SeekOrigin.Begin );
-
+            using ( var tmxReadStream = File.OpenRead( tmxPath ) ) {
                 var document = XDocument.Load(tmxReadStream);
                 var tilesets = document.Root.Elements().Where( e => e.Name == "tileset");
                 foreach(var ts in tilesets ) {

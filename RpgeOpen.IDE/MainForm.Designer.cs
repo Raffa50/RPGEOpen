@@ -39,6 +39,7 @@ namespace RpgeOpen.IDE
             this.releaseToToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mapsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MnMapImport = new System.Windows.Forms.ToolStripMenuItem();
+            this.enemiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.infoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.LvMaps = new System.Windows.Forms.ListView();
@@ -47,6 +48,10 @@ namespace RpgeOpen.IDE
             this.OfMapImport = new System.Windows.Forms.OpenFileDialog();
             this.SfNewProject = new System.Windows.Forms.SaveFileDialog();
             this.OfLoadProject = new System.Windows.Forms.OpenFileDialog();
+            this.pCwinosxlinuxToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MnTest = new System.Windows.Forms.ToolStripMenuItem();
+            this.reportBugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.versionDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -62,6 +67,8 @@ namespace RpgeOpen.IDE
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.mapsToolStripMenuItem,
+            this.enemiesToolStripMenuItem,
+            this.MnTest,
             this.infoToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -103,9 +110,12 @@ namespace RpgeOpen.IDE
             this.MnSave.Name = "MnSave";
             this.MnSave.Size = new System.Drawing.Size(216, 26);
             this.MnSave.Text = "Save";
+            this.MnSave.Click += new System.EventHandler(this.MnSave_Click);
             // 
             // releaseToToolStripMenuItem
             // 
+            this.releaseToToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.pCwinosxlinuxToolStripMenuItem});
             this.releaseToToolStripMenuItem.Enabled = false;
             this.releaseToToolStripMenuItem.Name = "releaseToToolStripMenuItem";
             this.releaseToToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
@@ -128,13 +138,21 @@ namespace RpgeOpen.IDE
             this.MnMapImport.Text = "Import from Tiled";
             this.MnMapImport.Click += new System.EventHandler(this.MiMapImport_Click);
             // 
+            // enemiesToolStripMenuItem
+            // 
+            this.enemiesToolStripMenuItem.Name = "enemiesToolStripMenuItem";
+            this.enemiesToolStripMenuItem.Size = new System.Drawing.Size(76, 24);
+            this.enemiesToolStripMenuItem.Text = "Enemies";
+            // 
             // infoToolStripMenuItem
             // 
+            this.infoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.reportBugToolStripMenuItem,
+            this.versionDetailsToolStripMenuItem});
             this.infoToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("infoToolStripMenuItem.Image")));
             this.infoToolStripMenuItem.Name = "infoToolStripMenuItem";
             this.infoToolStripMenuItem.Size = new System.Drawing.Size(67, 24);
             this.infoToolStripMenuItem.Text = "Info";
-            this.infoToolStripMenuItem.Click += new System.EventHandler(this.infoToolStripMenuItem_Click);
             // 
             // splitContainer1
             // 
@@ -166,6 +184,7 @@ namespace RpgeOpen.IDE
             // 
             // flowLayoutPanel1
             // 
+            this.flowLayoutPanel1.AutoScroll = true;
             this.flowLayoutPanel1.BackColor = System.Drawing.Color.Black;
             this.flowLayoutPanel1.Controls.Add(this.PbMap);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -196,6 +215,35 @@ namespace RpgeOpen.IDE
             // OfLoadProject
             // 
             this.OfLoadProject.Filter = "Rpge Open Project (*.rpgeo)|*.rpgeo";
+            // 
+            // pCwinosxlinuxToolStripMenuItem
+            // 
+            this.pCwinosxlinuxToolStripMenuItem.Name = "pCwinosxlinuxToolStripMenuItem";
+            this.pCwinosxlinuxToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.pCwinosxlinuxToolStripMenuItem.Text = "PC (win/osx/linux)";
+            // 
+            // MnTest
+            // 
+            this.MnTest.Enabled = false;
+            this.MnTest.Image = ((System.Drawing.Image)(resources.GetObject("MnTest.Image")));
+            this.MnTest.Name = "MnTest";
+            this.MnTest.Size = new System.Drawing.Size(67, 24);
+            this.MnTest.Text = "Test";
+            // 
+            // reportBugToolStripMenuItem
+            // 
+            this.reportBugToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("reportBugToolStripMenuItem.Image")));
+            this.reportBugToolStripMenuItem.Name = "reportBugToolStripMenuItem";
+            this.reportBugToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.reportBugToolStripMenuItem.Text = "Report bug";
+            this.reportBugToolStripMenuItem.Click += new System.EventHandler(this.reportBugToolStripMenuItem_Click);
+            // 
+            // versionDetailsToolStripMenuItem
+            // 
+            this.versionDetailsToolStripMenuItem.Name = "versionDetailsToolStripMenuItem";
+            this.versionDetailsToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.versionDetailsToolStripMenuItem.Text = "Version details";
+            this.versionDetailsToolStripMenuItem.Click += new System.EventHandler(this.versionDetailsToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -239,6 +287,11 @@ namespace RpgeOpen.IDE
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.PictureBox PbMap;
         private System.Windows.Forms.ListView LvMaps;
+        private System.Windows.Forms.ToolStripMenuItem enemiesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pCwinosxlinuxToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem MnTest;
+        private System.Windows.Forms.ToolStripMenuItem reportBugToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem versionDetailsToolStripMenuItem;
     }
 }
 
