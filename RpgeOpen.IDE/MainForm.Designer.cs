@@ -37,10 +37,14 @@ namespace RpgeOpen.IDE
             this.MnProjectLoad = new System.Windows.Forms.ToolStripMenuItem();
             this.MnSave = new System.Windows.Forms.ToolStripMenuItem();
             this.releaseToToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pCwinosxlinuxToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mapsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MnMapImport = new System.Windows.Forms.ToolStripMenuItem();
             this.enemiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MnTest = new System.Windows.Forms.ToolStripMenuItem();
             this.infoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reportBugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.versionDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.LvMaps = new System.Windows.Forms.ListView();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
@@ -48,10 +52,9 @@ namespace RpgeOpen.IDE
             this.OfMapImport = new System.Windows.Forms.OpenFileDialog();
             this.SfNewProject = new System.Windows.Forms.SaveFileDialog();
             this.OfLoadProject = new System.Windows.Forms.OpenFileDialog();
-            this.pCwinosxlinuxToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.MnTest = new System.Windows.Forms.ToolStripMenuItem();
-            this.reportBugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.versionDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pS4ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.xboxOneToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.switchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -115,11 +118,21 @@ namespace RpgeOpen.IDE
             // releaseToToolStripMenuItem
             // 
             this.releaseToToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.pCwinosxlinuxToolStripMenuItem});
+            this.pCwinosxlinuxToolStripMenuItem,
+            this.pS4ToolStripMenuItem,
+            this.xboxOneToolStripMenuItem,
+            this.switchToolStripMenuItem});
             this.releaseToToolStripMenuItem.Enabled = false;
             this.releaseToToolStripMenuItem.Name = "releaseToToolStripMenuItem";
             this.releaseToToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
             this.releaseToToolStripMenuItem.Text = "Release to";
+            // 
+            // pCwinosxlinuxToolStripMenuItem
+            // 
+            this.pCwinosxlinuxToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("pCwinosxlinuxToolStripMenuItem.Image")));
+            this.pCwinosxlinuxToolStripMenuItem.Name = "pCwinosxlinuxToolStripMenuItem";
+            this.pCwinosxlinuxToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.pCwinosxlinuxToolStripMenuItem.Text = "PC (win/osx/linux)";
             // 
             // mapsToolStripMenuItem
             // 
@@ -134,7 +147,7 @@ namespace RpgeOpen.IDE
             this.MnMapImport.Enabled = false;
             this.MnMapImport.Image = ((System.Drawing.Image)(resources.GetObject("MnMapImport.Image")));
             this.MnMapImport.Name = "MnMapImport";
-            this.MnMapImport.Size = new System.Drawing.Size(216, 26);
+            this.MnMapImport.Size = new System.Drawing.Size(202, 26);
             this.MnMapImport.Text = "Import from Tiled";
             this.MnMapImport.Click += new System.EventHandler(this.MiMapImport_Click);
             // 
@@ -143,6 +156,14 @@ namespace RpgeOpen.IDE
             this.enemiesToolStripMenuItem.Name = "enemiesToolStripMenuItem";
             this.enemiesToolStripMenuItem.Size = new System.Drawing.Size(76, 24);
             this.enemiesToolStripMenuItem.Text = "Enemies";
+            // 
+            // MnTest
+            // 
+            this.MnTest.Enabled = false;
+            this.MnTest.Image = ((System.Drawing.Image)(resources.GetObject("MnTest.Image")));
+            this.MnTest.Name = "MnTest";
+            this.MnTest.Size = new System.Drawing.Size(67, 24);
+            this.MnTest.Text = "Test";
             // 
             // infoToolStripMenuItem
             // 
@@ -153,6 +174,21 @@ namespace RpgeOpen.IDE
             this.infoToolStripMenuItem.Name = "infoToolStripMenuItem";
             this.infoToolStripMenuItem.Size = new System.Drawing.Size(67, 24);
             this.infoToolStripMenuItem.Text = "Info";
+            // 
+            // reportBugToolStripMenuItem
+            // 
+            this.reportBugToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("reportBugToolStripMenuItem.Image")));
+            this.reportBugToolStripMenuItem.Name = "reportBugToolStripMenuItem";
+            this.reportBugToolStripMenuItem.Size = new System.Drawing.Size(180, 26);
+            this.reportBugToolStripMenuItem.Text = "Report bug";
+            this.reportBugToolStripMenuItem.Click += new System.EventHandler(this.reportBugToolStripMenuItem_Click);
+            // 
+            // versionDetailsToolStripMenuItem
+            // 
+            this.versionDetailsToolStripMenuItem.Name = "versionDetailsToolStripMenuItem";
+            this.versionDetailsToolStripMenuItem.Size = new System.Drawing.Size(180, 26);
+            this.versionDetailsToolStripMenuItem.Text = "Version details";
+            this.versionDetailsToolStripMenuItem.Click += new System.EventHandler(this.versionDetailsToolStripMenuItem_Click);
             // 
             // splitContainer1
             // 
@@ -216,34 +252,26 @@ namespace RpgeOpen.IDE
             // 
             this.OfLoadProject.Filter = "Rpge Open Project (*.rpgeo)|*.rpgeo";
             // 
-            // pCwinosxlinuxToolStripMenuItem
+            // pS4ToolStripMenuItem
             // 
-            this.pCwinosxlinuxToolStripMenuItem.Name = "pCwinosxlinuxToolStripMenuItem";
-            this.pCwinosxlinuxToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
-            this.pCwinosxlinuxToolStripMenuItem.Text = "PC (win/osx/linux)";
+            this.pS4ToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("pS4ToolStripMenuItem.Image")));
+            this.pS4ToolStripMenuItem.Name = "pS4ToolStripMenuItem";
+            this.pS4ToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.pS4ToolStripMenuItem.Text = "PS4";
             // 
-            // MnTest
+            // xboxOneToolStripMenuItem
             // 
-            this.MnTest.Enabled = false;
-            this.MnTest.Image = ((System.Drawing.Image)(resources.GetObject("MnTest.Image")));
-            this.MnTest.Name = "MnTest";
-            this.MnTest.Size = new System.Drawing.Size(67, 24);
-            this.MnTest.Text = "Test";
+            this.xboxOneToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("xboxOneToolStripMenuItem.Image")));
+            this.xboxOneToolStripMenuItem.Name = "xboxOneToolStripMenuItem";
+            this.xboxOneToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.xboxOneToolStripMenuItem.Text = "XboxOne";
             // 
-            // reportBugToolStripMenuItem
+            // switchToolStripMenuItem
             // 
-            this.reportBugToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("reportBugToolStripMenuItem.Image")));
-            this.reportBugToolStripMenuItem.Name = "reportBugToolStripMenuItem";
-            this.reportBugToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
-            this.reportBugToolStripMenuItem.Text = "Report bug";
-            this.reportBugToolStripMenuItem.Click += new System.EventHandler(this.reportBugToolStripMenuItem_Click);
-            // 
-            // versionDetailsToolStripMenuItem
-            // 
-            this.versionDetailsToolStripMenuItem.Name = "versionDetailsToolStripMenuItem";
-            this.versionDetailsToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
-            this.versionDetailsToolStripMenuItem.Text = "Version details";
-            this.versionDetailsToolStripMenuItem.Click += new System.EventHandler(this.versionDetailsToolStripMenuItem_Click);
+            this.switchToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("switchToolStripMenuItem.Image")));
+            this.switchToolStripMenuItem.Name = "switchToolStripMenuItem";
+            this.switchToolStripMenuItem.Size = new System.Drawing.Size(216, 26);
+            this.switchToolStripMenuItem.Text = "Switch";
             // 
             // MainForm
             // 
@@ -292,6 +320,9 @@ namespace RpgeOpen.IDE
         private System.Windows.Forms.ToolStripMenuItem MnTest;
         private System.Windows.Forms.ToolStripMenuItem reportBugToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem versionDetailsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pS4ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem xboxOneToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem switchToolStripMenuItem;
     }
 }
 

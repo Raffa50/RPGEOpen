@@ -115,12 +115,16 @@
   <ItemGroup>
     <Content Include="Icons\bin.png" />
     <Content Include="Icons\bug.png" />
+    <Content Include="Icons\computer.png" />
     <Content Include="Icons\go.png" />
     <Content Include="Icons\help.png" />
     <Content Include="Icons\load.png" />
     <Content Include="Icons\new.png" />
+    <Content Include="Icons\nintendo-switch.png" />
+    <Content Include="Icons\ps4.png" />
     <Content Include="Icons\save.png" />
     <Content Include="Icons\tiled-icon.ico" />
+    <Content Include="Icons\xbox.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

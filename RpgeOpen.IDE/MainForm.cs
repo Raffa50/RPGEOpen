@@ -122,6 +122,7 @@ namespace RpgeOpen.IDE
         {
             Process.Start("https://github.com/Raffa50/RPGEOpen/issues");
         }
+
         private void versionDetailsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var sp = new SplashForm();
