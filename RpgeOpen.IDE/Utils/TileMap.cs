@@ -9,8 +9,6 @@ using TiledSharp;
 using RpgeOpen.Shared.Extensions;
 using RpgeOpen.Models.Entities;
 
-using Size = RpgeOpen.Models.Size;
-
 namespace RpgeOpen.IDE.Utils
 {
     internal class TileMap : Map, IDisposable

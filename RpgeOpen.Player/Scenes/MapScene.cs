@@ -40,16 +40,12 @@ namespace RpgeOpen.Player.Scenes
                 Camera.Move(new Vector2(-movementSpeed * deltaTime, 0));
             if (keyboardState.IsKeyDown(Keys.Right))
                 Camera.Move(new Vector2(movementSpeed * deltaTime, 0));
-
-            base.Update(time);
         }
 
         public override void Draw( GameTime time ) {
             spriteBatch.Begin(transformMatrix: Camera.GetViewMatrix());
             spriteBatch.Draw(test, Vector2.Zero, Color.White);
             spriteBatch.End();
-
-            base.Draw(time);
         }
     }
 }

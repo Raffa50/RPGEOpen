@@ -4,6 +4,9 @@ using System.Text;
 
 namespace RpgeOpen.Models
 {
+    /// <summary>
+    /// Map passability
+    /// </summary>
     [Flags]
     public enum PassabilityType
     {
