@@ -6,7 +6,7 @@ using System.IO;
 using Newtonsoft.Json;
 using TiledSharp;
 
-using RpgeOpen.IDE.Extensions;
+using RpgeOpen.Shared.Extensions;
 using RpgeOpen.Models.Entities;
 
 using Size = RpgeOpen.Models.Size;

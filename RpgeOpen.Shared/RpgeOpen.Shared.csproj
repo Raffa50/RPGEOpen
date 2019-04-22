@@ -5,8 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\RpgeOpen.Models\RpgeOpen.Models.csproj" />
-    <ProjectReference Include="..\RpgeOpen.Shared\RpgeOpen.Shared.csproj" />
+    <PackageReference Include="TiledSharp" Version="1.0.1" />
   </ItemGroup>
 
 </Project>

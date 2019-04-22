@@ -97,8 +97,9 @@ namespace RpgeOpen.IDE
                 MessageBox.Show( this, "Invalid project file " + fileName, "Project loading error", MessageBoxButtons.OK, MessageBoxIcon.Error );
                 return;
             }
-            
-            MnSave.Enabled = MnMapImport.Enabled = true;
+
+            LoadMaps();
+            MnSave.Enabled = MnMapImport.Enabled = MnTest.Enabled = true;
         }
 
         private void LvMaps_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e) {
@@ -127,6 +128,11 @@ namespace RpgeOpen.IDE
         {
             var sp = new SplashForm();
             sp.ShowDialog();
+        }
+
+        private void MnTest_Click(object sender, EventArgs e)
+        {
+            MonoContent.Deploy(currentProject, TargetConsoleType.Pc, @"C:\Users\Reloa\Desktop\RpgeOpen\RpgeOpen.Player\bin\DesktopGL\AnyCPU\Debug\Content");
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 using TiledSharp;
 
-namespace RpgeOpen.IDE.Extensions
+namespace RpgeOpen.Shared.Extensions
 {
     public delegate void FetchTmxMapAction(int x, int y, string tileSet, int tileRow, int tileCol);
 

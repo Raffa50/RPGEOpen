@@ -20,10 +20,11 @@ namespace RpgeOpen.Player.Scenes
         public override void LoadContent() {
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            using (var fileStream = new FileStream("Content/TileSheets/magecity.png", FileMode.Open))
-            {
-                test = Texture2D.FromStream(GraphicsDevice, fileStream);
-            }
+            //using (var fileStream = new FileStream("Content/TileSheets/magecity.png", FileMode.Open))
+            //{
+            //    test = Texture2D.FromStream(GraphicsDevice, fileStream);
+            //}
+            test = Content.Load<Texture2D>( "TileSheets/magecity" );
         }
 
         public override void Update( GameTime time ) {
