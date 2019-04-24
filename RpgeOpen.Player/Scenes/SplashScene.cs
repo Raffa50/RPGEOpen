@@ -9,6 +9,6 @@ namespace RpgeOpen.Player.Scenes
 {
     public class SplashScene : AbstractScreen
     {
-        public SplashScene(Game1 game): base(game) { }
+        public SplashScene(RpgeGame game): base(game) { }
     }
 }

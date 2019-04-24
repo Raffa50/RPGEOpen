@@ -13,11 +13,11 @@ namespace RpgeOpen.Player.Scenes
 {
     public abstract class AbstractScreen : Screen
     {
-        protected AbstractScreen(Game1 game){
+        protected AbstractScreen(RpgeGame game){
             Game = game;
         }
 
-        public Game1 Game { get; }
+        public RpgeGame Game { get; }
         public ContentManager Content => Game.Content;
         public GraphicsDevice GraphicsDevice => Game.GraphicsDevice;
         public Camera2D Camera => Game.Camera;

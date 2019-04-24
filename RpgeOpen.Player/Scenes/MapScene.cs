@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -15,7 +16,7 @@ namespace RpgeOpen.Player.Scenes
         private SpriteBatch spriteBatch;
         private Texture2D test;
 
-        public MapScene( Game1 game ) : base( game ) {}
+        public MapScene( RpgeGame game ) : base( game ) {}
 
         public override void LoadContent() {
             spriteBatch = new SpriteBatch(GraphicsDevice);

@@ -11,17 +11,15 @@ using RpgeOpen.Player.Scenes;
 
 namespace RpgeOpen.Player
 {
-    public class Game1 : Game
+    public class RpgeGame : Game
     {
         private readonly GraphicsDeviceManager graphics;
         //private SpriteBatch spriteBatch;
 
-        //private Texture2D test;
-
         public Camera2D Camera { get; private set; }
         public ScreenGameComponent SceneManager { get; }
 
-        public Game1()
+        public RpgeGame()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
@@ -43,17 +41,10 @@ namespace RpgeOpen.Player
 
         protected override void LoadContent()
         {
-            //spriteBatch = new SpriteBatch(GraphicsDevice);
-
-            //using (var fileStream = new FileStream("Content/TileSheets/magecity.png", FileMode.Open))
-            //{
-            //    test = Texture2D.FromStream(GraphicsDevice, fileStream);
-            //}
         }
 
         protected override void UnloadContent()
         {
-            // TODO: Unload any non ContentManager content here
         }
 
         /// <summary>
