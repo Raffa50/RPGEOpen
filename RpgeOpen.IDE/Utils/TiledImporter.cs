@@ -1,4 +1,4 @@
-﻿using System.Drawing;
+﻿using RpgeOpen.Models;
 using RpgeOpen.Models.Entities;
 using System;
 using System.IO;
@@ -10,12 +10,6 @@ namespace RpgeOpen.IDE.Utils
 {
     internal static class TiledImporter
     {
-        /// <summary>
-        /// Copies the tmx and related tsx to project directory, changing the paths in the xml
-        /// </summary>
-        /// <param name="tmxPath"></param>
-        /// <param name="projectDir"></param>
-        /// <returns></returns>
         public static Size ImportTmx( string tmxPath, string projectDir ) {
             if(!Path.GetExtension(tmxPath).Contains( "tmx" ))
                 throw new ArgumentException("Invalid file");
@@ -30,7 +24,7 @@ namespace RpgeOpen.IDE.Utils
                 foreach(var ts in tilesets ) {
                     var source = ts.Attributes().First(a => a.Name == "source");
                     ImportTileSheet( Path.Combine(tmxDir,source.Value), projectDir );
-                    source.Value = Path.Combine("..", Project.Paths.TileSheets, Path.GetFileName(source.Value)); //"../"+ Project.Paths.TileSheets +"/"+ Path.GetFileName(source.Value);
+                    source.Value = "../"+ Project.Paths.TileSheets +"/"+ Path.GetFileName(source.Value);
                 }
 
                 document.Save(Path.Combine( projectDir, Project.Paths.Maps, Path.GetFileName(tmxPath) ));
@@ -39,11 +33,6 @@ namespace RpgeOpen.IDE.Utils
             return size;
         }
 
-        /// <summary>
-        /// Copies the tsx changing images'paths
-        /// </summary>
-        /// <param name="tsxPath"></param>
-        /// <param name="projectDir"></param>
         private static void ImportTileSheet( string tsxPath, string projectDir ) {
             var tsxDir = Path.GetDirectoryName(tsxPath);
 
