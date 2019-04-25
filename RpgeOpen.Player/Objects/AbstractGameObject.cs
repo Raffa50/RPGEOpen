@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace RpgeOpen.Player.Objects
 {
@@ -14,7 +15,7 @@ namespace RpgeOpen.Player.Objects
         public Vector2 Position { get; set; } = Vector2.Zero;
 
         public virtual void LoadContent(ContentManager Content) {}
-        public virtual void Draw( GameTime gameTime ) {}
+        public virtual void Draw( GameTime gameTime, SpriteBatch spriteBatch ) {}
         public virtual void Initialize() {}
     }
 }

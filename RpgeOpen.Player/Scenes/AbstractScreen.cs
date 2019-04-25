@@ -9,6 +9,8 @@ using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended;
 using MonoGame.Extended.Screens;
 
+using RpgeOpen.Models.Entities;
+
 namespace RpgeOpen.Player.Scenes
 {
     public abstract class AbstractScreen : Screen
@@ -21,5 +23,6 @@ namespace RpgeOpen.Player.Scenes
         public ContentManager Content => Game.Content;
         public GraphicsDevice GraphicsDevice => Game.GraphicsDevice;
         public Camera2D Camera => Game.Camera;
+        public Project GameData => Game.GameData;
     }
 }

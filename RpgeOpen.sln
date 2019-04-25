@@ -11,9 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RpgeOpen.Player", "RpgeOpen
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RpgeOpen.IDE", "RpgeOpen.IDE\RpgeOpen.IDE.csproj", "{4003B56C-492E-4F98-A757-6FBC65290B80}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{BEAEC76A-5823-49D5-AC61-2FD77127125F}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RpgeOpen.Shared", "RpgeOpen.Shared\RpgeOpen.Shared.csproj", "{739D2FAA-DD73-4B3B-84ED-40A1106412ED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RpgeOpen.Shared", "RpgeOpen.Shared\RpgeOpen.Shared.csproj", "{739D2FAA-DD73-4B3B-84ED-40A1106412ED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,10 +35,6 @@ Global
 		{4003B56C-492E-4F98-A757-6FBC65290B80}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4003B56C-492E-4F98-A757-6FBC65290B80}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4003B56C-492E-4F98-A757-6FBC65290B80}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BEAEC76A-5823-49D5-AC61-2FD77127125F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BEAEC76A-5823-49D5-AC61-2FD77127125F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BEAEC76A-5823-49D5-AC61-2FD77127125F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BEAEC76A-5823-49D5-AC61-2FD77127125F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{739D2FAA-DD73-4B3B-84ED-40A1106412ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{739D2FAA-DD73-4B3B-84ED-40A1106412ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{739D2FAA-DD73-4B3B-84ED-40A1106412ED}.Release|Any CPU.ActiveCfg = Release|Any CPU

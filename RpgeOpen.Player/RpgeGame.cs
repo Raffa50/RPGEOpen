@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System.Diagnostics;
+
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended;
@@ -7,6 +9,9 @@ using MonoGame.Extended.ViewportAdapters;
 using System.IO;
 using System.Runtime.CompilerServices;
 
+using Newtonsoft.Json;
+
+using RpgeOpen.Models.Entities;
 using RpgeOpen.Player.Scenes;
 
 namespace RpgeOpen.Player
@@ -15,6 +20,7 @@ namespace RpgeOpen.Player
     {
         private readonly GraphicsDeviceManager graphics;
         //private SpriteBatch spriteBatch;
+        public Project GameData { get; private set; }
 
         public Camera2D Camera { get; private set; }
         public ScreenGameComponent SceneManager { get; }
@@ -25,17 +31,24 @@ namespace RpgeOpen.Player
             Content.RootDirectory = "Content";
 
             SceneManager = new ScreenGameComponent(this);
-            SceneManager.Register(new MapScene(this));
-            Components.Add(SceneManager);
         }
 
         protected override void Initialize()
         {
             base.Initialize();
 
+            if (File.Exists("Content/game.rpgeo"))
+            {
+                var content = File.ReadAllText("Content/game.rpgeo");
+                GameData = JsonConvert.DeserializeObject<Project>(content);
+            }
+            else Debug.WriteLine("Project file not found");
+
             var viewportAdapter = new BoxingViewportAdapter(Window, GraphicsDevice, 800, 480);
             Camera = new Camera2D(viewportAdapter);
 
+            SceneManager.Register(new MapScene(this));
+            Components.Add(SceneManager);
             SceneManager.Initialize();
         }
 
