@@ -51,6 +51,9 @@
     <Compile Include="Scenes\Transitions\FadeTransition.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="MonoGame.Extended, Version=3.6.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MonoGame.Extended.3.6.0-beta0001\lib\netstandard2.0\MonoGame.Extended.dll</HintPath>
+    </Reference>
     <Reference Include="MonoGame.Framework">
       <HintPath>$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\MonoGame.Framework.dll</HintPath>
     </Reference>
@@ -119,14 +122,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MonoGame.Extended\Source\MonoGame.Extended.Graphics\MonoGame.Extended.Graphics.csproj">
-      <Project>{8c6398b1-b168-4d67-9754-86e2502f59f1}</Project>
-      <Name>MonoGame.Extended.Graphics</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MonoGame.Extended\Source\MonoGame.Extended\MonoGame.Extended.csproj">
-      <Project>{3b7dedf3-6a0b-4cd7-9509-c62151d21ad4}</Project>
-      <Name>MonoGame.Extended</Name>
-    </ProjectReference>
     <ProjectReference Include="..\RpgeOpen.Core\RpgeOpen.Core.csproj">
       <Project>{8B3F8555-F802-427A-8DFB-9EF1CFA9A727}</Project>
       <Name>RpgeOpen.Core</Name>
