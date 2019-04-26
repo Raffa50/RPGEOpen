@@ -5,13 +5,19 @@ VisualStudioVersion = 15.0.28010.2046
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RpgeOpen.Models", "RpgeOpen.Models\RpgeOpen.Models.csproj", "{163872C1-A863-4242-8834-30A1FE5BD151}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RpgeOpen.Core", "RpgeOpen.Core\RpgeOpen.Core.csproj", "{AF5AF860-5D19-4260-8999-34C4D0E0D28C}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RpgeOpen.Player", "RpgeOpen.Player\RpgeOpen.Player.csproj", "{51F0CACA-0BEB-4EC6-92F3-8E7ECAB25DA1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RpgeOpen.IDE", "RpgeOpen.IDE\RpgeOpen.IDE.csproj", "{4003B56C-492E-4F98-A757-6FBC65290B80}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RpgeOpen.Shared", "RpgeOpen.Shared\RpgeOpen.Shared.csproj", "{739D2FAA-DD73-4B3B-84ED-40A1106412ED}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MonoGame.Extended", "MonoGame.Extended", "{8632FA9D-97C3-43A1-BF1A-AD128B8C1055}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MonoGame.Extended", "MonoGame.Extended\Source\MonoGame.Extended\MonoGame.Extended.csproj", "{3B7DEDF3-6A0B-4CD7-9509-C62151D21AD4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MonoGame.Extended.Graphics", "MonoGame.Extended\Source\MonoGame.Extended.Graphics\MonoGame.Extended.Graphics.csproj", "{8C6398B1-B168-4D67-9754-86E2502F59F1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RpgeOpen.Core", "RpgeOpen.Core\RpgeOpen.Core.csproj", "{8B3F8555-F802-427A-8DFB-9EF1CFA9A727}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +29,6 @@ Global
 		{163872C1-A863-4242-8834-30A1FE5BD151}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{163872C1-A863-4242-8834-30A1FE5BD151}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{163872C1-A863-4242-8834-30A1FE5BD151}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AF5AF860-5D19-4260-8999-34C4D0E0D28C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AF5AF860-5D19-4260-8999-34C4D0E0D28C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AF5AF860-5D19-4260-8999-34C4D0E0D28C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AF5AF860-5D19-4260-8999-34C4D0E0D28C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{51F0CACA-0BEB-4EC6-92F3-8E7ECAB25DA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{51F0CACA-0BEB-4EC6-92F3-8E7ECAB25DA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{51F0CACA-0BEB-4EC6-92F3-8E7ECAB25DA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -39,9 +41,25 @@ Global
 		{739D2FAA-DD73-4B3B-84ED-40A1106412ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{739D2FAA-DD73-4B3B-84ED-40A1106412ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{739D2FAA-DD73-4B3B-84ED-40A1106412ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B7DEDF3-6A0B-4CD7-9509-C62151D21AD4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B7DEDF3-6A0B-4CD7-9509-C62151D21AD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B7DEDF3-6A0B-4CD7-9509-C62151D21AD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B7DEDF3-6A0B-4CD7-9509-C62151D21AD4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C6398B1-B168-4D67-9754-86E2502F59F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C6398B1-B168-4D67-9754-86E2502F59F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C6398B1-B168-4D67-9754-86E2502F59F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C6398B1-B168-4D67-9754-86E2502F59F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B3F8555-F802-427A-8DFB-9EF1CFA9A727}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B3F8555-F802-427A-8DFB-9EF1CFA9A727}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B3F8555-F802-427A-8DFB-9EF1CFA9A727}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B3F8555-F802-427A-8DFB-9EF1CFA9A727}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3B7DEDF3-6A0B-4CD7-9509-C62151D21AD4} = {8632FA9D-97C3-43A1-BF1A-AD128B8C1055}
+		{8C6398B1-B168-4D67-9754-86E2502F59F1} = {8632FA9D-97C3-43A1-BF1A-AD128B8C1055}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {797D0E5A-62ED-4627-9860-FFED5D02FB77}

@@ -43,23 +43,14 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Objects\AbstractGameObject.cs" />
-    <Compile Include="Objects\IGameObject.cs" />
     <Compile Include="RpgeGame.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Scenes\AbstractScreen.cs" />
     <Compile Include="Scenes\MapScene.cs" />
     <Compile Include="Scenes\SplashScene.cs" />
-    <Compile Include="Utils\TiledMap.cs" />
+    <Compile Include="Scenes\Transitions\FadeTransition.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="MonoGame.Extended, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MonoGame.Extended.1.1.0\lib\portable-net45+win8+wpa81\MonoGame.Extended.dll</HintPath>
-    </Reference>
-    <Reference Include="MonoGame.Extended.Graphics, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MonoGame.Extended.Graphics.1.1.0\lib\portable-net45+win8+wpa81\MonoGame.Extended.Graphics.dll</HintPath>
-    </Reference>
     <Reference Include="MonoGame.Framework">
       <HintPath>$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\DesktopGL\MonoGame.Framework.dll</HintPath>
     </Reference>
@@ -128,8 +119,16 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MonoGame.Extended\Source\MonoGame.Extended.Graphics\MonoGame.Extended.Graphics.csproj">
+      <Project>{8c6398b1-b168-4d67-9754-86e2502f59f1}</Project>
+      <Name>MonoGame.Extended.Graphics</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MonoGame.Extended\Source\MonoGame.Extended\MonoGame.Extended.csproj">
+      <Project>{3b7dedf3-6a0b-4cd7-9509-c62151d21ad4}</Project>
+      <Name>MonoGame.Extended</Name>
+    </ProjectReference>
     <ProjectReference Include="..\RpgeOpen.Core\RpgeOpen.Core.csproj">
-      <Project>{af5af860-5d19-4260-8999-34c4d0e0d28c}</Project>
+      <Project>{8B3F8555-F802-427A-8DFB-9EF1CFA9A727}</Project>
       <Name>RpgeOpen.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\RpgeOpen.Models\RpgeOpen.Models.csproj">

@@ -1,24 +1,23 @@
 ﻿using Microsoft.Xna.Framework;
-using MonoGame.Extended.Screens;
-using RpgeOpen.Core;
+using MonoGame.Extended.Screens.Transitions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RpgeOpen.Player.Scenes
+namespace RpgeOpen.Player.Scenes.Transitions
 {
-    public class SplashScene : AbstractScreen
+    public class FadeTransition : Transition
     {
-        public SplashScene(RpgeGame game): base(game) { }
+        public FadeTransition(int time) : base(time) { }
 
-        public override void Draw(GameTime gameTime)
+        public override void Dispose()
         {
             throw new NotImplementedException();
         }
 
-        public override void Update(GameTime gameTime)
+        public override void Draw(GameTime gameTime)
         {
             throw new NotImplementedException();
         }

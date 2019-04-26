@@ -6,20 +6,20 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
-using MonoGame.Extended;
 using MonoGame.Extended.Screens;
 
+using RpgeOpen.Core.Interfaces;
 using RpgeOpen.Models.Entities;
 
-namespace RpgeOpen.Player.Scenes
+namespace RpgeOpen.Core
 {
     public abstract class AbstractScreen : Screen
     {
-        protected AbstractScreen(RpgeGame game){
+        protected AbstractScreen(IRpgGame game){
             Game = game;
         }
 
-        public RpgeGame Game { get; }
+        private IRpgGame Game { get; }
         public ContentManager Content => Game.Content;
         public GraphicsDevice GraphicsDevice => Game.GraphicsDevice;
         public Camera2D Camera => Game.Camera;

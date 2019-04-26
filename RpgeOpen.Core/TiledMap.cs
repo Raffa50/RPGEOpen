@@ -2,7 +2,6 @@
 using Microsoft.Xna.Framework.Content;
 using RpgeOpen.Models;
 using RpgeOpen.Models.Entities;
-using RpgeOpen.Player.Objects;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -14,8 +13,9 @@ using Microsoft.Xna.Framework.Graphics;
 using RpgeOpen.Shared.Extensions;
 
 using TiledSharp;
+using RpgeOpen.Core.Interfaces;
 
-namespace RpgeOpen.Player.Utils
+namespace RpgeOpen.Core
 {
     public class TiledMap : Map, IGameObject {
         private TmxMap map;

@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace RpgeOpen.Player.Objects
+namespace RpgeOpen.Core.Interfaces
 {
     public interface IGameObject : IDisposable
     {

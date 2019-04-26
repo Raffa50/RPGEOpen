@@ -8,15 +8,13 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-
-using RpgeOpen.Player.Utils;
+using RpgeOpen.Core;
 
 namespace RpgeOpen.Player.Scenes
 {
     public class MapScene : AbstractScreen {
         private SpriteBatch spriteBatch;
         private TiledMap renderMap;
-        //private Texture2D test;
 
         public MapScene( RpgeGame game ) : base( game ) {}
 
@@ -27,12 +25,6 @@ namespace RpgeOpen.Player.Scenes
 
         public override void LoadContent() {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
-            //using (var fileStream = new FileStream("Content/TileSheets/magecity.png", FileMode.Open))
-            //{
-            //    test = Texture2D.FromStream(GraphicsDevice, fileStream);
-            //}
-            //test = Content.Load<Texture2D>( "TileSheets/magecity" );
             renderMap.LoadContent( Content );
         }
 
@@ -42,24 +34,19 @@ namespace RpgeOpen.Player.Scenes
             var deltaTime = (float)time.ElapsedGameTime.TotalMilliseconds;
 
             if (keyboardState.IsKeyDown(Keys.Up))
-                Camera.Move(new Vector2(0, -movementSpeed * deltaTime));
+                Camera.Position += new Vector2(0, -movementSpeed * deltaTime);
             if (keyboardState.IsKeyDown(Keys.Down))
-                Camera.Move(new Vector2(0, movementSpeed * deltaTime));
+                Camera.Position += new Vector2(0, movementSpeed * deltaTime);
             if (keyboardState.IsKeyDown(Keys.Left))
-                Camera.Move(new Vector2(-movementSpeed * deltaTime, 0));
+                Camera.Position += new Vector2(-movementSpeed * deltaTime, 0);
             if (keyboardState.IsKeyDown(Keys.Right))
-                Camera.Move(new Vector2(movementSpeed * deltaTime, 0));
-
-            base.Update(time);
+                Camera.Position += new Vector2(movementSpeed * deltaTime, 0);
         }
 
         public override void Draw( GameTime time ) {
-            spriteBatch.Begin(transformMatrix: Camera.GetViewMatrix());
+            spriteBatch.Begin(transformMatrix: Camera.CalculateTransformMatrix());
             renderMap.Draw( time, spriteBatch );
-            //spriteBatch.Draw(test, Vector2.Zero, Color.White);
             spriteBatch.End();
-
-            base.Draw(time);
         }
     }
 }
