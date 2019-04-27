@@ -13,7 +13,7 @@ using MonoGame.Extended.Screens.Transitions;
 
 namespace RpgeOpen.Player.Scenes
 {
-    public class SplashScene : AbstractScreen {
+    public class SplashScene : AbstractScene {
         private bool changeScreen;
         private SpriteBatch spriteBatch;
         private Texture2D bg;

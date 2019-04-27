@@ -13,9 +13,9 @@ using RpgeOpen.Models.Entities;
 
 namespace RpgeOpen.Core
 {
-    public abstract class AbstractScreen : Screen
+    public abstract class AbstractScene : Screen
     {
-        protected AbstractScreen(IRpgGame game){
+        protected AbstractScene(IRpgGame game){
             Game = game;
         }
 

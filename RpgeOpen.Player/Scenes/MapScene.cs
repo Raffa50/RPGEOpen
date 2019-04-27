@@ -13,7 +13,7 @@ using RpgeOpen.Core.Interfaces;
 
 namespace RpgeOpen.Player.Scenes
 {
-    public class MapScene : AbstractScreen {
+    public class MapScene : AbstractScene {
         private SpriteBatch spriteBatch;
         private TiledMap renderMap;
 
