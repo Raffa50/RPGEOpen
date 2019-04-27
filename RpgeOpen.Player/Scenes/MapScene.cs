@@ -17,6 +17,7 @@ using RpgeOpen.Models.Entities;
 namespace RpgeOpen.Player.Scenes
 {
     public class MapScene : AbstractScene {
+        private Camera2D Camera;
         private SpriteBatch spriteBatch;
         private TiledMap renderMap;
         private Sprite player;
@@ -27,6 +28,8 @@ namespace RpgeOpen.Player.Scenes
         public override void Initialize() {
             var map = GameData.Maps.First();
             renderMap = new TiledMap( map );
+
+            Camera = new Camera2D( Viewport ) { Origin = Vector2.Zero };
         }
 
         public override void LoadContent() {

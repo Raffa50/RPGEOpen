@@ -23,7 +23,7 @@ namespace RpgeOpen.Player
         //private SpriteBatch spriteBatch;
         public Project GameData { get; private set; }
 
-        public Camera2D Camera { get; private set; }
+        public ViewportAdapter Viewport { get; private set; }
         public ScreenManager SceneManager { get; }
 
         public RpgeGame()
@@ -38,11 +38,7 @@ namespace RpgeOpen.Player
         {
             base.Initialize();
 
-            var viewportAdapter = new BoxingViewportAdapter(Window, GraphicsDevice, 800, 480);
-            Camera = new Camera2D(viewportAdapter)
-            {
-                Origin = Vector2.Zero
-            };
+            Viewport = new BoxingViewportAdapter(Window, GraphicsDevice, 800, 480);
 
             Components.Add(SceneManager);
             SceneManager.LoadScreen(new SplashScene(this));
