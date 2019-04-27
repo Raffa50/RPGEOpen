@@ -39,11 +39,13 @@ namespace RpgeOpen.Player
             base.Initialize();
 
             var viewportAdapter = new BoxingViewportAdapter(Window, GraphicsDevice, 800, 480);
-            Camera = new Camera2D(viewportAdapter);
+            Camera = new Camera2D(viewportAdapter)
+            {
+                Origin = Vector2.Zero
+            };
 
             Components.Add(SceneManager);
-            SceneManager.LoadScreen(new MapScene(this));
-            //SceneManager.Initialize();
+            SceneManager.LoadScreen(new SplashScene(this));
         }
 
         protected override void LoadContent()

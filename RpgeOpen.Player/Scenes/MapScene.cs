@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using RpgeOpen.Core;
+using RpgeOpen.Core.Interfaces;
 
 namespace RpgeOpen.Player.Scenes
 {
@@ -16,7 +17,7 @@ namespace RpgeOpen.Player.Scenes
         private SpriteBatch spriteBatch;
         private TiledMap renderMap;
 
-        public MapScene( RpgeGame game ) : base( game ) {}
+        public MapScene( IRpgGame game ) : base( game ) {}
 
         public override void Initialize() {
             var map = GameData.Maps.First();

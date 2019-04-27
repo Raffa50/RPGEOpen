@@ -19,10 +19,11 @@ namespace RpgeOpen.Core
             Game = game;
         }
 
-        private IRpgGame Game { get; }
+        public IRpgGame Game { get; }
         public ContentManager Content => Game.Content;
         public GraphicsDevice GraphicsDevice => Game.GraphicsDevice;
         public Camera2D Camera => Game.Camera;
         public Project GameData => Game.GameData;
+        public ScreenManager SceneManager => Game.SceneManager;
     }
 }

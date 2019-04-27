@@ -48,7 +48,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scenes\MapScene.cs" />
     <Compile Include="Scenes\SplashScene.cs" />
-    <Compile Include="Scenes\Transitions\FadeTransition.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Extended, Version=3.6.0.0, Culture=neutral, processorArchitecture=MSIL">

@@ -8,7 +8,11 @@ namespace RpgeOpen.Models.Entities
     {
         public static class Paths
         {
-            public const string TileSheets = "TileSheets", Maps = "Maps";
+            public const string 
+                TileSheets = "TileSheets", 
+                Maps = "Maps",
+                Characters = "Characters",
+                Backgrounds = "Backgrounds";
         }
 
         public string Name { get; set; }

@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-
+using MonoGame.Extended.Screens;
 using RpgeOpen.Models.Entities;
 
 namespace RpgeOpen.Core.Interfaces
@@ -11,5 +11,6 @@ namespace RpgeOpen.Core.Interfaces
         GraphicsDevice GraphicsDevice { get; }
         Camera2D Camera { get; }
         Project GameData { get; }
+        ScreenManager SceneManager { get; }
     }
 }
