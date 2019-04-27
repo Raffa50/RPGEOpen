@@ -55,9 +55,11 @@
   <ItemGroup>
     <Compile Include="AbstractScene.cs" />
     <Compile Include="Camera2D.cs" />
+    <Compile Include="Direction.cs" />
     <Compile Include="Interfaces\IGameObject.cs" />
     <Compile Include="Interfaces\IRpgGame.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SpriteSheets\Sprite.cs" />
     <Compile Include="TiledMap.cs" />
   </ItemGroup>
   <ItemGroup>
