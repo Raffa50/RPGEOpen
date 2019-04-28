@@ -8,16 +8,16 @@ namespace RpgeOpen.Models.Entities
     {
         public string DisplayName { get; set; }
         public string TmxPath { get; set; }
-        public Size Size { get; protected set; }
+        public Size NumTiles { get; protected set; }
         public PassabilityType[,] PassabilityLayer { get; set; }
 
         protected Map() { }
 
-        public Map(string tmxPath, Size size)
+        public Map(string tmxPath, Size numTiles)
         {
             TmxPath = DisplayName = tmxPath;
-            Size = size;
-            PassabilityLayer = new PassabilityType[size.Width, size.Height];
+            NumTiles = numTiles;
+            PassabilityLayer = new PassabilityType[numTiles.Width, numTiles.Height];
         }
     }
 }

@@ -18,12 +18,13 @@ using RpgeOpen.Core.Interfaces;
 namespace RpgeOpen.Core
 {
     public class TiledMap : Map, IGameObject {
+        public Size Size { get; private set; }
         private TmxMap map;
         private Size tileSize;
         private readonly Dictionary<string, Texture2D> tileSheets = new Dictionary<string, Texture2D>();
 
         [Obsolete]
-        public TiledMap( Map m ) : base(m.TmxPath, m.Size) {
+        public TiledMap( Map m ) : base(m.TmxPath, m.NumTiles) {
             DisplayName = m.DisplayName;
         }
 
@@ -55,6 +56,7 @@ namespace RpgeOpen.Core
         {
             map = new TmxMap(Path.Combine("Content", Project.Paths.Maps, TmxPath));
             tileSize = new Size(map.TileWidth, map.TileHeight);
+            Size = new Size( map.Width * map.TileWidth, map.Height * map.TileHeight );
 
             foreach( var ts in map.Tilesets ) {
                 var imgPath = ts.Image.Source;

@@ -20,7 +20,7 @@ namespace RpgeOpen.IDE.Utils
         [JsonIgnore]
         public Image Image { get; private set; }
 
-        public TileMap( Map map ) :base(map.TmxPath, map.Size) {
+        public TileMap( Map map ) :base(map.TmxPath, map.NumTiles) {
         }
 
         public void Load(string projectDir) {

@@ -23,6 +23,8 @@ namespace RpgeOpen.Player.Scenes
         private Sprite player;
         private Texture2D playerSpriteSheet;
 
+        private Size MapSize => renderMap.Size;
+
         public MapScene( IRpgGame game ) : base( game ) {}
 
         public override void Initialize() {
@@ -37,7 +39,9 @@ namespace RpgeOpen.Player.Scenes
             renderMap.LoadContent( Content );
 
             playerSpriteSheet = Content.Load<Texture2D>( Path.Combine( Project.Paths.Characters, "player" ) );
-            player = new Sprite(playerSpriteSheet, new Size(32, 32));
+            player = new Sprite( playerSpriteSheet, new Size( 32, 32 ) ) {
+                Position = new Vector2( renderMap.Size.Width /2, renderMap.Size.Height /2 )
+            };
         }
 
         public override void UnloadContent() {
@@ -47,31 +51,31 @@ namespace RpgeOpen.Player.Scenes
 
         public override void Update( GameTime time ) {
             var keyboardState = Keyboard.GetState();
-            const float movementSpeed = 0.1f;
+            const float movementSpeed = 0.07f;
             var deltaTime = (float)time.ElapsedGameTime.TotalMilliseconds;
 
             player.IsMoving = false;
-            if( keyboardState.IsKeyDown( Keys.Up ) ) {
-                Camera.Position += new Vector2( 0, -movementSpeed * deltaTime );
+            if( keyboardState.IsKeyDown( Keys.Up ) && player.Position.Y > 0 ) {
+                player.Position += new Vector2( 0, -movementSpeed * deltaTime );
                 player.Direction = Direction.Up;
                 player.IsMoving = true;
-            } else if( keyboardState.IsKeyDown( Keys.Down ) ) {
-                Camera.Position += new Vector2( 0, movementSpeed * deltaTime );
+            } else if( keyboardState.IsKeyDown( Keys.Down ) && player.Position.Y + player.Size.Height < MapSize.Height) {
+                player.Position += new Vector2( 0, movementSpeed * deltaTime );
                 player.Direction = Direction.Down;
                 player.IsMoving = true;
             }
 
-            if( keyboardState.IsKeyDown( Keys.Left ) ) {
-                Camera.Position += new Vector2( -movementSpeed * deltaTime, 0 );
+            if( keyboardState.IsKeyDown( Keys.Left ) && player.Position.X > 0 ) {
+                player.Position += new Vector2( -movementSpeed * deltaTime, 0 );
                 player.Direction = Direction.Left;
                 player.IsMoving = true;
-            } else if( keyboardState.IsKeyDown( Keys.Right ) ) {
-                Camera.Position += new Vector2( movementSpeed * deltaTime, 0 );
+            } else if( keyboardState.IsKeyDown( Keys.Right ) && player.Position.X + player.Size.Width < MapSize.Width ) {
+                player.Position += new Vector2( movementSpeed * deltaTime, 0 );
                 player.Direction = Direction.Right;
                 player.IsMoving = true;
             }
 
-            player.Position = Camera.Position + new Vector2(400, 240);
+            Camera.Position = player.Center -new Vector2(Viewport.ViewportWidth /2, Viewport.ViewportHeight /2);
             player.Update( time );
         }
 

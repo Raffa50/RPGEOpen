@@ -13,6 +13,7 @@ namespace RpgeOpen.Core.SpriteSheets
 {
     public class Sprite : IGameObject {
         public Vector2 Position { get; set; }
+        public Vector2 Center => new Vector2(Position.X + Size.Width/2, Position.Y + Size.Height/2);
         public bool IsMoving { get; set; }
         public Direction Direction { get; set; } = Direction.Down;
         /// <summary>
@@ -21,16 +22,16 @@ namespace RpgeOpen.Core.SpriteSheets
         public TimeSpan FrameTime { get; set; } = TimeSpan.FromSeconds(0.33);
 
         /// <summary>
-        /// Size of the sprite
+        /// NumTiles of the sprite
         /// </summary>
-        private readonly Size size;
+        public Size Size { get; private set; }
         private readonly Texture2D spriteSheet;
         private TimeSpan previusFrameTime = TimeSpan.Zero;
         private byte frame = 0;
 
         public Sprite( Texture2D spriteSheet, Size size ) {
             this.spriteSheet = spriteSheet ?? throw new ArgumentNullException(nameof(spriteSheet));
-            this.size = size;
+            this.Size = size;
         }
 
         public void Dispose()
@@ -38,7 +39,7 @@ namespace RpgeOpen.Core.SpriteSheets
         }
 
         public void Draw(GameTime time, SpriteBatch spriteBatch) {
-            int offset = size.Height;
+            int offset = Size.Height;
             switch( Direction ) {
                 case Direction.Down:
                     offset = 0;
@@ -52,7 +53,7 @@ namespace RpgeOpen.Core.SpriteSheets
                     offset *= 3;
                     break;
             }
-            spriteBatch.Draw(spriteSheet, Position, new Rectangle(frame * size.Width, offset, size.Width, size.Height), Color.White);
+            spriteBatch.Draw(spriteSheet, Position, new Rectangle(frame * Size.Width, offset, Size.Width, Size.Height), Color.White);
         }
 
         public void Initialize()

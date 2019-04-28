@@ -14,6 +14,7 @@ using RpgeOpen.Models.Entities;
 using RpgeOpen.Player.Scenes;
 using RpgeOpen.Core;
 using RpgeOpen.Core.Interfaces;
+using Microsoft.Xna.Framework.Media;
 
 namespace RpgeOpen.Player
 {
@@ -52,6 +53,9 @@ namespace RpgeOpen.Player
                 GameData = JsonConvert.DeserializeObject<Project>(content);
             }
             else Debug.WriteLine("Project file not found");
+
+            var song = Content.Load<Song>(Path.Combine(Project.Paths.AudioBgm, "bgm"));
+            MediaPlayer.Play(song);
         }
 
         protected override void UnloadContent()

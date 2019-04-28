@@ -12,7 +12,8 @@ namespace RpgeOpen.Models.Entities
                 TileSheets = "TileSheets", 
                 Maps = "Maps",
                 Characters = "Characters",
-                Backgrounds = "Backgrounds";
+                Backgrounds = "Backgrounds",
+                AudioBgm = "Audio/Bgm";
         }
 
         public string Name { get; set; }
