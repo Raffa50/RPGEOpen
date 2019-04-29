@@ -18,7 +18,8 @@ namespace RpgeOpen.Models.Entities
 
         public string Name { get; set; }
         public string Author { get; set; } = Environment.UserName;
-        public ICollection<Map> Maps { get; set; } = new List<Map>();
+        public IList<Map> Maps { get; private set; } = new List<Map>();
+        public IList<Skill> Skills { get; private set; } = new List<Skill>();
 
         private Project() { }
         public Project(string name)
