@@ -2,10 +2,12 @@
 {
     public interface IStatistics
     {
-        float Health { get; }
+        float Hp { get; }
         float Mp { get; }
+        float Atk { get; set; }
         float Def { get; }
         float Stamina { get; }
+        float Mat { get; }
         float MagDef { get; }
         float Speed { get; }
         float Luck { get; }

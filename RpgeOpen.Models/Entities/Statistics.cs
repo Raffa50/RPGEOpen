@@ -3,9 +3,11 @@
 namespace RpgeOpen.Models.Entities
 {
     public class Statistics : IStatistics {
-        public virtual float Health { get; set; }
+        public virtual float Hp { get; set; }
 
         public virtual float Mp { get; set; }
+
+        public virtual float Atk { get; set; }
 
         public virtual float Def { get; set; }
 
@@ -16,5 +18,7 @@ namespace RpgeOpen.Models.Entities
         public virtual float Speed { get; set; }
 
         public virtual float Luck { get; set; }
+
+        public virtual float Mat { get; set; }
     }
 }
