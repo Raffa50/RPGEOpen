@@ -113,6 +113,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Icons\Map\" />
     <Folder Include="ProjectStructure\Audio\" />
     <Folder Include="ProjectStructure\Characters\" />
     <Folder Include="ProjectStructure\Maps\" />
@@ -122,16 +123,17 @@
   <ItemGroup>
     <Content Include="Icons\bin.png" />
     <Content Include="Icons\bug.png" />
-    <Content Include="Icons\computer.png" />
+    <Content Include="Icons\grid-icon.png" />
+    <Content Include="Icons\Platforms\computer.png" />
     <Content Include="Icons\go.png" />
     <Content Include="Icons\help.png" />
     <Content Include="Icons\load.png" />
     <Content Include="Icons\new.png" />
-    <Content Include="Icons\nintendo-switch.png" />
-    <Content Include="Icons\ps4.png" />
+    <Content Include="Icons\Platforms\nintendo-switch.png" />
+    <Content Include="Icons\Platforms\ps4.png" />
     <Content Include="Icons\save.png" />
     <Content Include="Icons\tiled-icon.ico" />
-    <Content Include="Icons\xbox.png" />
+    <Content Include="Icons\Platforms\xbox.png" />
     <Content Include="Icons\repgeo.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

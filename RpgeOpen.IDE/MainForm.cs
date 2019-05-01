@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -28,7 +29,7 @@ namespace RpgeOpen.IDE
             if( OfMapImport.ShowDialog() != DialogResult.OK )
                 return;
 
-            Size size;
+            RpgeOpen.Models.Size size;
             try
             {
                 size= TiledImporter.ImportTmx(OfMapImport.FileName, currentProject.Directory);
@@ -99,7 +100,7 @@ namespace RpgeOpen.IDE
             }
 
             LoadMaps();
-            MnSave.Enabled = MnMapImport.Enabled = MnTest.Enabled = true;
+            MnSave.Enabled = MnMapImport.Enabled = MnTest.Enabled = mnRelease.Enabled = true;
         }
 
         private void LvMaps_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e) {
@@ -109,7 +110,6 @@ namespace RpgeOpen.IDE
             currentMap = new TileMap(currentProject.Project.Maps.First( m => m.TmxPath == key ));
             currentMap.Load(currentProject.Directory);
 
-            PbMap.Image = currentMap.Image;
             PbMap.Height = currentMap.Image.Height;
             PbMap.Width = currentMap.Image.Width;
         }
@@ -133,6 +133,37 @@ namespace RpgeOpen.IDE
         private void MnTest_Click(object sender, EventArgs e)
         {
             MonoContent.Deploy(currentProject, TargetConsoleType.Pc, @"C:\Users\Reloa\Desktop\RpgeOpen\RpgeOpen.Player\bin\DesktopGL\AnyCPU\Debug\Content");
+        }
+
+        private void PbMap_Paint(object sender, PaintEventArgs paintEventArgs) {
+            if( currentMap == null )
+                return;
+            var img = (Image) currentMap.Image.Clone();
+
+            using( var g = Graphics.FromImage( img ) ) {
+                g.DrawImage( img, new Point() );
+
+                if( tsShowGrid.Checked ) {
+                    for( var i = 1; i < (img.Width / currentMap.TileSize.Width ); i++ ) {
+                        g.DrawLine(
+                            Pens.Red, new Point(currentMap.TileSize.Width * i, 0 ),
+                            new Point(currentMap.TileSize.Width * i, img.Height ) );
+                    }
+
+                    for( var i = 1; i < (img.Height / currentMap.TileSize.Height ); i++ ) {
+                        g.DrawLine(
+                            Pens.Red, new Point( 0, currentMap.TileSize.Height * i ),
+                            new Point(img.Width, currentMap.TileSize.Width * i ) );
+                    }
+                }
+            }
+
+            paintEventArgs.Graphics.DrawImage(img, new Point());
+        }
+
+        private void tsShowGrid_Click(object sender, EventArgs e)
+        {
+            PbMap.Invalidate();
         }
     }
 }
