@@ -114,7 +114,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Icons\Map\" />
-    <Folder Include="ProjectStructure\Audio\" />
+    <Folder Include="ProjectStructure\Audio\Bgm\" />
     <Folder Include="ProjectStructure\Characters\" />
     <Folder Include="ProjectStructure\Maps\" />
     <Folder Include="ProjectStructure\Scripts\" />
