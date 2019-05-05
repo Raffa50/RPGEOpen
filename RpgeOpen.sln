@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RpgeOpen.Shared", "RpgeOpen
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RpgeOpen.Core", "RpgeOpen.Core\RpgeOpen.Core.csproj", "{8B3F8555-F802-427A-8DFB-9EF1CFA9A727}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfTest", "WpfTest\WpfTest.csproj", "{0DDC16D4-4C2A-4BCA-84DD-88F8D4E668F5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{8B3F8555-F802-427A-8DFB-9EF1CFA9A727}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8B3F8555-F802-427A-8DFB-9EF1CFA9A727}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8B3F8555-F802-427A-8DFB-9EF1CFA9A727}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0DDC16D4-4C2A-4BCA-84DD-88F8D4E668F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0DDC16D4-4C2A-4BCA-84DD-88F8D4E668F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0DDC16D4-4C2A-4BCA-84DD-88F8D4E668F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0DDC16D4-4C2A-4BCA-84DD-88F8D4E668F5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

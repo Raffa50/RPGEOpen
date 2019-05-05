@@ -9,6 +9,6 @@ namespace RpgeOpen.Models.Entities
         public string Name { get; set; }
         public int MaxLevel { get; set; } = 99;
         public IStatistics BasicStats { get; set; } = new Statistics();
-        public IList<HashSet<Skill>> SkillsLevelLearn { get; set; } = new List<HashSet<Skill>>();
+        public IList<List<int>> SkillsLevelLearn { get; private set; } = new List<List<int>>();
     }
 }
