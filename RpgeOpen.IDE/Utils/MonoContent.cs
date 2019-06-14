@@ -8,12 +8,14 @@ using System.Threading.Tasks;
 using RpgeOpen.IDE.Models;
 using RpgeOpen.Models;
 using RpgeOpen.Models.Entities;
+using RpgeOpen.Shared;
 
 namespace RpgeOpen.IDE.Utils
 {
     internal static class MonoContent
     {
-        private static string monoContentBuildPath = Path.Combine(
+        private const string mgcbFile = "Content.mgcb";
+        private static readonly string monoContentBuildPath = Path.Combine(
             Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86), "MSBuild/MonoGame/v3.0/Tools/MGCB.exe");
 
         /// <summary>
@@ -23,12 +25,15 @@ namespace RpgeOpen.IDE.Utils
         /// <param name="target"></param>
         /// <param name="outputPath"></param>
         public static void Deploy(CurrentProject project, TargetConsoleType target, string outputPath) {
+            if (File.Exists(outputPath))
+                File.Delete(outputPath);
+            Directory.CreateDirectory(outputPath);
             CreateMgcb(project, target, outputPath);
             var startInfo = new ProcessStartInfo
             {
                 WorkingDirectory = project.Directory,
                 FileName = monoContentBuildPath,
-                Arguments = "",
+                Arguments = mgcbFile,
             };
             Process.Start(startInfo).WaitForExit();
         }
@@ -40,8 +45,12 @@ namespace RpgeOpen.IDE.Utils
         /// <param name="target"></param>
         /// <param name="outputPath"></param>
         private static void CreateMgcb(CurrentProject project, TargetConsoleType target, string outputPath) {
-            using( var w = File.CreateText( Path.Combine( project.Directory, "Content.mgcb" ) ) ) {
-                w.Write("/outputDir:"); w.WriteLine(outputPath);
+            using( var w = File.CreateText( Path.Combine( project.Directory, mgcbFile) ) ) {
+                string tempDirPath = Path.Combine(Path.GetTempPath(), project.Project.Name);
+                Directory.CreateDirectory(tempDirPath);
+
+                w.WriteLine("/outputDir:"+outputPath);
+                w.WriteLine("/intermediateDir:"+tempDirPath);
                 w.WriteLine("/platform:DesktopGL"); //TODO
 
                 w.WriteLine("/config:");
@@ -53,9 +62,9 @@ namespace RpgeOpen.IDE.Utils
                 w.WriteLine( "/processor:SongProcessor" );
                 w.WriteLine("/processorParam:Quality=Best");
 
-                var bgmDir = new DirectoryInfo(Path.Combine(project.Directory, Project.Paths.AudioBgm));
+                var bgmDir = new DirectoryInfo(Path.Combine(project.Directory, Constants.Paths.AudioBgm));
                 foreach( var audio in bgmDir.GetFiles()) {
-                    w.WriteLine($"/build:{Project.Paths.AudioBgm}/{audio.Name}");
+                    w.WriteLine($"/build:{Constants.Paths.AudioBgm}/{audio.Name}");
                 }
 
                 w.WriteLine("/importer:TextureImporter");
@@ -63,23 +72,30 @@ namespace RpgeOpen.IDE.Utils
                 w.WriteLine("/processorParam:ColorKeyColor=255,0,255,255");
 
                 //build Characters
-                var charsDir= new DirectoryInfo( Path.Combine(project.Directory, Project.Paths.Characters) );
-                foreach( var img in charsDir.GetFiles() ) {
-                    w.WriteLine($"/build:{Project.Paths.Characters}/{img.Name}");
+                var charsDir= new DirectoryInfo( Path.Combine(project.Directory, Constants.Paths.Characters) );
+                foreach( var img in charsDir.GetFiles().Where(f => Constants.Extensions.Images.Contains(f.Extension)) ) {
+                    w.WriteLine($"/build:{Constants.Paths.Characters}/{img.Name}");
+                }
+                //build backgrounds
+                var bgDir = new DirectoryInfo(Path.Combine(project.Directory, Constants.Paths.Backgrounds));
+                foreach (var img in bgDir.GetFiles().Where(f => Constants.Extensions.Images.Contains(f.Extension)))
+                {
+                    w.WriteLine($"/build:{Constants.Paths.Backgrounds}/{img.Name}");
                 }
                 //build TileSheets
-                var tilesDir= new DirectoryInfo(Path.Combine(project.Directory, Project.Paths.TileSheets));
+                var tilesDir= new DirectoryInfo(Path.Combine(project.Directory, Constants.Paths.TileSheets));
                 foreach( var img in tilesDir.GetFiles()) {
-                    if(img.Extension.Contains("png") || img.Extension.Contains("jpg") || img.Extension.Contains("jpeg") || img.Extension.Contains("bmp"))
-                        w.WriteLine($"/build:{Project.Paths.TileSheets}/{img.Name}");
-                    else
-                        w.WriteLine($"/copy:{Project.Paths.TileSheets}/{img.Name}");
+                    if(Constants.Extensions.Images.Contains(img.Extension))
+                        w.WriteLine($"/build:{Constants.Paths.TileSheets}/{img.Name}");
+                    else if(img.Extension == ".tsx")
+                        w.WriteLine($"/copy:{Constants.Paths.TileSheets}/{img.Name}");
                 }
                 //copy Maps
-                var mapsDir= new DirectoryInfo(Path.Combine(project.Directory, Project.Paths.Maps));
-                foreach( var map in mapsDir.GetFiles() ) {
-                    w.WriteLine($"/copy:{Project.Paths.TileSheets}/{map.Name}");
+                var mapsDir= new DirectoryInfo(Path.Combine(project.Directory, Constants.Paths.Maps));
+                foreach( var map in mapsDir.GetFiles().Where(f => f.Extension == ".tmx") ) {
+                    w.WriteLine($"/copy:{Constants.Paths.Maps}/{map.Name}");
                 }
+                w.WriteLine($"/copy:{project.FileName}.rpgeo;game.rpgeo");
             }
         }
     }
