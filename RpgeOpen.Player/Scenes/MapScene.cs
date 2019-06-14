@@ -10,9 +10,11 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using RpgeOpen.Core;
 using RpgeOpen.Core.Interfaces;
+using RpgeOpen.Core.Maps;
 using RpgeOpen.Core.SpriteSheets;
 using RpgeOpen.Models;
 using RpgeOpen.Models.Entities;
+using RpgeOpen.Shared;
 
 namespace RpgeOpen.Player.Scenes
 {
@@ -38,9 +40,9 @@ namespace RpgeOpen.Player.Scenes
             spriteBatch = new SpriteBatch(GraphicsDevice);
             renderMap.LoadContent( Content );
 
-            playerSpriteSheet = Content.Load<Texture2D>( Path.Combine( Project.Paths.Characters, "player" ) );
+            playerSpriteSheet = Content.Load<Texture2D>( Path.Combine( Constants.Paths.Characters, "player" ) );
             player = new Sprite( playerSpriteSheet, new Size( 32, 32 ) ) {
-                Position = new Vector2( renderMap.Size.Width /2, renderMap.Size.Height /2 )
+                Position = new Point( renderMap.Size.Width /2, renderMap.Size.Height /2 )
             };
         }
 
@@ -49,33 +51,47 @@ namespace RpgeOpen.Player.Scenes
             playerSpriteSheet.Dispose();
         }
 
+        private PassabilityType playerIntersectObstacle()
+        {
+            foreach (var block in renderMap.Blocks)
+                if (player.Box.Intersects(block.Box))
+                    return block.Passability;
+
+            return PassabilityType.Allow;
+        }
+
         public override void Update( GameTime time ) {
             var keyboardState = Keyboard.GetState();
             const float movementSpeed = 0.07f;
             var deltaTime = (float)time.ElapsedGameTime.TotalMilliseconds;
 
+            var initialPosition = player.CornerLeft;
             player.IsMoving = false;
-            if( keyboardState.IsKeyDown( Keys.Up ) && player.Position.Y > 0 ) {
-                player.Position += new Vector2( 0, -movementSpeed * deltaTime );
+
+            if( keyboardState.IsKeyDown( Keys.Up ) && player.CornerLeft.Y > 0 ) {
+                player.Position += new Vector2( 0, -movementSpeed * deltaTime ).ToPoint();
                 player.Direction = Direction.Up;
                 player.IsMoving = true;
-            } else if( keyboardState.IsKeyDown( Keys.Down ) && player.Position.Y + player.Size.Height < MapSize.Height) {
-                player.Position += new Vector2( 0, movementSpeed * deltaTime );
+            } else if( keyboardState.IsKeyDown( Keys.Down ) && player.CornerLeft.Y + player.Size.Height < MapSize.Height) {
+                player.Position += new Vector2( 0, movementSpeed * deltaTime ).ToPoint();
                 player.Direction = Direction.Down;
                 player.IsMoving = true;
             }
 
-            if( keyboardState.IsKeyDown( Keys.Left ) && player.Position.X > 0 ) {
-                player.Position += new Vector2( -movementSpeed * deltaTime, 0 );
+            if( keyboardState.IsKeyDown( Keys.Left ) && player.CornerLeft.X > 0 ) {
+                player.Position += new Vector2( -movementSpeed * deltaTime, 0 ).ToPoint();
                 player.Direction = Direction.Left;
                 player.IsMoving = true;
-            } else if( keyboardState.IsKeyDown( Keys.Right ) && player.Position.X + player.Size.Width < MapSize.Width ) {
-                player.Position += new Vector2( movementSpeed * deltaTime, 0 );
+            } else if( keyboardState.IsKeyDown( Keys.Right ) && player.CornerLeft.X + player.Size.Width < MapSize.Width ) {
+                player.Position += new Vector2( movementSpeed * deltaTime, 0 ).ToPoint();
                 player.Direction = Direction.Right;
                 player.IsMoving = true;
             }
 
-            Camera.Position = player.Center -new Vector2(Viewport.ViewportWidth /2, Viewport.ViewportHeight /2);
+            if (playerIntersectObstacle() != PassabilityType.Allow)
+                player.Position = initialPosition;
+
+            Camera.Position = (player.Position -new Point(Viewport.ViewportWidth /2, Viewport.ViewportHeight /2)).ToVector2();
             player.Update( time );
         }
 

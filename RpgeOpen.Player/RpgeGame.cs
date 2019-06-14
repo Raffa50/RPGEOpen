@@ -15,6 +15,7 @@ using RpgeOpen.Player.Scenes;
 using RpgeOpen.Core;
 using RpgeOpen.Core.Interfaces;
 using Microsoft.Xna.Framework.Media;
+using RpgeOpen.Shared;
 
 namespace RpgeOpen.Player
 {
@@ -22,7 +23,7 @@ namespace RpgeOpen.Player
     {
         private readonly GraphicsDeviceManager graphics;
         //private SpriteBatch spriteBatch;
-        public Project GameData { get; private set; }
+        public ProjectDetails GameData { get; private set; }
 
         public ViewportAdapter Viewport { get; private set; }
         public ScreenManager SceneManager { get; }
@@ -50,11 +51,11 @@ namespace RpgeOpen.Player
             if (File.Exists("Content/game.rpgeo"))
             {
                 var content = File.ReadAllText("Content/game.rpgeo");
-                GameData = JsonConvert.DeserializeObject<Project>(content);
+                GameData = JsonConvert.DeserializeObject<ProjectDetails>(content);
             }
             else Debug.WriteLine("Project file not found");
 
-            var song = Content.Load<Song>(Path.Combine(Project.Paths.AudioBgm, "bgm"));
+            var song = Content.Load<Song>(Path.Combine(Constants.Paths.AudioBgm, "bgm"));
             MediaPlayer.Play(song);
         }
 

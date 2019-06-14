@@ -15,7 +15,7 @@ namespace RpgeOpen.Player
         private Sprite player;
         private Texture2D playerSpriteSheet;
 
-        public Vector2 Position {
+        public Point Position {
             get => player.Position;
             set { player.Position = value; }
         }

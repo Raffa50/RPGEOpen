@@ -12,14 +12,15 @@ using RpgeOpen.Models;
 namespace RpgeOpen.Core.SpriteSheets
 {
     public class Sprite : IGameObject {
-        public Vector2 Position { get; set; }
-        public Vector2 Center => new Vector2(Position.X + Size.Width/2, Position.Y + Size.Height/2);
+        public Point CornerLeft => new Point(Position.X - Size.Width / 2, Position.Y - Size.Height / 2);
+        public Point Position { get; set; } // => new Point(CornerLeft.X + Size.Width/2, CornerLeft.Y + Size.Height/2);
         public bool IsMoving { get; set; }
         public Direction Direction { get; set; } = Direction.Down;
         /// <summary>
         /// Time to change frame
         /// </summary>
         public TimeSpan FrameTime { get; set; } = TimeSpan.FromSeconds(0.33);
+        public Rectangle Box => new Rectangle(CornerLeft, new Point(Size.Width, Size.Height));
 
         /// <summary>
         /// NumTiles of the sprite
@@ -53,7 +54,7 @@ namespace RpgeOpen.Core.SpriteSheets
                     offset *= 3;
                     break;
             }
-            spriteBatch.Draw(spriteSheet, Position, new Rectangle(frame * Size.Width, offset, Size.Width, Size.Height), Color.White);
+            spriteBatch.Draw(spriteSheet, CornerLeft.ToVector2(), new Rectangle(frame * Size.Width, offset, Size.Width, Size.Height), Color.White);
         }
 
         public void Initialize()

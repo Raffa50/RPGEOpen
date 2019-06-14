@@ -1,5 +1,6 @@
 ﻿using RpgeOpen.Models;
 using RpgeOpen.Models.Entities;
+using RpgeOpen.Shared;
 using System;
 using System.IO;
 using System.Linq;
@@ -24,10 +25,10 @@ namespace RpgeOpen.IDE.Utils
                 foreach(var ts in tilesets ) {
                     var source = ts.Attributes().First(a => a.Name == "source");
                     ImportTileSheet( Path.Combine(tmxDir,source.Value), projectDir );
-                    source.Value = "../"+ Project.Paths.TileSheets +"/"+ Path.GetFileName(source.Value);
+                    source.Value = "../"+ Constants.Paths.TileSheets +"/"+ Path.GetFileName(source.Value);
                 }
 
-                document.Save(Path.Combine( projectDir, Project.Paths.Maps, Path.GetFileName(tmxPath) ));
+                document.Save(Path.Combine( projectDir, Constants.Paths.Maps, Path.GetFileName(tmxPath) ));
             }
 
             return size;
@@ -43,12 +44,12 @@ namespace RpgeOpen.IDE.Utils
                     var source = img.Attributes().First( a => a.Name == "source" );
                     var imageFileName = Path.GetFileName(source.Value);
                     File.Copy( Path.Combine(tsxDir, imageFileName), 
-                        Path.Combine(projectDir, Project.Paths.TileSheets, imageFileName), true );
+                        Path.Combine(projectDir, Constants.Paths.TileSheets, imageFileName), true );
 
                     source.Value = imageFileName;
                 }
 
-                document.Save(Path.Combine( projectDir, Project.Paths.TileSheets, Path.GetFileName(tsxPath) ));
+                document.Save(Path.Combine( projectDir, Constants.Paths.TileSheets, Path.GetFileName(tsxPath) ));
             }
         }
     }

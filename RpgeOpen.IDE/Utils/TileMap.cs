@@ -10,6 +10,7 @@ using RpgeOpen.Shared.Extensions;
 using RpgeOpen.Models.Entities;
 
 using Size = RpgeOpen.Models.Size;
+using RpgeOpen.Shared;
 
 namespace RpgeOpen.IDE.Utils
 {
@@ -27,7 +28,7 @@ namespace RpgeOpen.IDE.Utils
             if( Image != null )
                 return;
 
-            var map = new TmxMap( Path.Combine(projectDir, Project.Paths.Maps, TmxPath) );
+            var map = new TmxMap( Path.Combine(projectDir, Constants.Paths.Maps, TmxPath) );
 
             TileSize = new Size( map.TileWidth, map.TileHeight );
             Image = new Bitmap( map.Width * TileSize.Width, map.Height * TileSize.Height );
@@ -38,7 +39,7 @@ namespace RpgeOpen.IDE.Utils
                     Image tileSet;
                     if (!tileSheets.TryGetValue(tilesetName, out tileSet))
                     {
-                        tileSet = Image.FromFile(Path.Combine(projectDir, Project.Paths.TileSheets, tilesetName));
+                        tileSet = Image.FromFile(Path.Combine(projectDir, Constants.Paths.TileSheets, tilesetName));
                         tileSheets.Add(tilesetName, tileSet);
                     }
 

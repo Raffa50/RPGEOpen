@@ -23,7 +23,7 @@ namespace RpgeOpen.Core
         public IRpgGame Game { get; }
         public ContentManager Content => Game.Content;
         public GraphicsDevice GraphicsDevice => Game.GraphicsDevice;
-        public Project GameData => Game.GameData;
+        public ProjectDetails GameData => Game.GameData;
         public ScreenManager SceneManager => Game.SceneManager;
         public ViewportAdapter Viewport => Game.Viewport;
     }

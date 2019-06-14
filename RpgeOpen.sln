@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28010.2046
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.352
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RpgeOpen.Models", "RpgeOpen.Models\RpgeOpen.Models.csproj", "{163872C1-A863-4242-8834-30A1FE5BD151}"
 EndProject
@@ -14,6 +14,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RpgeOpen.Core", "RpgeOpen.Core\RpgeOpen.Core.csproj", "{8B3F8555-F802-427A-8DFB-9EF1CFA9A727}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfTest", "WpfTest\WpfTest.csproj", "{0DDC16D4-4C2A-4BCA-84DD-88F8D4E668F5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Player", "Player", "{EF046230-37F2-45A6-BE57-7200A53DD3E3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPGEOpen.Repository", "RPGEOpen.Repository\RPGEOpen.Repository.csproj", "{ADE6564C-2E91-4627-BE7A-23907385CA8C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,9 +49,17 @@ Global
 		{0DDC16D4-4C2A-4BCA-84DD-88F8D4E668F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0DDC16D4-4C2A-4BCA-84DD-88F8D4E668F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0DDC16D4-4C2A-4BCA-84DD-88F8D4E668F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADE6564C-2E91-4627-BE7A-23907385CA8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADE6564C-2E91-4627-BE7A-23907385CA8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADE6564C-2E91-4627-BE7A-23907385CA8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADE6564C-2E91-4627-BE7A-23907385CA8C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{51F0CACA-0BEB-4EC6-92F3-8E7ECAB25DA1} = {EF046230-37F2-45A6-BE57-7200A53DD3E3}
+		{8B3F8555-F802-427A-8DFB-9EF1CFA9A727} = {EF046230-37F2-45A6-BE57-7200A53DD3E3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {797D0E5A-62ED-4627-9860-FFED5D02FB77}

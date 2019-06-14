@@ -11,21 +11,21 @@ namespace RpgeOpen.IDE.Models
 {
     internal class CurrentProject
     {
-        public Project Project { get; }
+        public ProjectDetails Project { get; }
         public string FileName { get; }
         public string Directory { get; }
 
         public CurrentProject(string file)
         {
             var raw = File.ReadAllText(file);
-            Project = JsonConvert.DeserializeObject<Project>(raw);
-            FileName = file;
+            Project = JsonConvert.DeserializeObject<ProjectDetails>(raw);
+            FileName = Path.GetFileNameWithoutExtension(file);
             Directory = Path.GetDirectoryName(file);
         }
 
         public void Save()
         {
-            File.WriteAllText(FileName, JsonConvert.SerializeObject(Project));
+            File.WriteAllText(Path.Combine(Directory, FileName+".rpgeo"), JsonConvert.SerializeObject(Project));
         }
     }
 }

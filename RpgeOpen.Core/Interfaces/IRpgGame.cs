@@ -11,7 +11,7 @@ namespace RpgeOpen.Core.Interfaces
         ContentManager Content { get; }
         GraphicsDevice GraphicsDevice { get; }
         ViewportAdapter Viewport { get; }
-        Project GameData { get; }
+        ProjectDetails GameData { get; }
         ScreenManager SceneManager { get; }
     }
 }

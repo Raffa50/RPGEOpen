@@ -14,18 +14,21 @@ using RpgeOpen.Shared.Extensions;
 
 using TiledSharp;
 using RpgeOpen.Core.Interfaces;
+using RpgeOpen.Shared;
 
-namespace RpgeOpen.Core
+namespace RpgeOpen.Core.Maps
 {
     public class TiledMap : Map, IGameObject {
         public Size Size { get; private set; }
         private TmxMap map;
         private Size tileSize;
         private readonly Dictionary<string, Texture2D> tileSheets = new Dictionary<string, Texture2D>();
+        public ICollection<MapBlock> Blocks { get; }
 
         [Obsolete]
         public TiledMap( Map m ) : base(m.TmxPath, m.NumTiles) {
             DisplayName = m.DisplayName;
+            Blocks = new List<MapBlock>();
         }
 
         public void Dispose()
@@ -54,15 +57,19 @@ namespace RpgeOpen.Core
 
         public void LoadContent(ContentManager Content)
         {
-            map = new TmxMap(Path.Combine("Content", Project.Paths.Maps, TmxPath));
+            map = new TmxMap(Path.Combine("Content", Constants.Paths.Maps, TmxPath));
             tileSize = new Size(map.TileWidth, map.TileHeight);
             Size = new Size( map.Width * map.TileWidth, map.Height * map.TileHeight );
 
             foreach( var ts in map.Tilesets ) {
                 var imgPath = ts.Image.Source;
-                var t= Content.Load<Texture2D>(Path.Combine(Project.Paths.TileSheets, Path.GetFileNameWithoutExtension(imgPath)));
+                var t= Content.Load<Texture2D>(Path.Combine(Constants.Paths.TileSheets, Path.GetFileNameWithoutExtension(imgPath)));
                 tileSheets.Add( imgPath, t );
             }
+
+            for (int r = 0; r < NumTiles.Width; r++)
+                for (int c = 0; c < NumTiles.Height; c++)
+                    Blocks.Add(new MapBlock(PassabilityLayer[r, c], tileSize, r, c));
         }
 
         public void Update(GameTime time)

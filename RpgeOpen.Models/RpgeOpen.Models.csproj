@@ -5,4 +5,8 @@
     <Version>0.0.1</Version>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Entities\Game\" />
+  </ItemGroup>
+
 </Project>

@@ -72,7 +72,7 @@ namespace RpgeOpen.IDE
             foreach (string newPath in Directory.GetFiles("ProjectStructure", "*.*", SearchOption.AllDirectories))
                 File.Copy(newPath, newPath.Replace("ProjectStructure", projectDir), true);
 
-            var project = new Project(Path.GetFileNameWithoutExtension(SfNewProject.FileName));
+            var project = new ProjectDetails(Path.GetFileNameWithoutExtension(SfNewProject.FileName));
             File.WriteAllText(projectFile, JsonConvert.SerializeObject(project));
 
             LoadProject(projectFile);
@@ -132,7 +132,8 @@ namespace RpgeOpen.IDE
 
         private void MnTest_Click(object sender, EventArgs e)
         {
-            MonoContent.Deploy(currentProject, TargetConsoleType.Pc, @"C:\Users\Reloa\Desktop\RpgeOpen\RpgeOpen.Player\bin\DesktopGL\AnyCPU\Debug\Content");
+            MonoContent.Deploy(currentProject, TargetConsoleType.Pc, Path.Combine(Application.StartupPath, @"Player\Content"));
+            Process.Start(@"Player\RpgeOpen.Player.exe");
         }
 
         private void PbMap_Paint(object sender, PaintEventArgs paintEventArgs) {
