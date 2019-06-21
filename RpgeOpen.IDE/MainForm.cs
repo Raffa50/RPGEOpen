@@ -112,6 +112,7 @@ namespace RpgeOpen.IDE
 
             PbMap.Height = currentMap.Image.Height;
             PbMap.Width = currentMap.Image.Width;
+            PbMap.Invalidate();
         }
 
         private void MnSave_Click(object sender, EventArgs e)

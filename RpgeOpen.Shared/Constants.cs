@@ -18,7 +18,8 @@ namespace RpgeOpen.Shared
                 Maps = "Maps",
                 Characters = "Characters",
                 Backgrounds = "Backgrounds",
-                AudioBgm = "Audio/Bgm";
+                AudioBgm = "Audio/Bgm",
+                Scripts = "Scripts";
         }
     }
 }

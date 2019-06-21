@@ -7,7 +7,6 @@ using System.Text;
 using System.Threading.Tasks;
 using RpgeOpen.IDE.Models;
 using RpgeOpen.Models;
-using RpgeOpen.Models.Entities;
 using RpgeOpen.Shared;
 
 namespace RpgeOpen.IDE.Utils
@@ -94,6 +93,12 @@ namespace RpgeOpen.IDE.Utils
                 var mapsDir= new DirectoryInfo(Path.Combine(project.Directory, Constants.Paths.Maps));
                 foreach( var map in mapsDir.GetFiles().Where(f => f.Extension == ".tmx") ) {
                     w.WriteLine($"/copy:{Constants.Paths.Maps}/{map.Name}");
+                }
+                //copy Scripts
+                var scriptsDir = new DirectoryInfo(Path.Combine(project.Directory, Constants.Paths.Scripts));
+                foreach( var script in scriptsDir.GetFiles().Where(f => f.Extension == ".py") )
+                {
+                    w.WriteLine($"/copy:{Constants.Paths.Scripts}/{script.Name}");
                 }
                 w.WriteLine($"/copy:{project.FileName}.rpgeo;game.rpgeo");
             }
