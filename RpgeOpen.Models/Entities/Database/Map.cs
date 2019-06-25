@@ -8,8 +8,10 @@ namespace RpgeOpen.Models.Entities
     public class Map
     {
         public string DisplayName { get; set; }
+        [JsonProperty]
         public string TmxPath { get; private set; }
-        public Size NumTiles { get; private set; }
+        public Size NumTiles => new Size(PassabilityLayer.GetLength(0), PassabilityLayer.GetLength(1));
+        [JsonProperty]
         public PassabilityType[,] PassabilityLayer { get; private set; }
 
         [JsonConstructor]
@@ -18,7 +20,6 @@ namespace RpgeOpen.Models.Entities
         public Map(string tmxPath, Size numTiles)
         {
             TmxPath = DisplayName = tmxPath;
-            NumTiles = numTiles;
             PassabilityLayer = new PassabilityType[numTiles.Width, numTiles.Height];
         }
     }
