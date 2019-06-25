@@ -145,21 +145,29 @@ namespace RpgeOpen.IDE
             using( var g = Graphics.FromImage( img ) ) {
                 g.DrawImage( img, new Point() );
 
-                for(int x= 0; x < currentMap.NumTiles.Width; x++)
-                {
-                    for(int y= 0; y < currentMap.NumTiles.Height; y++)
+                if(tsPassability.Checked)
+                    for(int x= 0; x < currentMap.NumTiles.Width; x++)
                     {
-                        switch (currentMap.PassabilityLayer[x, y])
+                        for(int y= 0; y < currentMap.NumTiles.Height; y++)
                         {
-                            case PassabilityType.Deny:
-                                g.DrawImage(
-                                    Properties.Resources.no_entry, 
-                                    new Point(x * currentMap.TileSize.Width, y * currentMap.TileSize.Height)
-                                );
-                                break;
+                            Image passabilityImg;
+                            switch (currentMap.PassabilityLayer[x, y])
+                            {
+                                case PassabilityType.Deny:
+                                    passabilityImg = Properties.Resources.no_entry;
+                                    break;
+                                default:
+                                    continue;
+                            }
+
+                            g.DrawImage(
+                                Properties.Resources.no_entry,
+                                new Rectangle(x * currentMap.TileSize.Width, y * currentMap.TileSize.Height,
+                                    currentMap.TileSize.Width, currentMap.TileSize.Height
+                                )
+                            );
                         }
                     }
-                }
 
                 if( tsShowGrid.Checked ) {
                     for( var i = 1; i < (img.Width / currentMap.TileSize.Width ); i++ ) {
@@ -193,6 +201,9 @@ namespace RpgeOpen.IDE
 
             if (tsNoPass.Checked)
                 currentMap.PassabilityLayer[mapX, mapY] = PassabilityType.Deny;
+
+            if(tsPassability.Checked)
+                PbMap.Invalidate();
         }
 
         private void PbMap_MouseMove(object sender, MouseEventArgs e)
@@ -203,6 +214,11 @@ namespace RpgeOpen.IDE
                 mapY = e.Location.Y / currentMap.TileSize.Height;
 
             tsMousePos.Text = $"x: {mapX} y: {mapY}";
+        }
+
+        private void TsPassability_Click(object sender, EventArgs e)
+        {
+            PbMap.Invalidate();
         }
     }
 }
