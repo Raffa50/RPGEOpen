@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Newtonsoft.Json;
+using RpgeOpen.IDE.Extensions;
 using RpgeOpen.IDE.Models;
 using RpgeOpen.IDE.Utils;
 using RpgeOpen.Models;
@@ -162,21 +163,19 @@ namespace RpgeOpen.IDE
 
                             g.DrawImage(
                                 Properties.Resources.no_entry,
-                                new Rectangle(x * currentMap.TileSize.Width, y * currentMap.TileSize.Height,
-                                    currentMap.TileSize.Width, currentMap.TileSize.Height
-                                )
+                                currentMap.TileSize.GetTileCell(x, y)
                             );
                         }
                     }
 
                 if( tsShowGrid.Checked ) {
-                    for( var i = 1; i < (img.Width / currentMap.TileSize.Width ); i++ ) {
+                    for( var i = 1; i < img.Width / currentMap.TileSize.Width; i++ ) {
                         g.DrawLine(
                             Pens.Red, new Point(currentMap.TileSize.Width * i, 0 ),
                             new Point(currentMap.TileSize.Width * i, img.Height ) );
                     }
 
-                    for( var i = 1; i < (img.Height / currentMap.TileSize.Height ); i++ ) {
+                    for( var i = 1; i < img.Height / currentMap.TileSize.Height; i++ ) {
                         g.DrawLine(
                             Pens.Red, new Point( 0, currentMap.TileSize.Height * i ),
                             new Point(img.Width, currentMap.TileSize.Width * i ) );
