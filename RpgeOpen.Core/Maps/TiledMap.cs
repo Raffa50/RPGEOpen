@@ -23,12 +23,12 @@ namespace RpgeOpen.Core.Maps
         private TmxMap map;
         private Size tileSize;
         private readonly Dictionary<string, Texture2D> tileSheets = new Dictionary<string, Texture2D>();
-        public ICollection<MapBlock> Blocks { get; }
+        public IDictionary<(int,int),MapBlock> Blocks { get; }
 
         [Obsolete]
         public TiledMap( Map m ) : base(m.TmxPath, m.NumTiles) {
             DisplayName = m.DisplayName;
-            Blocks = new List<MapBlock>();
+            Blocks = new Dictionary<(int,int),MapBlock>();
         }
 
         public void Dispose()
@@ -69,7 +69,8 @@ namespace RpgeOpen.Core.Maps
 
             for (int r = 0; r < NumTiles.Width; r++)
                 for (int c = 0; c < NumTiles.Height; c++)
-                    Blocks.Add(new MapBlock(PassabilityLayer[r, c], tileSize, r, c));
+                    if(PassabilityLayer[r, c] != PassabilityType.Allow)
+                        Blocks.Add((r,c), new MapBlock(PassabilityLayer[r, c], tileSize, r, c));
         }
 
         public void Update(GameTime time)
