@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Newtonsoft.Json;
+using RpgeOpen.IDE.Extensions;
 using RpgeOpen.IDE.Models;
 using RpgeOpen.IDE.Utils;
 using RpgeOpen.Models;
@@ -112,6 +113,7 @@ namespace RpgeOpen.IDE
 
             PbMap.Height = currentMap.Image.Height;
             PbMap.Width = currentMap.Image.Width;
+            PbMap.Invalidate();
         }
 
         private void MnSave_Click(object sender, EventArgs e)
@@ -144,14 +146,36 @@ namespace RpgeOpen.IDE
             using( var g = Graphics.FromImage( img ) ) {
                 g.DrawImage( img, new Point() );
 
+                if(tsPassability.Checked)
+                    for(int x= 0; x < currentMap.NumTiles.Width; x++)
+                    {
+                        for(int y= 0; y < currentMap.NumTiles.Height; y++)
+                        {
+                            Image passabilityImg;
+                            switch (currentMap.PassabilityLayer[x, y])
+                            {
+                                case PassabilityType.Deny:
+                                    passabilityImg = Properties.Resources.no_entry;
+                                    break;
+                                default:
+                                    continue;
+                            }
+
+                            g.DrawImage(
+                                Properties.Resources.no_entry,
+                                currentMap.TileSize.GetTileCell(x, y)
+                            );
+                        }
+                    }
+
                 if( tsShowGrid.Checked ) {
-                    for( var i = 1; i < (img.Width / currentMap.TileSize.Width ); i++ ) {
+                    for( var i = 1; i < img.Width / currentMap.TileSize.Width; i++ ) {
                         g.DrawLine(
                             Pens.Red, new Point(currentMap.TileSize.Width * i, 0 ),
                             new Point(currentMap.TileSize.Width * i, img.Height ) );
                     }
 
-                    for( var i = 1; i < (img.Height / currentMap.TileSize.Height ); i++ ) {
+                    for( var i = 1; i < img.Height / currentMap.TileSize.Height; i++ ) {
                         g.DrawLine(
                             Pens.Red, new Point( 0, currentMap.TileSize.Height * i ),
                             new Point(img.Width, currentMap.TileSize.Width * i ) );
@@ -163,6 +187,35 @@ namespace RpgeOpen.IDE
         }
 
         private void tsShowGrid_Click(object sender, EventArgs e)
+        {
+            PbMap.Invalidate();
+        }
+
+        private void PbMap_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (currentMap == null)
+                return;
+            int mapX = e.Location.X / currentMap.TileSize.Width,
+                mapY = e.Location.Y / currentMap.TileSize.Height;
+
+            if (tsNoPass.Checked)
+                currentMap.PassabilityLayer[mapX, mapY] = PassabilityType.Deny;
+
+            if(tsPassability.Checked)
+                PbMap.Invalidate();
+        }
+
+        private void PbMap_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (currentMap == null)
+                return;
+            int mapX = e.Location.X / currentMap.TileSize.Width,
+                mapY = e.Location.Y / currentMap.TileSize.Height;
+
+            tsMousePos.Text = $"x: {mapX} y: {mapY}";
+        }
+
+        private void TsPassability_Click(object sender, EventArgs e)
         {
             PbMap.Invalidate();
         }
