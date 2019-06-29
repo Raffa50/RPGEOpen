@@ -53,7 +53,7 @@ namespace RpgeOpen.Player.Scenes
 
         private PassabilityType playerIntersectObstacle()
         {
-            foreach (var block in renderMap.Blocks)
+            foreach (var block in renderMap.Blocks.Values)
                 if (player.Box.Intersects(block.Box))
                     return block.Passability;
 
