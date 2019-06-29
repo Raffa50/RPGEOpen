@@ -56,15 +56,24 @@ namespace RpgeOpen.IDE.Utils
                 w.WriteLine("/profile:Reach");
                 w.WriteLine("/compress:False");
 
+                //import fonts
+                w.WriteLine("/importer:FontDescriptionImporter");
+                w.WriteLine("/processor:FontDescriptionProcessor");
+                w.WriteLine("/processorParam:PremultiplyAlpha=True");
+                w.WriteLine("/processorParam:TextureFormat=Compressed");
+
+                var fontDir = new DirectoryInfo(Path.Combine(project.Directory, Constants.Paths.Fonts));
+                foreach(var font in fontDir.GetFiles().Where(f => f.Extension == ".spritefont"))
+                    w.WriteLine($"/build:{Constants.Paths.Fonts}/{font.Name}");
+                
                 //import audios
                 w.WriteLine("/importer:Mp3Importer");
                 w.WriteLine( "/processor:SongProcessor" );
                 w.WriteLine("/processorParam:Quality=Best");
 
                 var bgmDir = new DirectoryInfo(Path.Combine(project.Directory, Constants.Paths.AudioBgm));
-                foreach( var audio in bgmDir.GetFiles()) {
+                foreach( var audio in bgmDir.GetFiles())
                     w.WriteLine($"/build:{Constants.Paths.AudioBgm}/{audio.Name}");
-                }
 
                 w.WriteLine("/importer:TextureImporter");
                 w.WriteLine("/processor:TextureProcessor");
@@ -72,15 +81,14 @@ namespace RpgeOpen.IDE.Utils
 
                 //build Characters
                 var charsDir= new DirectoryInfo( Path.Combine(project.Directory, Constants.Paths.Characters) );
-                foreach( var img in charsDir.GetFiles().Where(f => Constants.Extensions.Images.Contains(f.Extension)) ) {
+                foreach( var img in charsDir.GetFiles().Where(f => Constants.Extensions.Images.Contains(f.Extension)) )
                     w.WriteLine($"/build:{Constants.Paths.Characters}/{img.Name}");
-                }
+
                 //build backgrounds
                 var bgDir = new DirectoryInfo(Path.Combine(project.Directory, Constants.Paths.Backgrounds));
                 foreach (var img in bgDir.GetFiles().Where(f => Constants.Extensions.Images.Contains(f.Extension)))
-                {
                     w.WriteLine($"/build:{Constants.Paths.Backgrounds}/{img.Name}");
-                }
+
                 //build TileSheets
                 var tilesDir= new DirectoryInfo(Path.Combine(project.Directory, Constants.Paths.TileSheets));
                 foreach( var img in tilesDir.GetFiles()) {
@@ -89,17 +97,17 @@ namespace RpgeOpen.IDE.Utils
                     else if(img.Extension == ".tsx")
                         w.WriteLine($"/copy:{Constants.Paths.TileSheets}/{img.Name}");
                 }
+
                 //copy Maps
                 var mapsDir= new DirectoryInfo(Path.Combine(project.Directory, Constants.Paths.Maps));
-                foreach( var map in mapsDir.GetFiles().Where(f => f.Extension == ".tmx") ) {
+                foreach( var map in mapsDir.GetFiles().Where(f => f.Extension == ".tmx") )
                     w.WriteLine($"/copy:{Constants.Paths.Maps}/{map.Name}");
-                }
+
                 //copy Scripts
                 var scriptsDir = new DirectoryInfo(Path.Combine(project.Directory, Constants.Paths.Scripts));
                 foreach( var script in scriptsDir.GetFiles().Where(f => f.Extension == ".py") )
-                {
                     w.WriteLine($"/copy:{Constants.Paths.Scripts}/{script.Name}");
-                }
+
                 w.WriteLine($"/copy:{project.FileName}.rpgeo;game.rpgeo");
             }
         }

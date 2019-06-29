@@ -91,6 +91,9 @@
       <DependentUpon>SplashForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
+    <None Include="ProjectStructure\Fonts\Arial.spritefont" />
+    <None Include="ProjectStructure\Fonts\Helvetica.spritefont" />
+    <None Include="ProjectStructure\Fonts\Palatino.spritefont" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

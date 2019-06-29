@@ -19,7 +19,8 @@ namespace RpgeOpen.Shared
                 Characters = "Characters",
                 Backgrounds = "Backgrounds",
                 AudioBgm = "Audio/Bgm",
-                Scripts = "Scripts";
+                Scripts = "Scripts",
+                Fonts = "Fonts";
         }
     }
 }
