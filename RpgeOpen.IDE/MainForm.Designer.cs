@@ -60,10 +60,10 @@ namespace RpgeOpen.IDE
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsShowGrid = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
+            this.tsCursor = new System.Windows.Forms.ToolStripButton();
+            this.tsPassability = new System.Windows.Forms.ToolStripButton();
             this.tsDelete = new System.Windows.Forms.ToolStripButton();
             this.tsNoPass = new System.Windows.Forms.ToolStripButton();
-            this.tsPassability = new System.Windows.Forms.ToolStripButton();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -294,7 +294,6 @@ namespace RpgeOpen.IDE
             this.PbMap.TabIndex = 0;
             this.PbMap.TabStop = false;
             this.PbMap.Paint += new System.Windows.Forms.PaintEventHandler(this.PbMap_Paint);
-            this.PbMap.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PbMap_MouseDown);
             this.PbMap.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PbMap_MouseMove);
             // 
             // OfMapImport
@@ -320,7 +319,7 @@ namespace RpgeOpen.IDE
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsShowGrid,
             this.toolStripSeparator1,
-            this.toolStripButton3,
+            this.tsCursor,
             this.tsPassability,
             this.tsDelete,
             this.tsNoPass});
@@ -346,34 +345,15 @@ namespace RpgeOpen.IDE
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(37, 6);
             // 
-            // toolStripButton3
+            // tsCursor
             // 
-            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
-            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(37, 24);
-            this.toolStripButton3.Text = "Back to cursor";
-            // 
-            // tsDelete
-            // 
-            this.tsDelete.CheckOnClick = true;
-            this.tsDelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsDelete.Image = ((System.Drawing.Image)(resources.GetObject("tsDelete.Image")));
-            this.tsDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsDelete.Name = "tsDelete";
-            this.tsDelete.Size = new System.Drawing.Size(37, 24);
-            this.tsDelete.Text = "Delete";
-            // 
-            // tsNoPass
-            // 
-            this.tsNoPass.CheckOnClick = true;
-            this.tsNoPass.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsNoPass.Image = global::RpgeOpen.IDE.Properties.Resources.no_entry;
-            this.tsNoPass.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsNoPass.Name = "tsNoPass";
-            this.tsNoPass.Size = new System.Drawing.Size(37, 24);
-            this.tsNoPass.Text = "No pass";
+            this.tsCursor.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsCursor.Image = ((System.Drawing.Image)(resources.GetObject("tsCursor.Image")));
+            this.tsCursor.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsCursor.Name = "tsCursor";
+            this.tsCursor.Size = new System.Drawing.Size(37, 24);
+            this.tsCursor.Text = "Back to cursor";
+            this.tsCursor.Click += new System.EventHandler(this.TsCursor_Click);
             // 
             // tsPassability
             // 
@@ -388,6 +368,28 @@ namespace RpgeOpen.IDE
             this.tsPassability.Text = "toolStripButton1";
             this.tsPassability.ToolTipText = "Show passability";
             this.tsPassability.Click += new System.EventHandler(this.TsPassability_Click);
+            // 
+            // tsDelete
+            // 
+            this.tsDelete.CheckOnClick = true;
+            this.tsDelete.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsDelete.Image = ((System.Drawing.Image)(resources.GetObject("tsDelete.Image")));
+            this.tsDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsDelete.Name = "tsDelete";
+            this.tsDelete.Size = new System.Drawing.Size(37, 24);
+            this.tsDelete.Text = "Delete";
+            this.tsDelete.Click += new System.EventHandler(this.TsPassabilitySelector_Click);
+            // 
+            // tsNoPass
+            // 
+            this.tsNoPass.CheckOnClick = true;
+            this.tsNoPass.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsNoPass.Image = global::RpgeOpen.IDE.Properties.Resources.no_entry;
+            this.tsNoPass.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsNoPass.Name = "tsNoPass";
+            this.tsNoPass.Size = new System.Drawing.Size(37, 24);
+            this.tsNoPass.Text = "No pass";
+            this.tsNoPass.Click += new System.EventHandler(this.TsPassabilitySelector_Click);
             // 
             // MainForm
             // 
@@ -451,7 +453,7 @@ namespace RpgeOpen.IDE
         private System.Windows.Forms.ToolStripButton tsNoPass;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton tsDelete;
-        private System.Windows.Forms.ToolStripButton toolStripButton3;
+        private System.Windows.Forms.ToolStripButton tsCursor;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel tsMousePos;
         private System.Windows.Forms.ToolStripButton tsPassability;

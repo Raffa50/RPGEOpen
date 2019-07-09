@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -8,7 +9,7 @@ namespace RpgeOpen.Models.Entities
     {
         public string Name { get; set; }
         public string Author { get; set; } = Environment.UserName;
-        [Obsolete]
+        [JsonProperty]
         public IList<Map> Maps { get; private set; } = new List<Map>();
 
         private ProjectDetails() { }

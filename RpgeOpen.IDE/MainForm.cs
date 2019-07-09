@@ -191,20 +191,6 @@ namespace RpgeOpen.IDE
             PbMap.Invalidate();
         }
 
-        private void PbMap_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (currentMap == null)
-                return;
-            int mapX = e.Location.X / currentMap.TileSize.Width,
-                mapY = e.Location.Y / currentMap.TileSize.Height;
-
-            if (tsNoPass.Checked)
-                currentMap.PassabilityLayer[mapX, mapY] = PassabilityType.Deny;
-
-            if(tsPassability.Checked)
-                PbMap.Invalidate();
-        }
-
         private void PbMap_MouseMove(object sender, MouseEventArgs e)
         {
             if (currentMap == null)
@@ -213,11 +199,40 @@ namespace RpgeOpen.IDE
                 mapY = e.Location.Y / currentMap.TileSize.Height;
 
             tsMousePos.Text = $"x: {mapX} y: {mapY}";
+
+            //check if editing
+            if (e.Button != MouseButtons.Left)
+                return;
+
+            if (tsNoPass.Checked)
+                currentMap.PassabilityLayer[mapX, mapY] = PassabilityType.Deny;
+            else if (tsDelete.Checked)
+                currentMap.PassabilityLayer[mapX, mapY] = PassabilityType.Allow;
+
+            if (tsPassability.Checked)
+                PbMap.Invalidate();
         }
 
         private void TsPassability_Click(object sender, EventArgs e)
         {
             PbMap.Invalidate();
+        }
+
+        private void DisableAllPassabilityTools()
+        {
+            tsDelete.Checked = tsNoPass.Checked = false;
+        }
+
+        private void TsCursor_Click(object sender, EventArgs e)
+        {
+            DisableAllPassabilityTools();
+        }
+
+        private void TsPassabilitySelector_Click(object sender, EventArgs e)
+        {
+            DisableAllPassabilityTools();
+            var tsBtn = (ToolStripButton)sender;
+            tsBtn.Checked = true;
         }
     }
 }
