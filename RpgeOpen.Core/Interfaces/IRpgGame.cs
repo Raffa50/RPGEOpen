@@ -13,5 +13,7 @@ namespace RpgeOpen.Core.Interfaces
         ViewportAdapter Viewport { get; }
         ProjectDetails GameData { get; }
         ScreenManager SceneManager { get; }
+
+        void Exit();
     }
 }

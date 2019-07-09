@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Graphics;
 
 using MonoGame.Extended.Screens.Transitions;
+using Microsoft.Xna.Framework.Media;
+using System.IO;
+using RpgeOpen.Shared;
 
 namespace RpgeOpen.Player.Scenes
 {
@@ -24,6 +27,9 @@ namespace RpgeOpen.Player.Scenes
         public override void LoadContent() {
             spriteBatch = new SpriteBatch(GraphicsDevice);
             bg = Content.Load<Texture2D>( "Backgrounds/rpge" );
+
+            var song = Content.Load<Song>(Path.Combine(Constants.Paths.AudioBgm, "bgm"));
+            MediaPlayer.Play(song);
         }
 
         public override void UnloadContent() {

@@ -16,6 +16,7 @@ using RpgeOpen.Core;
 using RpgeOpen.Core.Interfaces;
 using Microsoft.Xna.Framework.Media;
 using RpgeOpen.Shared;
+using System;
 
 namespace RpgeOpen.Player
 {
@@ -43,7 +44,14 @@ namespace RpgeOpen.Player
             Viewport = new BoxingViewportAdapter(Window, GraphicsDevice, 800, 480);
 
             Components.Add(SceneManager);
-            SceneManager.LoadScreen(new SplashScene(this));
+            try
+            {
+                SceneManager.LoadScreen(new SplashScene(this));
+            }
+            catch (Exception ex)
+            {
+                SceneManager.LoadScreen(new ErrorScene(this, ex.Message+"\n"+ex.StackTrace));
+            }
         }
 
         protected override void LoadContent()
@@ -54,9 +62,6 @@ namespace RpgeOpen.Player
                 GameData = JsonConvert.DeserializeObject<ProjectDetails>(content);
             }
             else Debug.WriteLine("Project file not found");
-
-            var song = Content.Load<Song>(Path.Combine(Constants.Paths.AudioBgm, "bgm"));
-            MediaPlayer.Play(song);
         }
 
         protected override void UnloadContent()
@@ -70,9 +75,6 @@ namespace RpgeOpen.Player
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            //if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-            //    Exit();
-
             SceneManager.Update( gameTime );
             base.Update(gameTime);
         }
