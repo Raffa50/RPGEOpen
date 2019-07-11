@@ -1,33 +1,32 @@
-﻿using System.Diagnostics;
-
+﻿using System;
+using System.IO;
+using System.Diagnostics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using MonoGame.Extended;
 using MonoGame.Extended.Screens;
 using MonoGame.Extended.ViewportAdapters;
-using System.IO;
-
 using Newtonsoft.Json;
-
 using RpgeOpen.Models.Entities;
 using RpgeOpen.Player.Scenes;
-using RpgeOpen.Core;
 using RpgeOpen.Core.Interfaces;
-using Microsoft.Xna.Framework.Media;
+using RpgeOpen.Core.Managers;
 using RpgeOpen.Shared;
-using System;
+using RpgeOpen.Core;
+using System.Reflection;
+using RpgeOpen.Core.Binder.Python2;
 
 namespace RpgeOpen.Player
 {
     public class RpgeGame : Game, IRpgGame
     {
         private readonly GraphicsDeviceManager graphics;
-        //private SpriteBatch spriteBatch;
-        public ProjectDetails GameData { get; private set; }
-
+        private readonly PythonBinder Python = new PythonBinder();
+        
         public ViewportAdapter Viewport { get; private set; }
+
+        public ProjectDetails GameData { get; private set; }
         public ScreenManager SceneManager { get; }
+        public AudioManager AudioManager { get; }
 
         public RpgeGame()
         {
@@ -35,6 +34,7 @@ namespace RpgeOpen.Player
             Content.RootDirectory = "Content";
 
             SceneManager = new ScreenManager();
+            AudioManager = new AudioManager(Content);
         }
 
         protected override void Initialize()
@@ -43,10 +43,14 @@ namespace RpgeOpen.Player
 
             Viewport = new BoxingViewportAdapter(Window, GraphicsDevice, 800, 480);
 
+            //python iterpreter
+            Python.Initialize(this);
+            var SplashScene = Python.GetVariable("SplashScene")(this);
+
             Components.Add(SceneManager);
             try
             {
-                SceneManager.LoadScreen(new SplashScene(this));
+                SceneManager.LoadScreen(SplashScene);
             }
             catch (Exception ex)
             {
@@ -68,11 +72,6 @@ namespace RpgeOpen.Player
         {
         }
 
-        /// <summary>
-        /// Allows the game to run logic such as updating the world,
-        /// checking for collisions, gathering input, and playing audio.
-        /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
             SceneManager.Update( gameTime );

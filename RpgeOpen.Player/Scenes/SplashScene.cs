@@ -28,8 +28,7 @@ namespace RpgeOpen.Player.Scenes
             spriteBatch = new SpriteBatch(GraphicsDevice);
             bg = Content.Load<Texture2D>( "Backgrounds/rpge" );
 
-            var song = Content.Load<Song>(Path.Combine(Constants.Paths.AudioBgm, "bgm"));
-            MediaPlayer.Play(song);
+            Game.AudioManager.PlayBgm("bgm");
         }
 
         public override void UnloadContent() {
