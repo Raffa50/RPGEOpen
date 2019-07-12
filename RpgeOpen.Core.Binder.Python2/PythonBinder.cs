@@ -7,7 +7,7 @@ using Microsoft.Scripting.Hosting;
 
 namespace RpgeOpen.Core.Binder.Python2
 {
-    public sealed class PythonBinder : ScriptBinder
+    public sealed class PythonBinder : IScriptBinder
     {
         private readonly CompiledCode PyProgram;
         private readonly ScriptScope PyScope;

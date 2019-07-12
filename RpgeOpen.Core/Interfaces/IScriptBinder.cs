@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RpgeOpen.Core.Interfaces
 {
-    public interface ScriptBinder : IDisposable
+    public interface IScriptBinder : IDisposable
     {
         void Initialize(IRpgGame game);
         dynamic GetVariable(string name);

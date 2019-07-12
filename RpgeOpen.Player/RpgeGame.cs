@@ -20,7 +20,7 @@ namespace RpgeOpen.Player
     public class RpgeGame : Game, IRpgGame
     {
         private readonly GraphicsDeviceManager graphics;
-        private readonly PythonBinder Python = new PythonBinder();
+        private readonly IScriptBinder Python = new PythonBinder();
         
         public ViewportAdapter Viewport { get; private set; }
 
