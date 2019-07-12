@@ -1,11 +1,7 @@
 ﻿using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Media;
 using RpgeOpen.Shared;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 
 namespace RpgeOpen.Core.Managers
 {
@@ -22,7 +18,13 @@ namespace RpgeOpen.Core.Managers
 
         public void PlayBgm(string name, float volume = 1f)
         {
-            currentBgmSong = Content.Load<Song>($"{Constants.Paths.AudioBgm}/{name}");
+            try
+            {
+                currentBgmSong = Content.Load<Song>($"{Constants.Paths.AudioBgm}/{name}");
+            } catch(ContentLoadException ex)
+            {
+                throw new FileNotFoundException($"Audio file not found: {Constants.Paths.AudioBgm}/{name}", ex);
+            }
             CurrentBgm = name;
 
             MediaPlayer.Volume = volume;
