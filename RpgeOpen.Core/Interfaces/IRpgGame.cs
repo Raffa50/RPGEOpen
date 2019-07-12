@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using MonoGame.Extended.Screens;
 using MonoGame.Extended.ViewportAdapters;
 using RpgeOpen.Core.Managers;
 using RpgeOpen.Models.Entities;
@@ -14,7 +13,7 @@ namespace RpgeOpen.Core.Interfaces
         ViewportAdapter Viewport { get; }
         ProjectDetails GameData { get; }
 
-        ScreenManager SceneManager { get; }
+        SceneManager SceneManager { get; }
         AudioManager AudioManager { get; }
 
         void Exit();

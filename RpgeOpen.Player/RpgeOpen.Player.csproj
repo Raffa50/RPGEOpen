@@ -55,10 +55,6 @@
     <Compile Include="RpgeGame.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Scenes\ErrorScene.cs" />
-    <Compile Include="Scenes\MapScene.cs" />
-    <Compile Include="Scenes\SplashScene.cs" />
-    <Compile Include="Scenes\TitleScene.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />

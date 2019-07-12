@@ -8,15 +8,13 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using RpgeOpen.Core;
 using RpgeOpen.Core.Interfaces;
 using RpgeOpen.Core.Maps;
 using RpgeOpen.Core.SpriteSheets;
 using RpgeOpen.Models;
-using RpgeOpen.Models.Entities;
 using RpgeOpen.Shared;
 
-namespace RpgeOpen.Player.Scenes
+namespace RpgeOpen.Core.Scenes
 {
     public class MapScene : AbstractScene {
         private Camera2D Camera;

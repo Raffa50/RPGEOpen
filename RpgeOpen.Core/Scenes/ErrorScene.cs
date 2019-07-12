@@ -1,16 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using RpgeOpen.Core;
 using RpgeOpen.Core.Interfaces;
 using RpgeOpen.Shared;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace RpgeOpen.Player.Scenes
+namespace RpgeOpen.Core.Scenes
 {
     public class ErrorScene : AbstractScene
     {

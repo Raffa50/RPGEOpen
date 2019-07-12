@@ -1,5 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using RpgeOpen.Core;
 using RpgeOpen.Core.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -7,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RpgeOpen.Player.Scenes
+namespace RpgeOpen.Core.Scenes
 {
     public class TitleScene : AbstractScene
     {

@@ -1,6 +1,4 @@
 ﻿using Microsoft.Xna.Framework;
-using MonoGame.Extended.Screens;
-using RpgeOpen.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,11 +8,9 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Graphics;
 
 using MonoGame.Extended.Screens.Transitions;
-using Microsoft.Xna.Framework.Media;
-using System.IO;
-using RpgeOpen.Shared;
+using RpgeOpen.Core.Interfaces;
 
-namespace RpgeOpen.Player.Scenes
+namespace RpgeOpen.Core.Scenes
 {
     public class SplashScene : AbstractScene {
         private bool changeScreen;
@@ -22,7 +18,7 @@ namespace RpgeOpen.Player.Scenes
         private Texture2D bg;
         private TimeSpan? initial;
 
-        public SplashScene(RpgeGame game): base(game) { }
+        public SplashScene(IRpgGame game): base(game) { }
 
         public override void LoadContent() {
             spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -47,7 +43,7 @@ namespace RpgeOpen.Player.Scenes
                 initial = gameTime.TotalGameTime;
 
             if(gameTime.TotalGameTime -initial > TimeSpan.FromSeconds( 3 ) && !changeScreen ) {
-                SceneManager.LoadScreen( new MapScene(Game), new FadeTransition( GraphicsDevice, Color.Black, 2 ) );
+                SceneManager.GoTo( new MapScene(Game), new FadeTransition( GraphicsDevice, Color.Black, 2 ) );
                 changeScreen = true;
             }
         }

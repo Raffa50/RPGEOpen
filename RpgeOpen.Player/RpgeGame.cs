@@ -7,12 +7,8 @@ using MonoGame.Extended.Screens;
 using MonoGame.Extended.ViewportAdapters;
 using Newtonsoft.Json;
 using RpgeOpen.Models.Entities;
-using RpgeOpen.Player.Scenes;
 using RpgeOpen.Core.Interfaces;
 using RpgeOpen.Core.Managers;
-using RpgeOpen.Shared;
-using RpgeOpen.Core;
-using System.Reflection;
 using RpgeOpen.Core.Binder.Python2;
 
 namespace RpgeOpen.Player
@@ -25,7 +21,7 @@ namespace RpgeOpen.Player
         public ViewportAdapter Viewport { get; private set; }
 
         public ProjectDetails GameData { get; private set; }
-        public ScreenManager SceneManager { get; }
+        public SceneManager SceneManager { get; }
         public AudioManager AudioManager { get; }
 
         public RpgeGame()
@@ -33,7 +29,7 @@ namespace RpgeOpen.Player
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
-            SceneManager = new ScreenManager();
+            SceneManager = new SceneManager(this);
             AudioManager = new AudioManager(Content);
         }
 
@@ -45,17 +41,9 @@ namespace RpgeOpen.Player
 
             //python iterpreter
             Python.Initialize(this);
-            var SplashScene = Python.GetVariable("SplashScene")(this);
+            var splashScene = Python.GetVariable("SplashScene")(this);
 
-            Components.Add(SceneManager);
-            try
-            {
-                SceneManager.LoadScreen(SplashScene);
-            }
-            catch (Exception ex)
-            {
-                SceneManager.LoadScreen(new ErrorScene(this, ex.Message+"\n"+ex.StackTrace));
-            }
+            SceneManager.GoTo(splashScene);
         }
 
         protected override void LoadContent()
