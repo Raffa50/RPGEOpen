@@ -1,17 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using RpgeOpen.Core.Interfaces;
 using RpgeOpen.Models;
 
-namespace RpgeOpen.Core.SpriteSheets
+namespace RpgeOpen.Core.Sprites
 {
-    public class Sprite : IGameObject {
+    public class SpriteCharacter : IGameObject {
         public Point CornerLeft => new Point(Position.X - Size.Width / 2, Position.Y - Size.Height / 2);
         public Point Position { get; set; } // => new Point(CornerLeft.X + Size.Width/2, CornerLeft.Y + Size.Height/2);
         public bool IsMoving { get; set; }
@@ -30,7 +26,7 @@ namespace RpgeOpen.Core.SpriteSheets
         private TimeSpan previusFrameTime = TimeSpan.Zero;
         private byte frame = 0;
 
-        public Sprite( Texture2D spriteSheet, Size size ) {
+        public SpriteCharacter( Texture2D spriteSheet, Size size ) {
             this.spriteSheet = spriteSheet ?? throw new ArgumentNullException(nameof(spriteSheet));
             this.Size = size;
         }

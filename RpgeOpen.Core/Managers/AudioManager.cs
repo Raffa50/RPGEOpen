@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Media;
 using RpgeOpen.Shared;
 using System.IO;
+using XnaContent = Microsoft.Xna.Framework.Content;
 
 namespace RpgeOpen.Core.Managers
 {
@@ -9,9 +10,9 @@ namespace RpgeOpen.Core.Managers
     {
         private Song currentBgmSong;
         public string CurrentBgm { get; private set; }
-        private readonly ContentManager Content;
+        private readonly XnaContent.ContentManager Content;
 
-        public AudioManager(ContentManager content)
+        public AudioManager(XnaContent.ContentManager content)
         {
             Content = content;
         }

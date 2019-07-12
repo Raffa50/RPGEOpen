@@ -1,5 +1,4 @@
-﻿using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.Graphics;
+﻿using Microsoft.Xna.Framework.Graphics;
 
 using MonoGame.Extended.Screens;
 using MonoGame.Extended.ViewportAdapters;
@@ -17,7 +16,7 @@ namespace RpgeOpen.Core.Scenes
         }
 
         public IRpgGame Game { get; }
-        public ContentManager Content => Game.Content;
+        public ContentManager ContentManager => Game.ContentManager;
         public GraphicsDevice GraphicsDevice => Game.GraphicsDevice;
         public ProjectDetails GameData => Game.GameData;
         public SceneManager SceneManager => Game.SceneManager;

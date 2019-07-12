@@ -22,7 +22,7 @@ namespace RpgeOpen.Core.Scenes
 
         public override void LoadContent() {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            bg = Content.Load<Texture2D>( "Backgrounds/rpge" );
+            bg = ContentManager.Load<Texture2D>( "Backgrounds/rpge" );
 
             Game.AudioManager.PlayBgm("bgm");
         }

@@ -19,8 +19,8 @@ namespace RpgeOpen.Core.Scenes
         public override void LoadContent()
         {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            arial = Content.Load<SpriteFont>($"{Constants.Paths.Fonts}/Arial");
-            helvetica = Content.Load<SpriteFont>($"{Constants.Paths.Fonts}/Palatino");
+            arial = ContentManager.LoadFont("Arial");
+            helvetica = ContentManager.LoadFont("Palatino");
         }
 
         public override void Draw(GameTime gameTime)

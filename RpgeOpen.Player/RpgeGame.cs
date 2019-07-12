@@ -3,7 +3,6 @@ using System.IO;
 using System.Diagnostics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using MonoGame.Extended.Screens;
 using MonoGame.Extended.ViewportAdapters;
 using Newtonsoft.Json;
 using RpgeOpen.Models.Entities;
@@ -21,6 +20,8 @@ namespace RpgeOpen.Player
         public ViewportAdapter Viewport { get; private set; }
 
         public ProjectDetails GameData { get; private set; }
+
+        public ContentManager ContentManager { get; }
         public SceneManager SceneManager { get; }
         public AudioManager AudioManager { get; }
 
@@ -29,6 +30,7 @@ namespace RpgeOpen.Player
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
 
+            ContentManager = new ContentManager(Content);
             SceneManager = new SceneManager(this);
             AudioManager = new AudioManager(Content);
         }
@@ -42,7 +44,7 @@ namespace RpgeOpen.Player
             //python iterpreter
             Python.Initialize(this);
             var splashScene = Python.GetVariable("SplashScene")(this);
-
+            splashScene.Initialize();
             SceneManager.GoTo(splashScene);
         }
 

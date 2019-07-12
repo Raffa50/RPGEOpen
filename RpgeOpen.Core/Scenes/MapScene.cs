@@ -10,7 +10,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using RpgeOpen.Core.Interfaces;
 using RpgeOpen.Core.Maps;
-using RpgeOpen.Core.SpriteSheets;
+using RpgeOpen.Core.Sprites;
 using RpgeOpen.Models;
 using RpgeOpen.Shared;
 
@@ -20,7 +20,7 @@ namespace RpgeOpen.Core.Scenes
         private Camera2D Camera;
         private SpriteBatch spriteBatch;
         private TiledMap renderMap;
-        private Sprite player;
+        private SpriteCharacter player;
         private Texture2D playerSpriteSheet;
 
         private Size MapSize => renderMap.Size;
@@ -36,10 +36,10 @@ namespace RpgeOpen.Core.Scenes
 
         public override void LoadContent() {
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            renderMap.LoadContent( Content );
+            renderMap.LoadContent( ContentManager );
 
-            playerSpriteSheet = Content.Load<Texture2D>( Path.Combine( Constants.Paths.Characters, "player" ) );
-            player = new Sprite( playerSpriteSheet, new Size( 32, 32 ) ) {
+            playerSpriteSheet = ContentManager.Load<Texture2D>( Path.Combine( Constants.Paths.Characters, "player" ) );
+            player = new SpriteCharacter( playerSpriteSheet, new Size( 32, 32 ) ) {
                 Position = new Point( renderMap.Size.Width /2, renderMap.Size.Height /2 )
             };
         }
