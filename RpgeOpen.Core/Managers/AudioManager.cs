@@ -1,12 +1,13 @@
 ﻿using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Media;
+using RpgeOpen.Core.Interfaces;
 using RpgeOpen.Shared;
 using System.IO;
 using XnaContent = Microsoft.Xna.Framework.Content;
 
 namespace RpgeOpen.Core.Managers
 {
-    public sealed class AudioManager
+    public sealed class AudioManager: IManager
     {
         private Song currentBgmSong;
         public string CurrentBgm { get; private set; }

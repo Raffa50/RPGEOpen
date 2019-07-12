@@ -17,8 +17,6 @@ using RpgeOpen.Shared;
 namespace RpgeOpen.Core.Scenes
 {
     public class MapScene : AbstractScene {
-        private Camera2D Camera;
-        private SpriteBatch spriteBatch;
         private TiledMap renderMap;
         private SpriteCharacter player;
         private Texture2D playerSpriteSheet;
@@ -28,14 +26,12 @@ namespace RpgeOpen.Core.Scenes
         public MapScene( IRpgGame game ) : base( game ) {}
 
         public override void Initialize() {
+            base.Initialize();
             var map = GameData.Maps.First();
             renderMap = new TiledMap( map );
-
-            Camera = new Camera2D( Viewport ) { Origin = Vector2.Zero };
         }
 
         public override void LoadContent() {
-            spriteBatch = new SpriteBatch(GraphicsDevice);
             renderMap.LoadContent( ContentManager );
 
             playerSpriteSheet = ContentManager.Load<Texture2D>( Path.Combine( Constants.Paths.Characters, "player" ) );
@@ -93,11 +89,10 @@ namespace RpgeOpen.Core.Scenes
             player.Update( time );
         }
 
-        public override void Draw( GameTime time ) {
-            spriteBatch.Begin(transformMatrix: Camera.CalculateTransformMatrix());
-            renderMap.Draw( time, spriteBatch );
-            player.Draw( time, spriteBatch );
-            spriteBatch.End();
+        protected override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        {
+            renderMap.Draw(gameTime, spriteBatch );
+            player.Draw(gameTime, spriteBatch );
         }
     }
 }

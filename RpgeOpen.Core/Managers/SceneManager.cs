@@ -7,7 +7,7 @@ using System;
 
 namespace RpgeOpen.Core.Managers
 {
-    public sealed class SceneManager
+    public sealed class SceneManager : IManager
     {
         private readonly ScreenManager manager;
         private readonly IRpgGame game;

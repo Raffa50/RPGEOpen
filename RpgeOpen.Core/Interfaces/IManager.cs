@@ -1,13 +1,12 @@
-﻿using RpgeOpen.Core.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RpgeOpen.Core.Managers
+namespace RpgeOpen.Core.Interfaces
 {
-    class FontManager : IManager
+    public interface IManager
     {
     }
 }

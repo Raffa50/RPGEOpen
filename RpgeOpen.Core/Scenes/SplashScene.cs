@@ -14,14 +14,12 @@ namespace RpgeOpen.Core.Scenes
 {
     public class SplashScene : AbstractScene {
         private bool changeScreen;
-        private SpriteBatch spriteBatch;
         private Texture2D bg;
         private TimeSpan? initial;
 
         public SplashScene(IRpgGame game): base(game) { }
 
         public override void LoadContent() {
-            spriteBatch = new SpriteBatch(GraphicsDevice);
             bg = ContentManager.Load<Texture2D>( "Backgrounds/rpge" );
 
             Game.AudioManager.PlayBgm("bgm");
@@ -31,11 +29,9 @@ namespace RpgeOpen.Core.Scenes
             bg.Dispose();
         }
 
-        public override void Draw(GameTime gameTime)
+        protected override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            spriteBatch.Begin();
             spriteBatch.Draw(bg, Vector2.Zero, Color.White);
-            spriteBatch.End();
         }
 
         public override void Update(GameTime gameTime) {
@@ -43,7 +39,7 @@ namespace RpgeOpen.Core.Scenes
                 initial = gameTime.TotalGameTime;
 
             if(gameTime.TotalGameTime -initial > TimeSpan.FromSeconds( 3 ) && !changeScreen ) {
-                SceneManager.GoTo( new MapScene(Game), new FadeTransition( GraphicsDevice, Color.Black, 2 ) );
+                SceneManager.GoTo( new MapScene(Game), new FadeTransition( Game.GraphicsDevice, Color.Black, 2 ) );
                 changeScreen = true;
             }
         }

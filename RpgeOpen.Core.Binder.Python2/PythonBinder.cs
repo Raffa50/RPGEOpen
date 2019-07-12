@@ -4,6 +4,7 @@ using System;
 using RpgeOpen.Shared;
 using System.Reflection;
 using Microsoft.Scripting.Hosting;
+using System.IO;
 
 namespace RpgeOpen.Core.Binder.Python2
 {
@@ -19,11 +20,18 @@ namespace RpgeOpen.Core.Binder.Python2
             var pyPaths = PyEngine.GetSearchPaths();
             pyPaths.Add(AppContext.BaseDirectory);
             PyEngine.SetSearchPaths(pyPaths);
+
+            PyEngine.Runtime.LoadAssembly(
+                Assembly.GetAssembly(typeof(IRpgGame))
+            );
+            PyEngine.Runtime.LoadAssembly(
+                Assembly.LoadFile(Path.Combine(AppContext.BaseDirectory, "MonoGame.Framework.dll"))
+            );
+
             var pySrc = PyEngine.CreateScriptSourceFromFile($"Content/{Constants.Paths.Scripts}/SplashScene.py");
             PyProgram = pySrc.Compile();
 
             PyScope = PyEngine.CreateScope();
-            PyEngine.Runtime.LoadAssembly(Assembly.GetAssembly(typeof(IRpgGame)));
         }
 
         public void Dispose()
@@ -34,8 +42,13 @@ namespace RpgeOpen.Core.Binder.Python2
         {
             if (Initialized)
                 return;
+
+            PyScope.SetVariable("ContentManager", game.ContentManager);
+            PyScope.SetVariable("SceneManager", game.SceneManager);
             PyScope.SetVariable("AudioManager", game.AudioManager);
+            PyScope.SetVariable("RpgeGame", game);
             PyProgram.Execute(PyScope);
+
             Initialized = true;
         }
 

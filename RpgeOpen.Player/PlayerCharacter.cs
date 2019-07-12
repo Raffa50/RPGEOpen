@@ -6,13 +6,13 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Microsoft.Xna.Framework;
-using RpgeOpen.Core.SpriteSheets;
+using RpgeOpen.Core.Sprites;
 
 namespace RpgeOpen.Player
 {
     public class PlayerCharacter
     {
-        private Sprite player;
+        private SpriteCharacter player;
         private Texture2D playerSpriteSheet;
 
         public Point Position {

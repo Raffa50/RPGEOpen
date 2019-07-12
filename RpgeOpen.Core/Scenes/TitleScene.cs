@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using RpgeOpen.Core.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ namespace RpgeOpen.Core.Scenes
     {
         public TitleScene(IRpgGame game) : base(game) { }
 
-        public override void Draw(GameTime gameTime)
+        protected override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
         }
 
