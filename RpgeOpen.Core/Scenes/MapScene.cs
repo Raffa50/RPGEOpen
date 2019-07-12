@@ -59,7 +59,7 @@ namespace RpgeOpen.Core.Scenes
             const float movementSpeed = 0.07f;
             var deltaTime = (float)time.ElapsedGameTime.TotalMilliseconds;
 
-            var initialPosition = player.CornerLeft;
+            var initialPosition = player.Position;
             player.IsMoving = false;
 
             if( keyboardState.IsKeyDown( Keys.Up ) && player.CornerLeft.Y > 0 ) {

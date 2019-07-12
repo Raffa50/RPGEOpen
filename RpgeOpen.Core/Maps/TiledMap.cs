@@ -26,7 +26,7 @@ namespace RpgeOpen.Core.Maps
         public IDictionary<(int,int),MapBlock> Blocks { get; }
 
         [Obsolete]
-        public TiledMap( Map m ) : base(m.TmxPath, m.NumTiles) {
+        public TiledMap( Map m ) : base(m.TmxPath, m.PassabilityLayer) {
             DisplayName = m.DisplayName;
             Blocks = new Dictionary<(int,int),MapBlock>();
         }
