@@ -13,12 +13,14 @@ namespace RpgeOpen.Core.Binder.Python2
         private readonly CompiledCode PyProgram;
         private readonly ScriptScope PyScope;
         public bool Initialized { get; private set; }
+        private readonly ScriptEngine PyEngine;
 
         public PythonBinder()
         {
-            var PyEngine = Python.CreateEngine();
+            PyEngine = Python.CreateEngine();
             var pyPaths = PyEngine.GetSearchPaths();
             pyPaths.Add(AppContext.BaseDirectory);
+            pyPaths.Add(Path.Combine(AppContext.BaseDirectory, "Content", Constants.Paths.Scripts));
             PyEngine.SetSearchPaths(pyPaths);
 
             PyEngine.Runtime.LoadAssembly(
@@ -28,10 +30,10 @@ namespace RpgeOpen.Core.Binder.Python2
                 Assembly.LoadFile(Path.Combine(AppContext.BaseDirectory, "MonoGame.Framework.dll"))
             );
 
-            var pySrc = PyEngine.CreateScriptSourceFromFile($"Content/{Constants.Paths.Scripts}/SplashScene.py");
+            var pySrc = PyEngine.CreateScriptSourceFromFile($"Content/{Constants.Paths.Scripts}/main.py");
             PyProgram = pySrc.Compile();
 
-            PyScope = PyEngine.CreateScope();
+            PyScope = PyEngine.CreateModule("RpgeOpen.Runtime");
         }
 
         public void Dispose()

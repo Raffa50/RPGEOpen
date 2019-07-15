@@ -43,9 +43,6 @@ namespace RpgeOpen.Player
 
             //python iterpreter
             Python.Initialize(this);
-            var splashScene = Python.GetVariable("SplashScene")(this);
-            splashScene.Initialize();
-            SceneManager.GoTo(splashScene);
         }
 
         protected override void LoadContent()
