@@ -30,6 +30,7 @@ namespace RpgeOpen.IDE
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -54,16 +55,22 @@ namespace RpgeOpen.IDE
             this.tsMousePos = new System.Windows.Forms.ToolStripStatusLabel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.PbMap = new System.Windows.Forms.PictureBox();
+            this.cmnEvent = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.mnEventCreate = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnEventDelete = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnEventEdit = new System.Windows.Forms.ToolStripMenuItem();
             this.OfMapImport = new System.Windows.Forms.OpenFileDialog();
             this.SfNewProject = new System.Windows.Forms.SaveFileDialog();
             this.OfLoadProject = new System.Windows.Forms.OpenFileDialog();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsShowGrid = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsCursor = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsPassability = new System.Windows.Forms.ToolStripButton();
             this.tsDelete = new System.Windows.Forms.ToolStripButton();
             this.tsNoPass = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsShowEvents = new System.Windows.Forms.ToolStripButton();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -72,6 +79,7 @@ namespace RpgeOpen.IDE
             this.statusStrip1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.PbMap)).BeginInit();
+            this.cmnEvent.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -288,6 +296,7 @@ namespace RpgeOpen.IDE
             // 
             // PbMap
             // 
+            this.PbMap.ContextMenuStrip = this.cmnEvent;
             this.PbMap.Location = new System.Drawing.Point(3, 3);
             this.PbMap.Name = "PbMap";
             this.PbMap.Size = new System.Drawing.Size(50, 54);
@@ -295,6 +304,35 @@ namespace RpgeOpen.IDE
             this.PbMap.TabStop = false;
             this.PbMap.Paint += new System.Windows.Forms.PaintEventHandler(this.PbMap_Paint);
             this.PbMap.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PbMap_MouseMove);
+            // 
+            // cmnEvent
+            // 
+            this.cmnEvent.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.cmnEvent.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnEventCreate,
+            this.mnEventDelete,
+            this.mnEventEdit});
+            this.cmnEvent.Name = "cmnEvent";
+            this.cmnEvent.Size = new System.Drawing.Size(163, 76);
+            // 
+            // mnEventCreate
+            // 
+            this.mnEventCreate.Name = "mnEventCreate";
+            this.mnEventCreate.Size = new System.Drawing.Size(210, 24);
+            this.mnEventCreate.Text = "Create Event";
+            this.mnEventCreate.Click += new System.EventHandler(this.MnEventCreate_Click);
+            // 
+            // mnEventDelete
+            // 
+            this.mnEventDelete.Name = "mnEventDelete";
+            this.mnEventDelete.Size = new System.Drawing.Size(210, 24);
+            this.mnEventDelete.Text = "Delete Event";
+            // 
+            // mnEventEdit
+            // 
+            this.mnEventEdit.Name = "mnEventEdit";
+            this.mnEventEdit.Size = new System.Drawing.Size(210, 24);
+            this.mnEventEdit.Text = "Edit Event";
             // 
             // OfMapImport
             // 
@@ -318,14 +356,16 @@ namespace RpgeOpen.IDE
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsShowGrid,
-            this.toolStripSeparator1,
             this.tsCursor,
+            this.toolStripSeparator1,
             this.tsPassability,
             this.tsDelete,
-            this.tsNoPass});
-            this.toolStrip1.Location = new System.Drawing.Point(760, 28);
+            this.tsNoPass,
+            this.toolStripSeparator2,
+            this.tsShowEvents});
+            this.toolStrip1.Location = new System.Drawing.Point(770, 28);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(40, 445);
+            this.toolStrip1.Size = new System.Drawing.Size(30, 445);
             this.toolStrip1.TabIndex = 2;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -336,14 +376,9 @@ namespace RpgeOpen.IDE
             this.tsShowGrid.Image = ((System.Drawing.Image)(resources.GetObject("tsShowGrid.Image")));
             this.tsShowGrid.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsShowGrid.Name = "tsShowGrid";
-            this.tsShowGrid.Size = new System.Drawing.Size(37, 24);
+            this.tsShowGrid.Size = new System.Drawing.Size(27, 24);
             this.tsShowGrid.Text = "Show Grid";
             this.tsShowGrid.Click += new System.EventHandler(this.tsShowGrid_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(37, 6);
             // 
             // tsCursor
             // 
@@ -351,20 +386,23 @@ namespace RpgeOpen.IDE
             this.tsCursor.Image = ((System.Drawing.Image)(resources.GetObject("tsCursor.Image")));
             this.tsCursor.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsCursor.Name = "tsCursor";
-            this.tsCursor.Size = new System.Drawing.Size(37, 24);
+            this.tsCursor.Size = new System.Drawing.Size(27, 24);
             this.tsCursor.Text = "Back to cursor";
             this.tsCursor.Click += new System.EventHandler(this.TsCursor_Click);
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(27, 6);
+            // 
             // tsPassability
             // 
-            this.tsPassability.Checked = true;
             this.tsPassability.CheckOnClick = true;
-            this.tsPassability.CheckState = System.Windows.Forms.CheckState.Checked;
             this.tsPassability.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.tsPassability.Image = ((System.Drawing.Image)(resources.GetObject("tsPassability.Image")));
             this.tsPassability.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsPassability.Name = "tsPassability";
-            this.tsPassability.Size = new System.Drawing.Size(37, 24);
+            this.tsPassability.Size = new System.Drawing.Size(27, 24);
             this.tsPassability.Text = "toolStripButton1";
             this.tsPassability.ToolTipText = "Show passability";
             this.tsPassability.Click += new System.EventHandler(this.TsPassability_Click);
@@ -376,7 +414,7 @@ namespace RpgeOpen.IDE
             this.tsDelete.Image = ((System.Drawing.Image)(resources.GetObject("tsDelete.Image")));
             this.tsDelete.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsDelete.Name = "tsDelete";
-            this.tsDelete.Size = new System.Drawing.Size(37, 24);
+            this.tsDelete.Size = new System.Drawing.Size(27, 24);
             this.tsDelete.Text = "Delete";
             this.tsDelete.Click += new System.EventHandler(this.TsPassabilitySelector_Click);
             // 
@@ -387,9 +425,24 @@ namespace RpgeOpen.IDE
             this.tsNoPass.Image = global::RpgeOpen.IDE.Properties.Resources.no_entry;
             this.tsNoPass.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsNoPass.Name = "tsNoPass";
-            this.tsNoPass.Size = new System.Drawing.Size(37, 24);
+            this.tsNoPass.Size = new System.Drawing.Size(27, 24);
             this.tsNoPass.Text = "No pass";
             this.tsNoPass.Click += new System.EventHandler(this.TsPassabilitySelector_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(27, 6);
+            // 
+            // tsShowEvents
+            // 
+            this.tsShowEvents.CheckOnClick = true;
+            this.tsShowEvents.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsShowEvents.Image = ((System.Drawing.Image)(resources.GetObject("tsShowEvents.Image")));
+            this.tsShowEvents.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsShowEvents.Name = "tsShowEvents";
+            this.tsShowEvents.Size = new System.Drawing.Size(27, 24);
+            this.tsShowEvents.Text = "toolStripButton1";
             // 
             // MainForm
             // 
@@ -415,6 +468,7 @@ namespace RpgeOpen.IDE
             this.statusStrip1.PerformLayout();
             this.flowLayoutPanel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.PbMap)).EndInit();
+            this.cmnEvent.ResumeLayout(false);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -457,6 +511,12 @@ namespace RpgeOpen.IDE
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel tsMousePos;
         private System.Windows.Forms.ToolStripButton tsPassability;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripButton tsShowEvents;
+        private System.Windows.Forms.ContextMenuStrip cmnEvent;
+        private System.Windows.Forms.ToolStripMenuItem mnEventCreate;
+        private System.Windows.Forms.ToolStripMenuItem mnEventDelete;
+        private System.Windows.Forms.ToolStripMenuItem mnEventEdit;
     }
 }
 
