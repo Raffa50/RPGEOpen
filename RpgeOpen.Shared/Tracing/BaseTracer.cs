@@ -5,7 +5,7 @@ namespace RpgeOpen.Shared.Tracing
 {
     public abstract class BaseTracer : ITracer
     {
-        protected abstract void Trace(string message, TraceLevel level, string callerMemberName, string callerFilePath, int callerLineNumber, Func<object> context, Exception exception = null);
+        protected internal abstract void Trace(string message, TraceLevel level, string callerMemberName, string callerFilePath, int callerLineNumber, Func<object> context, Exception exception = null);
 
         public void Critical(string message, Func<object> context = null, Exception exception = null, [CallerMemberName] string callerMemberName = "", [CallerFilePath] string callerFilePath = "", [CallerLineNumber] int callerLineNumber = 0)
         {

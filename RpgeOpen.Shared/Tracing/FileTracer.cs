@@ -12,7 +12,7 @@ namespace RpgeOpen.Shared.Tracing
             stream.AutoFlush = true;
         }
 
-        protected override void Trace(string message, TraceLevel level, string callerMemberName, string callerFilePath, int callerLineNumber, Func<object> context = null, Exception exception = null)
+        protected internal override void Trace(string message, TraceLevel level, string callerMemberName, string callerFilePath, int callerLineNumber, Func<object> context = null, Exception exception = null)
         {
             stream.WriteLine(
                 TraceUtils.GetTrace(message, level, callerMemberName, callerFilePath, callerLineNumber, context, exception)
