@@ -41,7 +41,7 @@ namespace RpgeOpen.Models.Entities
         public void AddEvent(string id, int x, int y)
         {
             if (!Constants.VariableNameRegex.IsMatch(id))
-                throw new ArgumentException("invalid id");
+                throw new ArgumentException("id already present", nameof(id));
             if (Events.Any(e => e.Id == id))
                 throw new KeyAlreadyExistException("the specified key already exist in the collection", id);
 

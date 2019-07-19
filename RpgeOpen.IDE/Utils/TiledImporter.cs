@@ -13,7 +13,7 @@ namespace RpgeOpen.IDE.Utils
     {
         public static Size ImportTmx( string tmxPath, string projectDir ) {
             if(!Path.GetExtension(tmxPath).Contains( "tmx" ))
-                throw new ArgumentException("Invalid file");
+                throw new ArgumentException("Invalid file", nameof(tmxPath));
 
             var tmxDir = Path.GetDirectoryName(tmxPath);
             var tiledMap = new TmxMap(tmxPath);
