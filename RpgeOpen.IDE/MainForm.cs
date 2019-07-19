@@ -20,6 +20,7 @@ namespace RpgeOpen.IDE
     public partial class MainForm : Form {
         private CurrentProject currentProject;
         private TileMap currentMap;
+        private Point PointerPosition;
 
         public MainForm()
         {
@@ -95,6 +96,7 @@ namespace RpgeOpen.IDE
         private void LoadProject( string fileName ) {
             try {
                 currentProject = new CurrentProject(fileName);
+                Text = "RpgeOpen IDE - " + currentProject.Project.Name;
             } catch( JsonSerializationException ) {
                 MessageBox.Show( this, "Invalid project file " + fileName, "Project loading error", MessageBoxButtons.OK, MessageBoxIcon.Error );
                 return;
@@ -198,6 +200,7 @@ namespace RpgeOpen.IDE
             int mapX = e.Location.X / currentMap.TileSize.Width,
                 mapY = e.Location.Y / currentMap.TileSize.Height;
 
+            PointerPosition = new Point(mapX, mapY);
             tsMousePos.Text = $"x: {mapX} y: {mapY}";
 
             //check if editing
@@ -233,6 +236,11 @@ namespace RpgeOpen.IDE
             DisableAllPassabilityTools();
             var tsBtn = (ToolStripButton)sender;
             tsBtn.Checked = true;
+        }
+
+        private void MnEventCreate_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
