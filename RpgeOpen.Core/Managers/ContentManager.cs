@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 using RpgeOpen.Core.Interfaces;
-using RpgeOpen.Shared;
 using System;
 using XnaContent = Microsoft.Xna.Framework.Content;
 
@@ -16,12 +15,6 @@ namespace RpgeOpen.Core.Managers
         public Texture2D LoadImage(string name)
         {
             return Load<Texture2D>(name);
-        }
-
-        [Obsolete("Font manager not implemented yet")]
-        public SpriteFont LoadFont(string name)
-        {
-            return Load<SpriteFont>($"{Constants.Paths.Fonts}/{name}");
         }
     }
 }

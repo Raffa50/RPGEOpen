@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Diagnostics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using MonoGame.Extended.ViewportAdapters;
@@ -15,7 +14,7 @@ namespace RpgeOpen.Player
     public class RpgeGame : Game, IRpgGame
     {
         private readonly GraphicsDeviceManager graphics;
-        private readonly IScriptBinder Python = new PythonBinder();
+        private IScriptBinder Python;
         
         public ViewportAdapter Viewport { get; private set; }
 
@@ -25,6 +24,8 @@ namespace RpgeOpen.Player
         public SceneManager SceneManager { get; }
         public AudioManager AudioManager { get; }
 
+        public FontManager FontManager { get; }
+
         public RpgeGame()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -33,6 +34,7 @@ namespace RpgeOpen.Player
             ContentManager = new ContentManager(Content);
             SceneManager = new SceneManager(this);
             AudioManager = new AudioManager(Content);
+            FontManager = new FontManager();
         }
 
         protected override void Initialize()
@@ -42,17 +44,27 @@ namespace RpgeOpen.Player
             Viewport = new BoxingViewportAdapter(Window, GraphicsDevice, 800, 480);
 
             //python iterpreter
-            Python.Initialize(this);
+            try
+            {
+                Python = new PythonBinder();
+                Python.Initialize(this);
+            } catch (Exception ex)
+            {
+                SceneManager.Error(ex.Message + "\n" + ex.StackTrace);
+            }
         }
 
         protected override void LoadContent()
         {
+            FontManager.LoadContent(Content);
+
             if (File.Exists("Content/game.rpgeo"))
             {
                 var content = File.ReadAllText("Content/game.rpgeo");
                 GameData = JsonConvert.DeserializeObject<ProjectDetails>(content);
             }
-            else Debug.WriteLine("Project file not found");
+            else
+                SceneManager.Error("Project file not found in Content, game was not correctly buid");
         }
 
         protected override void UnloadContent()
@@ -61,14 +73,26 @@ namespace RpgeOpen.Player
 
         protected override void Update(GameTime gameTime)
         {
-            SceneManager.Update( gameTime );
+            try
+            {
+                SceneManager.Update(gameTime);
+            } catch(Exception ex)
+            {
+                SceneManager.Error(ex.Message+"\n"+ex.StackTrace);
+            }
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Black);
-            SceneManager.Draw(gameTime);
+            try
+            {
+                SceneManager.Draw(gameTime);
+            } catch (Exception ex)
+            {
+                SceneManager.Error(ex.Message + "\n" + ex.StackTrace);
+            }
         }
     }
 }
