@@ -2,6 +2,7 @@
 using MonoGame.Extended.ViewportAdapters;
 using RpgeOpen.Core.Managers;
 using RpgeOpen.Models.Entities;
+using RpgeOpen.Shared.Tracing;
 
 namespace RpgeOpen.Core.Interfaces
 {
@@ -15,6 +16,8 @@ namespace RpgeOpen.Core.Interfaces
         SceneManager SceneManager { get; }
         AudioManager AudioManager { get; }
         FontManager FontManager { get; }
+
+        ITracer Tracer { get; }
 
         void Exit();
     }

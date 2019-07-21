@@ -8,6 +8,7 @@ using RpgeOpen.Models.Entities;
 using RpgeOpen.Core.Interfaces;
 using RpgeOpen.Core.Managers;
 using RpgeOpen.Core.Binder.Python2;
+using RpgeOpen.Shared.Tracing;
 
 namespace RpgeOpen.Player
 {
@@ -26,6 +27,8 @@ namespace RpgeOpen.Player
 
         public FontManager FontManager { get; }
 
+        public ITracer Tracer { get; private set; }
+
         public RpgeGame()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -43,13 +46,17 @@ namespace RpgeOpen.Player
 
             Viewport = new BoxingViewportAdapter(Window, GraphicsDevice, 800, 480);
 
-            //python iterpreter
+            if (!Directory.Exists("Logs"))
+                Directory.CreateDirectory("Logs");
+            Tracer = new FileTracer($"Logs/{DateTime.Now.ToString("yyyy-MM-dd@HH-mm-ss")}.log");
+
             try
             {
                 Python = new PythonBinder();
                 Python.Initialize(this);
             } catch (Exception ex)
             {
+                Tracer.Critical("unhandled exception during Initialize", exception: ex);
                 SceneManager.Error(ex.Message + "\n" + ex.StackTrace);
             }
         }
@@ -64,7 +71,10 @@ namespace RpgeOpen.Player
                 GameData = JsonConvert.DeserializeObject<ProjectDetails>(content);
             }
             else
+            {
+                Tracer.Critical("Content/game.rpgeo is not present");
                 SceneManager.Error("Project file not found in Content, game was not correctly buid");
+            }
         }
 
         protected override void UnloadContent()
@@ -78,6 +88,7 @@ namespace RpgeOpen.Player
                 SceneManager.Update(gameTime);
             } catch(Exception ex)
             {
+                Tracer.Critical("unhandled exception during Update", exception: ex);
                 SceneManager.Error(ex.Message+"\n"+ex.StackTrace);
             }
             base.Update(gameTime);
@@ -91,6 +102,7 @@ namespace RpgeOpen.Player
                 SceneManager.Draw(gameTime);
             } catch (Exception ex)
             {
+                Tracer.Critical("unhandled exception during Draw", exception: ex);
                 SceneManager.Error(ex.Message + "\n" + ex.StackTrace);
             }
         }

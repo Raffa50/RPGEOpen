@@ -52,6 +52,7 @@ namespace RpgeOpen.Core.Binder.Python2
             PyScope.SetVariable("SceneManager", game.SceneManager);
             PyScope.SetVariable("AudioManager", game.AudioManager);
             PyScope.SetVariable("FontManager", game.FontManager);
+            PyScope.SetVariable("Tracer", game.Tracer);
             PyScope.SetVariable("RpgeGame", game);
             PyProgram.Execute(PyScope);
 

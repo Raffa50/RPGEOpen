@@ -3,6 +3,7 @@ using MonoGame.Extended.Screens;
 using MonoGame.Extended.Screens.Transitions;
 using RpgeOpen.Core.Interfaces;
 using RpgeOpen.Core.Scenes;
+using RpgeOpen.Shared.Tracing;
 using System;
 
 namespace RpgeOpen.Core.Managers
@@ -11,12 +12,14 @@ namespace RpgeOpen.Core.Managers
     {
         private readonly ScreenManager manager;
         private readonly IRpgGame game;
+        private readonly ITracer tracer;
         private AbstractScene currentScene;
 
         public SceneManager(IRpgGame game)
         {
             manager = new ScreenManager();
             this.game = game;
+            tracer = game.Tracer;
         }
 
         public void GoTo(AbstractScene scene, Transition transition = null)
@@ -32,6 +35,7 @@ namespace RpgeOpen.Core.Managers
             }
             catch (Exception ex)
             {
+                tracer.Critical("unhandled exception", exception: ex);
                 if(!(currentScene is ErrorScene))
                     manager.LoadScreen(new ErrorScene(game, ex.Message + "\n" + ex.StackTrace));
             }
