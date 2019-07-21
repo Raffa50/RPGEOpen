@@ -10,6 +10,7 @@ namespace RpgeOpen.Core.Binder.Python2
 {
     public sealed class PythonBinder : IScriptBinder
     {
+        private static readonly string EntryPoint = $"Content/{Constants.Paths.Scripts}/main.py";
         private readonly CompiledCode PyProgram;
         private readonly ScriptScope PyScope;
         public bool Initialized { get; private set; }
@@ -19,7 +20,7 @@ namespace RpgeOpen.Core.Binder.Python2
         {
             PyEngine = Python.CreateEngine();
             var pyPaths = PyEngine.GetSearchPaths();
-            pyPaths.Add(AppContext.BaseDirectory);
+            //pyPaths.Add(AppContext.BaseDirectory);
             pyPaths.Add(Path.Combine(AppContext.BaseDirectory, "Content", Constants.Paths.Scripts));
             PyEngine.SetSearchPaths(pyPaths);
 
@@ -30,7 +31,9 @@ namespace RpgeOpen.Core.Binder.Python2
                 Assembly.LoadFile(Path.Combine(AppContext.BaseDirectory, "MonoGame.Framework.dll"))
             );
 
-            var pySrc = PyEngine.CreateScriptSourceFromFile($"Content/{Constants.Paths.Scripts}/main.py");
+            if (!File.Exists(EntryPoint))
+                throw new FileNotFoundException("The entrypoint was not found", EntryPoint);
+            var pySrc = PyEngine.CreateScriptSourceFromFile(EntryPoint);
             PyProgram = pySrc.Compile();
 
             PyScope = PyEngine.CreateModule("RpgeOpen.Runtime");

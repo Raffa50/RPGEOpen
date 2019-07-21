@@ -14,6 +14,7 @@ namespace RpgeOpen.Core.Interfaces
 
         SceneManager SceneManager { get; }
         AudioManager AudioManager { get; }
+        FontManager FontManager { get; }
 
         void Exit();
     }

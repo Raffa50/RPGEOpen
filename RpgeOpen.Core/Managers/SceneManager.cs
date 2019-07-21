@@ -11,6 +11,7 @@ namespace RpgeOpen.Core.Managers
     {
         private readonly ScreenManager manager;
         private readonly IRpgGame game;
+        private AbstractScene currentScene;
 
         public SceneManager(IRpgGame game)
         {
@@ -26,11 +27,19 @@ namespace RpgeOpen.Core.Managers
                     manager.LoadScreen(scene);
                 else
                     manager.LoadScreen(scene, transition);
+
+                currentScene = scene;
             }
             catch (Exception ex)
             {
-                manager.LoadScreen(new ErrorScene(game, ex.Message + "\n" + ex.StackTrace));
+                if(!(currentScene is ErrorScene))
+                    manager.LoadScreen(new ErrorScene(game, ex.Message + "\n" + ex.StackTrace));
             }
+        }
+
+        public void Error(string errorMsg)
+        {
+            GoTo(new ErrorScene(game, errorMsg));
         }
 
         public void Update(GameTime gameTime)
