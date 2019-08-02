@@ -9,6 +9,5 @@ namespace RpgeOpen.Core.Interfaces
     public interface IScriptBinder : IDisposable
     {
         void Initialize(IRpgGame game);
-        dynamic GetVariable(string name);
     }
 }
