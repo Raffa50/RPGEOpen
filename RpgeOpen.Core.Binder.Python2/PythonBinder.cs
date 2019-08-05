@@ -58,12 +58,5 @@ namespace RpgeOpen.Core.Binder.Python2
 
             Initialized = true;
         }
-
-        public dynamic GetVariable(string name)
-        {
-            if (!Initialized)
-                throw new InvalidOperationException("Not initialzied");
-            return PyScope.GetVariable(name);
-        }
     }
 }
