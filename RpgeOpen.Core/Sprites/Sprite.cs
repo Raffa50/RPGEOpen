@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace RpgeOpen.Core.Sprites
 {
-    public class Sprite : IGameObject
+    public class Sprite
     {
         protected readonly Texture2D spriteSheet;
         public Size Size { get; private set; }
@@ -29,21 +29,9 @@ namespace RpgeOpen.Core.Sprites
             Size = size;
         }
 
-        public virtual void Dispose()
-        {
-        }
-
         public virtual void Draw(GameTime time, SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(spriteSheet, Position.ToVector2(), Color.White);
-        }
-
-        public virtual void Initialize()
-        {
-        }
-
-        public virtual void LoadContent(ContentManager Content)
-        {
         }
 
         public virtual void Update(GameTime time)

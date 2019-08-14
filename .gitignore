@@ -2,4 +2,4 @@ bin/
 obj/
 packages/
 .vs/
-MonoGame.Extended/
+RpgeOpen.Player/Content/

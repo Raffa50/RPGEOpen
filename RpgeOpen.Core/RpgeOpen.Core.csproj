@@ -40,6 +40,12 @@
     <OutputPath>bin\x86\Release\</OutputPath>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DataTypes, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\GeonBit.UI.3.4.0.1\lib\geonbitui\DataTypes.dll</HintPath>
+    </Reference>
+    <Reference Include="GeonBit.UI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\GeonBit.UI.3.4.0.1\lib\geonbitui\GeonBit.UI.dll</HintPath>
+    </Reference>
     <Reference Include="MonoGame.Extended, Version=3.6.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MonoGame.Extended.3.6.0-beta0001\lib\netstandard2.0\MonoGame.Extended.dll</HintPath>
     </Reference>
@@ -61,6 +67,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AbstractGameObject.cs" />
     <Compile Include="Maps\Event.cs" />
     <Compile Include="Interfaces\IManager.cs" />
     <Compile Include="Managers\ContentManager.cs" />
@@ -80,6 +87,7 @@
     <Compile Include="Scenes\MapScene.cs" />
     <Compile Include="Scenes\SplashScene.cs" />
     <Compile Include="Scenes\TitleScene.cs" />
+    <Compile Include="Sprites\Sprite.cs" />
     <Compile Include="Sprites\SpriteCharacter.cs" />
     <Compile Include="Maps\TiledMap.cs" />
   </ItemGroup>

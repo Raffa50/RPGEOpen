@@ -9,6 +9,7 @@ using RpgeOpen.Core.Interfaces;
 using RpgeOpen.Core.Managers;
 using RpgeOpen.Core.Binder.Python2;
 using RpgeOpen.Shared.Tracing;
+using GeonBit.UI;
 
 namespace RpgeOpen.Player
 {
@@ -45,6 +46,8 @@ namespace RpgeOpen.Player
             base.Initialize();
 
             Viewport = new BoxingViewportAdapter(Window, GraphicsDevice, 800, 480);
+
+            UserInterface.Initialize(Content, BuiltinThemes.hd);
 
             if (!Directory.Exists("Logs"))
                 Directory.CreateDirectory("Logs");
@@ -83,6 +86,8 @@ namespace RpgeOpen.Player
 
         protected override void Update(GameTime gameTime)
         {
+            UserInterface.Active.Update(gameTime);
+
             try
             {
                 SceneManager.Update(gameTime);
@@ -91,6 +96,7 @@ namespace RpgeOpen.Player
                 Tracer.Critical("unhandled exception during Update", exception: ex);
                 SceneManager.Error(ex.Message+"\n"+ex.StackTrace);
             }
+
             base.Update(gameTime);
         }
 
@@ -105,6 +111,7 @@ namespace RpgeOpen.Player
                 Tracer.Critical("unhandled exception during Draw", exception: ex);
                 SceneManager.Error(ex.Message + "\n" + ex.StackTrace);
             }
+            base.Draw(gameTime);
         }
     }
 }

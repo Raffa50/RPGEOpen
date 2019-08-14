@@ -13,7 +13,6 @@ namespace RpgeOpen.Player
     public class PlayerCharacter
     {
         private SpriteCharacter player;
-        private Texture2D playerSpriteSheet;
 
         public Point Position {
             get => player.Position;

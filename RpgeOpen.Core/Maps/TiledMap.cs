@@ -18,7 +18,7 @@ using RpgeOpen.Shared;
 
 namespace RpgeOpen.Core.Maps
 {
-    public class TiledMap : Map, IGameObject {
+    public class TiledMap : Map, IDisposable {
         public Size Size { get; private set; }
         private TmxMap map;
         private Size tileSize;

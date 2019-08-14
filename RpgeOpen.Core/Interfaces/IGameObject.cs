@@ -16,5 +16,6 @@ namespace RpgeOpen.Core.Interfaces
         void LoadContent( ContentManager Content );
         void Draw( GameTime time, SpriteBatch spriteBatch);
         void Update( GameTime time );
+        ICollection<IGameObject> Children { get; }
     }
 }

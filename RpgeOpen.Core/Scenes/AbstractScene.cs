@@ -20,6 +20,7 @@ namespace RpgeOpen.Core.Scenes
         protected AbstractScene(IRpgGame game){
             Game = game;
             SpriteBatch = new SpriteBatch(Game.GraphicsDevice);
+            Camera = new Camera2D(Viewport) { Origin = Vector2.Zero };
         }
 
         public ContentManager ContentManager => Game.ContentManager;
@@ -30,15 +31,14 @@ namespace RpgeOpen.Core.Scenes
         public override void Initialize()
         {
             base.Initialize();
-            Camera = new Camera2D(Viewport) { Origin = Vector2.Zero };
         }
 
         public override sealed void Draw(GameTime gameTime)
         {
             SpriteBatch.Begin(transformMatrix: Camera.CalculateTransformMatrix());
             Draw(gameTime, SpriteBatch);
-            UserInterface.Active.Draw(SpriteBatch);
             SpriteBatch.End();
+            UserInterface.Active.Draw(SpriteBatch);
         }
 
         protected abstract void Draw(GameTime gameTime, SpriteBatch spriteBatch);
