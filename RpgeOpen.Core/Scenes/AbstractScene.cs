@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using GeonBit.UI;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 using MonoGame.Extended.Screens;
@@ -34,11 +35,9 @@ namespace RpgeOpen.Core.Scenes
 
         public override sealed void Draw(GameTime gameTime)
         {
-            if (Camera == null)
-                SpriteBatch.Begin();
-            else
-                SpriteBatch.Begin(transformMatrix: Camera.CalculateTransformMatrix());
+            SpriteBatch.Begin(transformMatrix: Camera.CalculateTransformMatrix());
             Draw(gameTime, SpriteBatch);
+            UserInterface.Active.Draw(SpriteBatch);
             SpriteBatch.End();
         }
 
