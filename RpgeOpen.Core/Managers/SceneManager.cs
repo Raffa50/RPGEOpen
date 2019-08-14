@@ -48,7 +48,15 @@ namespace RpgeOpen.Core.Managers
 
         public void Update(GameTime gameTime)
         {
-            manager.Update(gameTime);
+            try
+            {
+                manager.Update(gameTime);
+            }catch(Exception ex)
+            {
+                tracer.Critical("unhandled exception", exception: ex);
+                if (!(currentScene is ErrorScene))
+                    manager.LoadScreen(new ErrorScene(game, ex.Message + "\n" + ex.StackTrace));
+            }
         }
 
         public void Draw(GameTime gameTime)
