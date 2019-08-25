@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using GeonBit.UI;
+using GeonBit.UI.Entities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -18,6 +19,8 @@ namespace RpgeOpen.Core.Scenes
 {
     public class MapScene : AbstractScene {
         private TiledMap renderMap;
+        protected Entity MenuMain;
+        private bool EscReleased = true;
         private SpriteCharacter player;
         private Texture2D playerSpriteSheet;
 
@@ -27,10 +30,15 @@ namespace RpgeOpen.Core.Scenes
 
         public override void Initialize() {
             base.Initialize();
-            UserInterface.Active.Clear();
 
             var map = GameData.Maps.First();
             renderMap = new TiledMap( map );
+
+            MenuMain = new Panel(new Vector2(200, 400), PanelSkin.Default, Anchor.BottomRight);
+            var btn = new Button("Test", ButtonSkin.Default, Anchor.TopCenter);
+            MenuMain.AddChild(btn, true);
+            MenuMain.Visible = false;
+            UserInterface.Active.AddEntity(MenuMain);
         }
 
         public override void LoadContent() {
@@ -58,6 +66,17 @@ namespace RpgeOpen.Core.Scenes
 
         public override void Update( GameTime time ) {
             var keyboardState = Keyboard.GetState();
+
+            if (keyboardState.IsKeyUp(Keys.Escape) && !EscReleased)
+                EscReleased = true;
+            if (keyboardState.IsKeyDown(Keys.Escape) && EscReleased)
+            {
+                EscReleased = false;
+                MenuMain.Visible = !MenuMain.Visible;
+            }
+            if (MenuMain.Visible)
+                return;
+
             const float movementSpeed = 0.07f;
             var deltaTime = (float)time.ElapsedGameTime.TotalMilliseconds;
 

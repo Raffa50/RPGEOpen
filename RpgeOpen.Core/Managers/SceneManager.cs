@@ -26,6 +26,7 @@ namespace RpgeOpen.Core.Managers
 
         public void GoTo(AbstractScene scene, Transition transition = null)
         {
+            UserInterface.Active.Clear();
             try
             {
                 if (transition == null)

@@ -24,10 +24,10 @@ namespace RpgeOpen.Core.Scenes
             UserInterface.Active.AddEntity(panel);
 
             // add title and text
-            panel.AddChild(new Header("Rpge Open"));
+            panel.AddChild(new Header("Rpge Open Game"));
 
             // add a button at the bottom
-            BtnNewGame = new Button("New Game", ButtonSkin.Default, Anchor.BottomCenter);
+            BtnNewGame = new Button("New Game", ButtonSkin.Default, Anchor.TopCenter);
             BtnNewGame.OnClick += s => {
                 if (transition)
                     return;
