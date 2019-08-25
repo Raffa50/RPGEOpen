@@ -32,6 +32,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DataTypes, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\GeonBit.UI.3.4.0.1\lib\geonbitui\DataTypes.dll</HintPath>
+    </Reference>
+    <Reference Include="GeonBit.UI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\GeonBit.UI.3.4.0.1\lib\geonbitui\GeonBit.UI.dll</HintPath>
+    </Reference>
     <Reference Include="IronPython, Version=2.7.9.0, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
       <HintPath>..\packages\IronPython.2.7.9\lib\net45\IronPython.dll</HintPath>
     </Reference>

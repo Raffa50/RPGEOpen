@@ -13,6 +13,9 @@ namespace RpgeOpen.Core.Scenes
 {
     public class TitleScene : AbstractScene
     {
+        protected Button BtnNewGame;
+        private bool transition;
+
         public TitleScene(IRpgGame game) : base(game) { }
 
         public override void Initialize()
@@ -21,12 +24,17 @@ namespace RpgeOpen.Core.Scenes
             UserInterface.Active.AddEntity(panel);
 
             // add title and text
-            panel.AddChild(new Header("Example Panel"));
-            panel.AddChild(new HorizontalLine());
-            panel.AddChild(new Paragraph("This is a simple panel with a button."));
+            panel.AddChild(new Header("Rpge Open"));
 
             // add a button at the bottom
-            panel.AddChild(new Button("Click Me!", ButtonSkin.Default, Anchor.BottomCenter));
+            BtnNewGame = new Button("New Game", ButtonSkin.Default, Anchor.BottomCenter);
+            BtnNewGame.OnClick += s => {
+                if (transition)
+                    return;
+                transition = true;
+                SceneManager.GoTo(new MapScene(Game));
+            };
+            panel.AddChild(BtnNewGame);
         }
 
         protected override void Draw(GameTime gameTime, SpriteBatch spriteBatch)

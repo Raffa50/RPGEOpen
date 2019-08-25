@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using GeonBit.UI;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using RpgeOpen.Core.Interfaces;
@@ -16,8 +17,10 @@ namespace RpgeOpen.Core.Scenes
             FontManager = game.FontManager;
         }
 
-        public override void LoadContent()
+        public override void Initialize()
         {
+            base.Initialize();
+            UserInterface.Active.Clear();
         }
 
         protected override void Draw(GameTime gameTime, SpriteBatch spriteBatch)

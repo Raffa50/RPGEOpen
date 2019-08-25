@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using GeonBit.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -27,6 +27,8 @@ namespace RpgeOpen.Core.Scenes
 
         public override void Initialize() {
             base.Initialize();
+            UserInterface.Active.Clear();
+
             var map = GameData.Maps.First();
             renderMap = new TiledMap( map );
         }

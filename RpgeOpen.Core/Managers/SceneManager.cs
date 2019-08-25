@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using GeonBit.UI;
+using Microsoft.Xna.Framework;
 using MonoGame.Extended.Screens;
 using MonoGame.Extended.Screens.Transitions;
 using RpgeOpen.Core.Interfaces;
@@ -14,6 +15,7 @@ namespace RpgeOpen.Core.Managers
         private readonly IRpgGame game;
         private readonly ITracer tracer;
         private AbstractScene currentScene;
+        public Type PreviousScene { get; private set; }
 
         public SceneManager(IRpgGame game)
         {
@@ -31,6 +33,7 @@ namespace RpgeOpen.Core.Managers
                 else
                     manager.LoadScreen(scene, transition);
 
+                PreviousScene = currentScene?.GetType();
                 currentScene = scene;
             }
             catch (Exception ex)
@@ -39,6 +42,12 @@ namespace RpgeOpen.Core.Managers
                 if(!(currentScene is ErrorScene))
                     manager.LoadScreen(new ErrorScene(game, ex.Message + "\n" + ex.StackTrace));
             }
+        }
+
+        public void Back(Transition transition = null)
+        {
+            var scene = (AbstractScene)Activator.CreateInstance(PreviousScene, game);
+            GoTo(scene, transition);
         }
 
         public void Error(string errorMsg)

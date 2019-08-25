@@ -23,7 +23,7 @@ namespace RpgeOpen.Player
         public ProjectDetails GameData { get; private set; }
 
         public ContentManager ContentManager { get; }
-        public SceneManager SceneManager { get; }
+        public SceneManager SceneManager { get; private set; }
         public AudioManager AudioManager { get; }
 
         public FontManager FontManager { get; }
@@ -36,7 +36,6 @@ namespace RpgeOpen.Player
             Content.RootDirectory = "Content";
 
             ContentManager = new ContentManager(Content);
-            SceneManager = new SceneManager(this);
             AudioManager = new AudioManager(Content);
             FontManager = new FontManager();
         }
@@ -52,6 +51,8 @@ namespace RpgeOpen.Player
             if (!Directory.Exists("Logs"))
                 Directory.CreateDirectory("Logs");
             Tracer = new FileTracer($"Logs/{DateTime.Now.ToString("yyyy-MM-dd@HH-mm-ss")}.log");
+
+            SceneManager = new SceneManager(this);
 
             try
             {
@@ -86,8 +87,6 @@ namespace RpgeOpen.Player
 
         protected override void Update(GameTime gameTime)
         {
-            UserInterface.Active.Update(gameTime);
-
             try
             {
                 SceneManager.Update(gameTime);
@@ -96,7 +95,7 @@ namespace RpgeOpen.Player
                 Tracer.Critical("unhandled exception during Update", exception: ex);
                 SceneManager.Error(ex.Message+"\n"+ex.StackTrace);
             }
-
+            UserInterface.Active.Update(gameTime);
             base.Update(gameTime);
         }
 

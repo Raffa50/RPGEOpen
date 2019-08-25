@@ -5,6 +5,7 @@ using RpgeOpen.Shared;
 using System.Reflection;
 using Microsoft.Scripting.Hosting;
 using System.IO;
+using GeonBit.UI;
 
 namespace RpgeOpen.Core.Binder.Python2
 {
@@ -20,7 +21,6 @@ namespace RpgeOpen.Core.Binder.Python2
         {
             PyEngine = Python.CreateEngine();
             var pyPaths = PyEngine.GetSearchPaths();
-            //pyPaths.Add(AppContext.BaseDirectory);
             pyPaths.Add(Path.Combine(AppContext.BaseDirectory, "Content", Constants.Paths.Scripts));
             PyEngine.SetSearchPaths(pyPaths);
 
@@ -29,6 +29,9 @@ namespace RpgeOpen.Core.Binder.Python2
             );
             PyEngine.Runtime.LoadAssembly(
                 Assembly.LoadFile(Path.Combine(AppContext.BaseDirectory, "MonoGame.Framework.dll"))
+            );
+            PyEngine.Runtime.LoadAssembly(
+                Assembly.GetAssembly(typeof(UserInterface))
             );
 
             if (!File.Exists(EntryPoint))
@@ -52,6 +55,7 @@ namespace RpgeOpen.Core.Binder.Python2
             PyScope.SetVariable("SceneManager", game.SceneManager);
             PyScope.SetVariable("AudioManager", game.AudioManager);
             PyScope.SetVariable("FontManager", game.FontManager);
+            PyScope.SetVariable("UserInterface", UserInterface.Active);
             PyScope.SetVariable("Tracer", game.Tracer);
             PyScope.SetVariable("RpgeGame", game);
             PyProgram.Execute(PyScope);
