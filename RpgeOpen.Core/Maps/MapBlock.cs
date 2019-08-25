@@ -16,7 +16,7 @@ namespace RpgeOpen.Core.Maps
         public MapBlock(PassabilityType passability, Size tileSize, int x, int y)
         {
             Passability = passability;
-            Box = new Rectangle(x * tileSize.Width, y * tileSize.Height, tileSize.Width, tileSize.Height);
+            Box = new Rectangle(x * tileSize.Width +3, y * tileSize.Height +3, tileSize.Width -3, tileSize.Height -3);
         }
     }
 }
